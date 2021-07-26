@@ -1,0 +1,39 @@
+extends elements/layout 
+
+block content
+  main.main 
+    section.logo
+      p.logo_text TRIVIAL CHAT
+    section.main_container
+      .description
+        .description_form
+          h2.description_form-title Don't have an account yet?
+          p.description_form-text Banjo tote bag bicycle rights, High Life sartorial cray craft beer whatever street art fap.
+          button.description_form-button#switch-button Sign up
+
+      .user_forms#user_options-forms
+        .user_forms-login.flip0#user-login
+          form.forms_form.hide1#form_user-login
+            h2.forms_title Login
+            fieldset.forms_fieldset
+              .forms_field
+                input.forms_field-input(type="email" placeholder="Email" required autofocus)
+              .forms_field
+                input.forms_field-input(type="password" placeholder="Password" required)
+            .forms_buttons
+              button.forms_buttons-forgot(type="button") Forgot password?
+              input.forms_buttons-action(type="submit" value="LogIn")
+        .user_forms-signup.flip-180#user-signup
+          form.forms_form.hide0#form_user-signup
+            h2.forms_title Sign Up
+            fieldset.forms_fieldset
+              .forms_field
+                input.forms_field-input(type="text" placeholder="Full Name" required)
+              .forms_field
+                input.forms_field-input(type="email" placeholder="Email" required)
+              .forms_field
+                input.forms_field-input(type="password" placeholder="Password" required)
+            .forms_buttons
+              input.forms_buttons-action(type="submit" value="SignUp")
+    aside.city_images
+      div.city_images-element.hide085
