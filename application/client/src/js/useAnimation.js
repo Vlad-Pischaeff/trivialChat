@@ -15,7 +15,6 @@ export const useAnimation = () => {
     let animation = 'shadow 1s ease'
 
     const flip_toSignup = () => {
-
       FormsLogin.classList.remove('flip0')
       FormsLogin.classList.add('flip180')
       FormsSignup.classList.remove('flip-180')
@@ -33,7 +32,6 @@ export const useAnimation = () => {
     }
 
     const flip_toLogin = () => {
-
       FormsLogin.classList.remove('flip180')
       FormsLogin.classList.add('flip0')
       FormsSignup.classList.remove('flip0')
