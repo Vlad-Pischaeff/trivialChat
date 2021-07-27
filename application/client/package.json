@@ -94,6 +94,7 @@
   },
   "devDependencies": {
     "http-proxy-middleware": "^2.0.1",
+    "path": "^0.12.7",
     "sass-loader": "^12.1.0"
   },
   "jest": {

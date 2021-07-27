@@ -1,30 +1,26 @@
-import React, { useEffect } from 'react'
-import { useAnimation } from '../js/useAnimation'
+import React, { useEffect, useState } from 'react'
+import { useCardFlip } from '../js/useCardFlip'
+import HeaderLoginPage from '../components/HeaderLoginPage'
+import FooterLoginPage from '../components/FooterLoginPage'
+import AsidePictureSlider from '../components/AsidePictureSlider'
+import Logo from '../components/Logo'
+import LoginPageProfile from '../components/LoginPageProfile'
 
 export default function LoginPage() {
-  const { startAnimation } = useAnimation()
+  const { startFlip } = useCardFlip()
+  const [ letSwitchToSignup, setLetSwitshToSignup ] = useState(false)
 
   useEffect(() => {
-    startAnimation()
-  }, [])
-
+    startFlip(letSwitchToSignup)
+  }, [letSwitchToSignup, startFlip])
+  
   return (
     <>
-    <header> 
-      <p>register page</p>
-    </header>
+    <HeaderLoginPage />
     <main className="main"> 
-      <section className="logo">
-        <p className="logo_text">TRIVIAL CHAT</p>
-      </section>
+      <Logo />
       <section className="main_container">
-        <div className="description">
-          <div className="description_form">
-            <h2 className="description_form-title">Don't have an account yet?</h2>
-            <p className="description_form-text">Banjo tote bag bicycle rights, High Life sartorial cray craft beer whatever street art fap.</p>
-            <button className="description_form-button" id="switch-button">Sign up</button>
-          </div>
-        </div>
+        <LoginPageProfile letSwitch={letSwitchToSignup} setSwitch={setLetSwitshToSignup} />
         <div className="user_forms" id="user_options-forms">
           <div className="user_forms-login flip0" id="user-login">
             <form className="forms_form hide1" id="form_user-login">
@@ -64,13 +60,9 @@ export default function LoginPage() {
           </div>
         </div>
       </section>
-      <aside className="city_images">
-        <div className="city_images-element hide085"></div>
-      </aside>
+      <AsidePictureSlider />
     </main>
-    <footer> 
-      <p>Trivial Chat 2021 &copy;</p>
-    </footer>
+    <FooterLoginPage />
     </>
   )
 }
