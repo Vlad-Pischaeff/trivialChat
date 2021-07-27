@@ -7,7 +7,7 @@ const URL = `${httpPrefix}//${hostname}:5000`
 export const useSlider = () => {
 
   const slider = () => {
-    let counter = 18
+    let counter = 25
     let j = 1
     const delay = 4000
     const images = document.querySelector('.city_images')
@@ -17,7 +17,7 @@ export const useSlider = () => {
     }
 
     const forLoop = async () => {
-      for (;;) {
+      while (true) {
         // console.log('j', j)
         j < counter ? j++ : j = 1
         let divImg = document.createElement('div')
