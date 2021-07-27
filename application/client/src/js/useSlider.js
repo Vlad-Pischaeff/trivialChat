@@ -1,8 +1,8 @@
 const httpPrefix = window.location.protocol
 // const wsPrefix = httpPrefix === 'https:' ? 'wss:' : 'ws:'
-let { host, hostname } = window.location                                                                                                    
+// let { host, hostname } = window.location
+let { hostname } = window.location  
 const URL = `${httpPrefix}//${hostname}:5000`
-console.log('HOST...', window.location)
 
 export const useSlider = () => {
 

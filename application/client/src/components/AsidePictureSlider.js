@@ -6,7 +6,7 @@ export default function AsidePictureSlider() {
 
   useEffect(() => {
     slider()
-  }, [slider])
+  }, [])
 
   return (
     <aside className="city_images">
