@@ -1,6 +1,61 @@
+/**
+ *************************************** General variables
+ */
+@font-face 
+  font-family: Play
+  src: url("../fonts/Play-Regular.woff2") format("woff2")
+  src: url("../fonts/Play-Regular.woff") format("woff")
+  font-style: normal
+  font-weight: normal
 
-@import 'index.sass'
+@font-face 
+  font-family: Esqadero
+  src: url("../fonts/Esqadero FF CY 4F-Regular.woff2") format("woff2")
+  src: url("../fonts/Esqadero FF CY 4F-Regular.woff") format("woff")
+  font-style: normal
+  font-weight: normal
 
+@font-face 
+  font-family: Jura
+  src: url("../fonts/Jura.woff2") format("woff2")
+  src: url("../fonts/Jura.woff") format("woff")
+  font-style: normal
+  font-weight: normal
+
+$bdrds: 3px
+
+$white: #fff
+$black: #000
+$gray: #888
+$salmon: deeppink
+$smoky-black: rgba(#222222, .85)
+$darksmoky-black: rgba(#111111, .9)
+
+$ff: 'Esqadero', sans-serif
+$ff-text: 'Jura', sans-serif
+$ff-body: 1rem
+$ff-light: 300
+$ff-regular: 400
+$ff-medium: 500
+
+$h-header: 3rem
+$h-footer: 3rem
+$img-width: 13rem
+
+/**
+ *************************************** General configs
+ */
+*
+  box-sizing: border-box
+  margin: 0
+  padding: 0
+  color: $white
+
+body
+  font-family: $ff
+  font-size: $ff-body
+  line-height: 1em
+  
 button
   background-color: transparent
   padding: 0
@@ -46,7 +101,7 @@ footer
     position: absolute
     top: 0
     left: 0
-    background-image: url(#{$URL}/img/img1.jpg)
+    background-image: url(../img/img1.jpg)
     background-size: cover
     background-position: 0% 50%
     height: 100%
@@ -97,15 +152,12 @@ footer
   justify-content: space-between
   background-color: lightblue
   border-radius: $bdrds
-  height: 45%
+  height: 65%
   min-height: 16rem
   margin: 0 0 0 1rem
   transition: height .5s linear
 
   &_form
-    display: flex
-    flex-flow: column nowrap
-    justify-content: center
     padding: 3rem 2rem 1rem 2rem
     color: $white
     font-weight: $ff-light
@@ -289,13 +341,13 @@ input
  */
 @media screen and (max-width: 990px)
   .description
-    height: 60%
+    height: 80%
 
 @media screen and (max-width: 890px)
   .description
-    height: 70%
+    height: 90%
 
-@media screen and (max-height: 445px)
+@media screen and (max-height: 320px)
   .description_form-text
     display: none
 

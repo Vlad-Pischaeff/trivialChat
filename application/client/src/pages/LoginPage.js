@@ -18,19 +18,26 @@ export default function LoginPage() {
   
   return (
     <>
-    <HeaderLoginPage />
-    <main className="main"> 
-      <Logo />
-      <section className="main_container">
-        <LoginPageProfile letSwitch={letSwitchToSignup} setSwitch={setLetSwitshToSignup} />
-        <div className="user_forms" id="user_options-forms">
-          <CardLogin />
-          <CardSignup />
-        </div>
-      </section>
-      <AsidePictureSlider />
-    </main>
-    <FooterLoginPage />
+      <div className='wrap'>
+        <AsidePictureSlider />
+
+        <main className="main"> 
+
+          <Logo />
+          
+          <HeaderLoginPage />
+          
+          <section className="main_container">
+            <LoginPageProfile letSwitch={letSwitchToSignup} setSwitch={setLetSwitshToSignup} />
+            <div className="user_forms" id="user_options-forms">
+              <CardLogin />
+              <CardSignup />
+            </div>
+          </section>
+        
+        </main>
+      </div>
+      <FooterLoginPage />
     </>
   )
 }

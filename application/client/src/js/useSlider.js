@@ -7,7 +7,7 @@ const URL = `${httpPrefix}//${hostname}:5000`
 export const useSlider = () => {
 
   const slider = () => {
-    let counter = 25
+    let counter = 34
     let j = 1
     const delay = 4000
     const images = document.querySelector('.city_images')
