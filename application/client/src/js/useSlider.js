@@ -16,17 +16,19 @@ export const useSlider = () => {
 
     while (gStates.slider) {
       j < counter ? j++ : j = 1
+      let items = imgRef.current.children
+      // console.log('imgRef 1 ...', imgRef.current.children.length)
       let divImg = document.createElement('div')
       divImg.className = "laside_img hide0"
       divImg.style.backgroundImage = `url(${URL}/img/img${j}.jpg)`
-      if (document.querySelectorAll('.laside_img').length < 2) {
+      if (items.length < 2) {
         imgRef.current.append(divImg)
       }
       
       await sleep(100)
 
-      let items = document.querySelectorAll('.laside_img')
       if (gStates.slider) {
+        console.log('imgRef 2 ...', imgRef.current.children)
         console.log('items ...', items.length, j, gStates.slider)
         items[0].style.opacity = 0
         items[1].style.opacity = 0.85
