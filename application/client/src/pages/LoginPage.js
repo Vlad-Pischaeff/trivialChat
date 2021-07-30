@@ -14,7 +14,7 @@ export default function LoginPage() {
 
   useEffect(() => {
     startFlip(letSwitchToSignup)
-  }, [letSwitchToSignup, startFlip])
+  }, [letSwitchToSignup])
   
   return (
     <>

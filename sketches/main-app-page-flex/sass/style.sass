@@ -94,10 +94,10 @@ footer
 /**
  *************************************** Left image style
  */
-.city_images
+.laside
   flex: 0 0 13rem
   position: relative
-  &-element
+  &_img
     position: absolute
     top: 0
     left: 0
@@ -152,12 +152,15 @@ footer
   justify-content: space-between
   background-color: lightblue
   border-radius: $bdrds
-  height: 65%
+  height: 45%
   min-height: 16rem
   margin: 0 0 0 1rem
   transition: height .5s linear
 
   &_form
+    display: flex
+    flex-flow: column nowrap
+    justify-content: center
     padding: 3rem 2rem 1rem 2rem
     color: $white
     font-weight: $ff-light
@@ -341,11 +344,11 @@ input
  */
 @media screen and (max-width: 990px)
   .description
-    height: 80%
+    height: 60%
 
 @media screen and (max-width: 890px)
   .description
-    height: 90%
+    height: 70%
 
 @media screen and (max-height: 320px)
   .description_form-text

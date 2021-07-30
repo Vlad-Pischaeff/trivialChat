@@ -6,7 +6,7 @@ module.exports = function watching() {
 		server: {
 			baseDir: 'build/',
 			host: '192.168.140.68',
-			index: 'login.html',
+			index: 'main.html',
 		},
 		browser: 'firefox',
 		logPrefix: 'BS-HTML:',

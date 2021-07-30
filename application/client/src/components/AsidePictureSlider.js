@@ -1,16 +1,19 @@
 import { useEffect } from "react"
 import { useSlider } from "../js/useSlider"
+import { cn, gStates } from "../js/classNames"
 
 export default function AsidePictureSlider() {
   const { slider } = useSlider()
 
   useEffect(() => {
-    slider()
-  }, [])
+    gStates.slider && slider()
+  }, [gStates.slider])
 
+  console.log('aside slider ...', gStates.slider)
+  
   return (
-    <aside className="city_images">
-      <div className="city_images-element hide085"></div>
+    <aside className={cn[gStates.page].aside} >
+      <div className={cn[gStates.page].aside_img} ></div>
     </aside>
   )
 }
