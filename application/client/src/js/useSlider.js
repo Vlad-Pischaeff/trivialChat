@@ -10,21 +10,16 @@ let j = 1
 export const useSlider = () => {
 
   useEffect(() => {
+    let container = document.querySelector('aside')
+    let child = container.children
+    let elem = createDiv(1)
     if (!GS.slider) {
       clearTimeout(timer)
-      let container = document.querySelector('.maside')
-      let child = container.children
-      let length = child.length
-      for (let i = 0; i < length; i++){
+      while(child.length) {
         child[0].remove()
       }
-      let elem = createDiv(0)
-      container.append(elem)
-    } else {
-      let container = document.querySelector('.laside')
-      let elem = createDiv(1)
-      container.append(elem)
     }
+    container.append(elem)
   }, [GS.slider])
 
   async function sleep(t) {

@@ -10,7 +10,7 @@ export default function AsidePictureSlider() {
     slider(imgRef)
   }, [GS.slider])
 
-  console.log('aside slider ...', GS.slider, cn[GS.page].aside_img)
+  // console.log('aside slider ...', GS.slider, cn[GS.page].aside_img)
 
   return (
     <aside className={cn[GS.page].aside} ref={imgRef} >
