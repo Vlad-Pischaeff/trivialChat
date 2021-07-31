@@ -22,16 +22,16 @@ export const useSlider = () => {
     container.append(elem)
   }, [GS.slider])
 
-  async function sleep(t) {
-    return new Promise((res) => timer = setTimeout(() => res(), t))
-  }
-
   const createDiv = (index) => {
     let divImg = document.createElement('div')
     divImg.className = `${cn[GS.page].aside_img} hide0`
     if (GS.page === 'login')
       divImg.style.backgroundImage = `url(${URL}/img/img${index}.jpg)`
     return divImg
+  }
+
+  const sleep = async (t) => {
+    return new Promise((res) => timer = setTimeout(() => res(), t))
   }
 
   const slider = async (imgRef) => {
