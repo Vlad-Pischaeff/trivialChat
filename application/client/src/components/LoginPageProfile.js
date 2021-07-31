@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useTextShowUp } from "../js/useTextShowUp"
-import { cn, gStates } from "../js/classNames"
+import { GS } from "../js/classNames"
 
 export default function LoginPageProfile(props) {
   const { letSwitch, setSwitch } = props
@@ -12,8 +12,8 @@ export default function LoginPageProfile(props) {
 
   const setTrigger = () => {
     setSwitch(!letSwitch)
-    gStates.page = letSwitch ? 'login' : 'main'
-    gStates.slider = letSwitch ? true : false
+    GS.page = letSwitch ? 'login' : 'main'
+    GS.slider = letSwitch ? true : false
   }
 
   // console.log('profile page ..', GlobalPages)

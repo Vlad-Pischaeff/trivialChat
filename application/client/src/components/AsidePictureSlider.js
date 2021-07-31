@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react"
 import { useSlider } from "../js/useSlider"
-import { cn, gStates } from "../js/classNames"
+import { cn, GS } from "../js/classNames"
 
 export default function AsidePictureSlider() {
   const { slider } = useSlider()
@@ -8,13 +8,13 @@ export default function AsidePictureSlider() {
 
   useEffect(() => {
     slider(imgRef)
-  }, [gStates.slider])
+  }, [GS.slider])
 
-  console.log('aside slider ...', gStates.slider, cn[gStates.page].aside_img)
+  console.log('aside slider ...', GS.slider, cn[GS.page].aside_img)
 
   return (
-    <aside className={cn[gStates.page].aside} ref={imgRef} >
-      <div className={cn[gStates.page].aside_img} ></div>
+    <aside className={cn[GS.page].aside} ref={imgRef} >
+      <div className={cn[GS.page].aside_img} ></div>
     </aside>
   )
 }

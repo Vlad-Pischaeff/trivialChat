@@ -1,7 +1,7 @@
 export const cn = {
   login: { 
     aside: 'laside',
-    aside_img: 'laside_img hide085',
+    aside_img: 'laside_img',
     logo: 'llogo',
     logo_text: 'llogo_text'
   },
@@ -16,7 +16,7 @@ export const cn = {
   hide085: 'hide085'
 }
 
-export const gStates = {
+export const GS = {
   page: 'login',
   slider: true
 }
