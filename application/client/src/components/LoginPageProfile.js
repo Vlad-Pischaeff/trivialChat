@@ -16,8 +16,6 @@ export default function LoginPageProfile(props) {
     GS.slider = letSwitch ? true : false
   }
 
-  // console.log('profile page ..', GlobalPages)
-
   return (
     <div className="description">
       <div className="description_form">
