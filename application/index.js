@@ -39,7 +39,7 @@ app.use(cors())
 app.use('/img', express.static(path.join(__dirname, 'img' )))
 app.use('/fonts', express.static(path.join(__dirname, 'fonts' )))
 
-// app.use('/api/auth', require('./routes/auth.routes'))
+app.use('/api/auth', require('./routes/auth.routes'))
 // app.use('/api/room', require('./routes/room.routes'))
 // app.use('/api/message', require('./routes/message.routes'))
 // app.use('/api/notification', require('./routes/notification.routes'))
