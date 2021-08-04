@@ -1,0 +1,333 @@
+
+@import 'index.sass'
+
+button
+  background-color: transparent
+  padding: 0
+  border: 0
+  outline: 0
+  cursor: pointer
+
+header
+  flex: 0 0 $h-header
+  line-height: $h-header
+  background: $smoky-black
+  text-transform: uppercase
+  text-align: right
+  padding: 0 1rem
+
+footer
+  height: $h-footer
+  width: 100vw
+  line-height: $h-footer
+  background: $darksmoky-black
+  text-transform: uppercase
+  text-align: center
+  float: right
+  p
+    color: $gray
+    font-size: calc(#{$h-footer} / 5)
+    letter-spacing: .4rem
+
+.wrap
+  width: 100%
+  height: calc(100vh - #{$h-header})
+  background: $gray
+  display: flex
+  flex-flow: row nowrap
+
+/**
+ *************************************** Left image style
+ */
+.laside, .maside
+  position: relative
+  transition: flex 1s linear
+
+.laside
+  flex: 0 0 13rem
+
+  &_img
+    position: absolute
+    top: 0
+    left: 0
+    background-image: url(#{$URL}/img/img1.jpg)
+    background-size: cover
+    background-position: 0% 50%
+    height: 100%
+    width: 100%
+    transition: opacity 4s linear, background-position 20s linear
+
+.maside
+  flex: 0 0 8rem
+
+  &_img
+    opacity: 1
+    background-color: $gray
+
+/**
+ *************************************** Logo description
+ */
+.llogo,
+.mlogo
+  position: absolute
+  z-index: 1
+  font-face: $ff
+
+  font-weight: bold
+  mix-blend-mode: normal
+  transition: all 1s linear
+
+.llogo
+  top: 5rem
+  left: 8rem
+  font-size: 3.3rem
+
+  &_text
+    color: $salmon
+    text-shadow: 0px 0px 25px rgb(255, 255, 255)
+
+.mlogo
+  top: 1.3rem
+  left: 9rem
+  font-size: 2.2rem
+
+  &_text
+    color: $salmon
+    text-shadow: 0px 0px 15px rgb(255, 255, 255)
+
+/**
+ *************************************** Main window
+ */
+.main
+  flex: 1 1 auto
+  display: flex
+  flex-flow: column nowrap
+  height: 100%
+  
+  &_container
+    display: flex
+    justify-content: flex-start
+    align-items: center
+    width: 100%
+    height: 100%
+    background: #ccc
+    background-size: cover
+
+/**
+ *************************************** Registered and Unregistered user box and text
+ */
+.description
+  flex: 1 1 40%
+  display: flex
+  justify-content: space-between
+  background-color: lightblue
+  border-radius: $bdrds
+  height: 45%
+  min-height: 16rem
+  margin: 0 0 0 1rem
+  transition: height .5s linear
+
+  &_form
+    display: flex
+    flex-flow: column nowrap
+    justify-content: center
+    padding: 3rem 2rem 1rem 2rem
+    color: $white
+    font-weight: $ff-light
+
+    &-title
+      margin-bottom: 15px
+      font-size: 1.5rem
+      line-height: 1.5rem
+      color: $gray
+
+    &-text
+      font-family: $ff-text
+      font-size: 1rem
+      line-height: 1.2rem
+      color: $black
+
+    &-button
+      font-family: $ff
+      margin-top: 30px
+      border: 1px solid $gray
+      border-radius: $bdrds
+      padding: 10px 30px
+      color: $salmon
+      text-transform: uppercase
+      line-height: 1rem
+      letter-spacing: .2rem
+      transition: background-color .2s ease-in-out, color .2s ease-in-out
+
+      &:hover
+        color: $white
+        background-color: $gray
+
+/**
+ *************************************** Login and signup forms
+ */
+.user_forms
+  flex: 1 1 60%
+  height: 90%
+  min-height: 22rem
+  max-height: 28rem
+  margin: 0 1rem 0 0
+  perspective: 300rem
+  perspective-origin: 50% 50%
+  transform-style: preserve-3d
+
+  &-signup,
+  &-login
+    position: absolute
+    width: 100%
+    height: 100%
+    padding: 2rem
+    background-color: $white
+    border-radius: $bdrds
+    box-shadow: 2px 0 15px rgba($black, .25)
+    backface-visibility: hidden
+    transition: transform 0.8s ease-in-out
+
+  &-signup
+    .forms_buttons
+      justify-content: flex-end
+
+.forms
+  &_form
+    transition: opacity .4s ease-in-out
+
+  &_title
+    margin-bottom: 45px
+    font-size: 1.5rem
+    font-weight: $ff-medium
+    line-height: 1em
+    text-transform: uppercase
+    color: $salmon
+    letter-spacing: .1rem
+
+  &_field
+    &:not(:last-of-type)
+      margin-bottom: 20px
+
+  &_fieldset
+    border: transparent
+    background: oldlace
+    padding: 1rem
+
+  &_field-input
+    width: 100%
+    border-bottom: 1px solid $gray
+    padding: 6px 20px 6px 6px
+    font-family: $ff-text
+    font-size: 1rem
+    font-weight: $ff-light
+    color: darken($white, 30%)
+    letter-spacing: .1rem
+    transition: border-color .2s ease-in-out
+
+    &:focus
+      border-color: darken($gray, 30%)
+
+  &_buttons
+    display: flex
+    justify-content: space-between
+    align-items: center
+    margin-top: 35px
+
+    &-forgot
+      font-family: $ff-text
+      line-height: 1rem
+      letter-spacing: .1rem
+      color: $gray
+      text-decoration: underline
+
+      transition: color .2s ease-in-out
+
+      &:hover
+        color: darken($gray, 50%)
+
+    &-action
+      background-color: $salmon
+      border-radius: $bdrds
+      padding: 10px 35px
+
+      font-size: 1rem
+      font-family: $ff
+      font-weight: $ff-light
+      color: $white
+      text-transform: uppercase
+      letter-spacing: .1rem
+
+      transition: background-color .2s ease-in-out
+
+      &:hover
+        background-color: cyan
+
+/**
+ *************************************** Inputs style
+ */
+input
+  background-color: transparent
+  padding: 0
+  border: 0
+  outline: 0
+  
+  &[type="submit"]
+    cursor: pointer
+    
+  &::placeholder
+    font-size: .85rem
+    font-family: $ff-text
+    font-weight: $ff-light
+    letter-spacing: .1rem
+    color: $gray
+
+/**
+ *************************************** Additional classes
+ */
+.flip180
+  transform: rotateY(180deg)
+
+.flip0
+  transform: rotateY(0deg)
+  
+.flip-180
+  transform: rotateY(-180deg)
+
+.hide0
+  opacity: 0
+
+.hide1
+  opacity: 1
+
+.hide085
+  opacity: .85
+
+.none
+  display: none
+
+.hidden
+  visibility: hidden
+
+@keyframes shadow
+  from 
+    color: transparent
+    text-shadow: 0 0 25px $gray
+
+
+/**
+ *************************************** Responsive
+ */
+@media screen and (max-width: 990px)
+  .description
+    height: 60%
+
+@media screen and (max-width: 890px)
+  .description
+    height: 70%
+
+@media screen and (max-height: 445px)
+  .description_form-text
+    display: none
+
+/**/
