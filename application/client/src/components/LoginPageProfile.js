@@ -1,19 +1,15 @@
-import { useEffect } from "react"
-import { useTextShowUp } from "../js/useTextShowUp"
-import { GS } from "../js/classNames"
+import { useState } from "react"
+import  loginTitleEffect  from "../js/useTextShowUp"
+import { Emitter, GS } from "../service/Service"
 
-export default function LoginPageProfile(props) {
-  const { letSwitch, setSwitch } = props
-  const { startShowUp } = useTextShowUp()
-
-  useEffect(() => {
-    startShowUp(letSwitch)
-  }, [startShowUp])
+export default function LoginPageProfile() {
+  const [ changeTitle, setChangeTitle ] = useState(false)
 
   const setTrigger = () => {
-    setSwitch(!letSwitch)
-    GS.page = letSwitch ? 'login' : 'main'
-    GS.slider = letSwitch ? true : false
+    let trigger = !changeTitle
+    setChangeTitle(trigger)
+    loginTitleEffect(trigger)
+    Emitter.emit('change_title', trigger)
   }
 
   return (

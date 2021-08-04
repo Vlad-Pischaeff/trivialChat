@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import { useCardFlip } from '../js/useCardFlip'
+import React, { useEffect } from 'react'
+import loginCardFlip from '../js/useCardFlip'
+import { Emitter, GS } from '../service/Service'
 import HeaderLoginPage from '../components/HeaderLoginPage'
 import FooterLoginPage from '../components/FooterLoginPage'
 import AsidePictureSlider from '../components/AsidePictureSlider'
@@ -9,12 +10,13 @@ import CardLogin from '../components/CardLogin'
 import CardSignup from '../components/CardSignup'
 
 export default function LoginPage() {
-  const { startFlip } = useCardFlip()
-  const [ letSwitchToSignup, setLetSwitshToSignup ] = useState(false)
 
   useEffect(() => {
-    startFlip(letSwitchToSignup)
-  }, [letSwitchToSignup])
+    Emitter.on('change_title', (trigger) => loginCardFlip(trigger))
+    return () => {
+      Emitter.off('change_title')
+    }
+  }, [])
   
   return (
     <>
@@ -28,7 +30,7 @@ export default function LoginPage() {
           <HeaderLoginPage />
           
           <section className="main_container">
-            <LoginPageProfile letSwitch={letSwitchToSignup} setSwitch={setLetSwitshToSignup} />
+            <LoginPageProfile />
             <div className="user_forms" id="user_options-forms">
               <CardLogin />
               <CardSignup />
