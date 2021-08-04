@@ -14,7 +14,7 @@ const SECRET = config.get("jwtSecret")
 // /api/auth/register
 router.post('/register', 
   [
-    check('email', 'Uncorrect mail ...').isEmail(),
+    check('email', 'Uncorrect email ...').isEmail(),
     check('password', 'Min password length, min 6 symbols ...').isLength({ min: 6 })
   ],
   async (req, res) => {
@@ -22,7 +22,7 @@ router.post('/register',
       const errors = validationResult(req)
 
       if (!errors.isEmpty())
-        return res.status(400).json({
+        return res.status(412).json({
           errors: errors.array(),
           message: 'Uncorrect data from register ...'
         })

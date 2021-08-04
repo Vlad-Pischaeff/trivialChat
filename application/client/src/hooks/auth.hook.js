@@ -5,7 +5,6 @@ export const useAuth = () => {
 
   const handlerOnChange = useCallback((e) => {
     setValue(e.target.value)
-    // console.log('Input...', e.target.value)
   }, [])
 
   return { 

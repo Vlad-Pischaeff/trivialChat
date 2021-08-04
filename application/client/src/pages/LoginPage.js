@@ -17,7 +17,7 @@ export default function LoginPage() {
       Emitter.off('change_title')
     }
   }, [])
-  
+  console.log('LoginPage render ...')
   return (
     <>
       <div className='wrap'>

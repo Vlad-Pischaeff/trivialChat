@@ -29,6 +29,9 @@ footer
     font-size: calc(#{$h-footer} / 5)
     letter-spacing: .4rem
 
+input::placeholder
+  color: $gray
+
 .wrap
   width: 100%
   height: calc(100vh - #{$h-header})
@@ -218,15 +221,15 @@ footer
     width: 100%
     border-bottom: 1px solid $gray
     padding: 6px 20px 6px 6px
-    font-family: $ff-text
-    font-size: 1rem
+    font-family: $ff
+    font-size: 1.2rem
     font-weight: $ff-light
-    color: darken($white, 30%)
+    color: $black
     letter-spacing: .1rem
     transition: border-color .2s ease-in-out
 
     &:focus
-      border-color: darken($gray, 30%)
+      border-bottom: 2px solid $gray
 
   &_buttons
     display: flex
@@ -261,7 +264,8 @@ footer
       transition: background-color .2s ease-in-out
 
       &:hover
-        background-color: cyan
+        background-color: lightblue
+        color: $salmon
 
 /**
  *************************************** Inputs style
