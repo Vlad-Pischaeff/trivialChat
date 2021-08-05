@@ -15,7 +15,7 @@ export default function CardSignup() {
       const data = await request('/api/auth/register', 'POST', body)
       console.log('User registration sucsessfull ...', data, error)
     } catch(e) {
-      console.log('User register error ...', e)
+      // console.log('User register error ...', e)
       if (e.status === 412 ) {
         e.val.forEach(n => {
           refs[n.param].current.classList.add('error')

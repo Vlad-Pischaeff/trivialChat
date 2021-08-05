@@ -27,13 +27,11 @@ export const useFetch = () => {
         const response = await fetch(url, {method, body, headers})
         const data = await response.json()
         
-        // console.log('fetch errors...', data, response)
-        
         if (!response.ok) {
-          throw new UserException(Object.values(data), response.status)  
+          throw new UserException(Object.values(data), response.status) 
         }
 
-        setLoading(true)
+        setLoading(false)
         return data
       } catch (e) {
         setLoading(false)
