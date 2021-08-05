@@ -7,6 +7,7 @@ export default function CardSignup() {
   const password = useAuth()
   const { request, error } = useFetch()
   const refs = { email: useRef(), password: useRef(), msg: useRef()}
+  console.log('CardSignup render ...')
 
   const handlerClick = async (e) => {
     e.preventDefault()
