@@ -1,6 +1,12 @@
 import { useState, useCallback } from 'react'
 // import { useGlobalCredentialsContext } from '../context/context'
 
+function UserException(val, status) {
+  this.status = status
+  this.val = val
+  this.name = "wrong response ..."
+}
+
 export const useFetch = () => {
   const [ loading, setLoading ] = useState(false)
   const [ error, setError ] = useState(null)
@@ -20,12 +26,14 @@ export const useFetch = () => {
 
         const response = await fetch(url, {method, body, headers})
         const data = await response.json()
-
+        
+        // console.log('fetch errors...', data, response)
+        
         if (!response.ok) {
-          // console.log('ERROR ...', JSON.stringify(data))
-          throw new Error(JSON.stringify(data))
+          throw new UserException(Object.values(data), response.status)  
         }
-        setLoading(false)
+
+        setLoading(true)
         return data
       } catch (e) {
         setLoading(false)

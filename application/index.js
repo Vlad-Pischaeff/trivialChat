@@ -64,72 +64,72 @@ const start = async () => {
         console.log('http/https server started ...')
     })
 
-    wss = new WebSocket.Server({ server, path: '/ws' })
+    // wss = new WebSocket.Server({ server, path: '/ws' })
     
-    wss.on('connection', ws => {
-      console.log('websocket app started...')
-      ws.isAlive = true
-      let client = {}
+    // wss.on('connection', ws => {
+    //   console.log('websocket app started...')
+    //   ws.isAlive = true
+    //   let client = {}
     
-      ws.on('message', message => {
-        try {
-          let data = JSON.parse(message)
-          console.log('received: %s', data, wss.clients.size)
-          if (data.action === 'online') {
-            if (data.state) {
-              // ...add clients to Set
-              client.id = data.id
-              client.socket = ws
-              clients.add(client)
-            } else {
-              ws.isAlive = false
-            }
-          } else {
-            wss.clients.forEach(client => client.send(message))
-            console.log('sended: %s', message)
-          }
-        } catch(e) {
-          console.log('Received unrecognized message ... ', message)
-        }
-      })
-    
-      ws.on('pong', () => {
-        ws.isAlive = true
-        // console.log('all clients ...', clients.size)
-        console.log('isAlive', ws.isAlive,`${new Date()}`)
-        for (let client of clients) {
-          let message = JSON.stringify({ action: 'online', state: true, id: client.id })
-          wss.clients.forEach(client => client.send(message))
-        }
-      })
-    })
-    
-    // ...preserve constant clients connections...
-    setInterval(() => {
-      wss.clients.forEach(ws => {
-        if (!ws.isAlive) return ws.terminate()
-        ws.isAlive = false
-        ws.ping()
-      })
-    }, 10000)
-
-    // setInterval(() => {
-    //   // console.log('set interval...', clients)
-    //   clients.forEach(ws => {
-    //     // console.log('Is Web Socket Alive ...', ws.socket.isAlive)
-    //     if (!ws.socket.isAlive) {
-    //       let message = JSON.stringify({ action: 'online', state: false, id: ws.id })
-    //       clients.delete(ws)
-    //       wss.clients.forEach(client => client.send(message))
-    //       return ws.socket.terminate()
+    //   ws.on('message', message => {
+    //     try {
+    //       let data = JSON.parse(message)
+    //       console.log('received: %s', data, wss.clients.size)
+    //       if (data.action === 'online') {
+    //         if (data.state) {
+    //           // ...add clients to Set
+    //           client.id = data.id
+    //           client.socket = ws
+    //           clients.add(client)
+    //         } else {
+    //           ws.isAlive = false
+    //         }
+    //       } else {
+    //         wss.clients.forEach(client => client.send(message))
+    //         console.log('sended: %s', message)
+    //       }
+    //     } catch(e) {
+    //       console.log('Received unrecognized message ... ', message)
     //     }
-    //     ws.socket.isAlive = false
-    //     ws.socket.ping()
+    //   })
+    
+    //   ws.on('pong', () => {
+    //     ws.isAlive = true
+    //     // console.log('all clients ...', clients.size)
+    //     console.log('isAlive', ws.isAlive,`${new Date()}`)
+    //     for (let client of clients) {
+    //       let message = JSON.stringify({ action: 'online', state: true, id: client.id })
+    //       wss.clients.forEach(client => client.send(message))
+    //     }
+    //   })
+    // })
+    
+    // // ...preserve constant clients connections...
+    // setInterval(() => {
+    //   wss.clients.forEach(ws => {
+    //     if (!ws.isAlive) return ws.terminate()
+    //     ws.isAlive = false
+    //     ws.ping()
     //   })
     // }, 10000)
 
+    // // setInterval(() => {
+    // //   // console.log('set interval...', clients)
+    // //   clients.forEach(ws => {
+    // //     // console.log('Is Web Socket Alive ...', ws.socket.isAlive)
+    // //     if (!ws.socket.isAlive) {
+    // //       let message = JSON.stringify({ action: 'online', state: false, id: ws.id })
+    // //       clients.delete(ws)
+    // //       wss.clients.forEach(client => client.send(message))
+    // //       return ws.socket.terminate()
+    // //     }
+    // //     ws.socket.isAlive = false
+    // //     ws.socket.ping()
+    // //   })
+    // // }, 10000)
+
   } catch (e) {
-    console.log('Server error', e)
+    console.log('Server error ...', e)
     process.exit(1)
   }
 }

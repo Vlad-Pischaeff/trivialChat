@@ -10,46 +10,44 @@ const auth = require('../middleware/auth.middleware')
 const User = require('../models/User')
 const SECRET = config.get("jwtSecret")
 
-
 // /api/auth/register
 router.post('/register', 
   [
     check('email', 'Uncorrect email ...').isEmail(),
-    check('password', 'Min password length, min 6 symbols ...').isLength({ min: 6 })
+    check('password', 'Uncorrect password length, min 6 symbols ...').isLength({ min: 6 })
   ],
   async (req, res) => {
     try {
       const errors = validationResult(req)
 
-      if (!errors.isEmpty())
-        return res.status(412).json({
-          errors: errors.array(),
-          message: 'Uncorrect data from register ...'
-        })
+      if (!errors.isEmpty()) {
+        return res.status(412).json({ ...errors.array() })
+      }
 
-      const { login, email, password } = req.body
+      const { email, password } = req.body
       const candidate = await User.findOne({ email })
-      
+
       if (candidate) {
         return res.status(400).json({message:`User email ${email} is already exists...`})
       }
-      
+
       const hashedPassword = await bcrypt.hash(password, 12)
-      const user = new User({ login, password: hashedPassword, email })
+      const user = new User({ email, password: hashedPassword })
       
       await user.save((err, doc) => {
         if (err) {
-          console.error(err) 
-          return res.status(500).json({message:`User ${login} not created...`})
+          console.error('CREATE USER ERROR ...', err) 
+          return res.status(500).json({message:`User ${email} not created...`})
         } else {
           const token = jwt.sign( { userId: doc.id }, SECRET, { expiresIn: '10h' } )
-          res.status(201).json({ login, email, token, userId: doc.id })
+          res.status(201).json({ email, userId: doc.id, token })
           // res.status(201).json({message:`User ${login} created...`})
+          // res.status(201).json({ message: 'OK'})
         }
       })
     } catch (e) {
       console.log('Register error...', e)
-      res.status(500).json({message:`Something wrong while user ${login} registration...`})
+      res.status(500).json({message:`Something wrong while user ${email} registration...`})
     }
   }
 )

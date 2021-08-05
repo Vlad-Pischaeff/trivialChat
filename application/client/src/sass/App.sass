@@ -267,6 +267,13 @@ input::placeholder
         background-color: lightblue
         color: $salmon
 
+  &_warnings
+    background: $salmon
+    margin-top: 1rem
+    font-family: $ff-text
+    font-weight: bold
+    text-transform: uppercase
+
 /**
  *************************************** Inputs style
  */
@@ -313,11 +320,17 @@ input
 .hidden
   visibility: hidden
 
+.error
+  animation: error 1s infinite
+
 @keyframes shadow
   from 
     color: transparent
     text-shadow: 0 0 25px $gray
 
+@keyframes error
+  from 
+    background: pink
 
 /**
  *************************************** Responsive
