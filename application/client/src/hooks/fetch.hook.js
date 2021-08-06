@@ -4,7 +4,6 @@ import { useState, useCallback } from 'react'
 function UserException(val, status) {
   this.status = status
   this.val = val
-  this.name = "wrong response ..."
 }
 
 export const useFetch = () => {

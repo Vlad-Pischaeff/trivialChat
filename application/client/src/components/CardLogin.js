@@ -1,12 +1,15 @@
 import { useRef } from "react"
 import { useAuth } from "../hooks/auth.hook"
 import { useFetch } from "../hooks/fetch.hook"
+import useStorage from "../hooks/storage.hook"
 
 export default function CardLogin() {
-  const login = useAuth()
-  const password = useAuth()
+  const email = useAuth(),
+        password = useAuth()
   const { request, error } = useFetch()
-  const refs = { email: useRef(), password: useRef(), msg: useRef()}
+  const refs = { email: useRef(), password: useRef(), msg: useRef() }
+  const { saveCredentials } = useStorage()
+
   console.log('CardLogin render ...')
 
   const handlerClick = async (e) => {
@@ -14,6 +17,7 @@ export default function CardLogin() {
     const body = { email: email.value, password: password.value }
     try {
       const data = await request('/api/auth/login', 'POST', body)
+      saveCredentials(data)
       console.log('User login sucsessfull ...', data, error)
     } catch(e) {
       console.log('User login error ...', e)
@@ -31,7 +35,7 @@ export default function CardLogin() {
 
   const handlerFocus = (e) => {
     e.target.classList.remove('error')
-    refs.msg.current.innerHTML = ''
+    if (refs.msg.current) refs.msg.current.innerHTML = ''
   }
 
   return (
@@ -40,7 +44,7 @@ export default function CardLogin() {
         <h2 className="forms_title">Login</h2>
         <fieldset className="forms_fieldset">
           <div className="forms_field">
-            <input className="forms_field-input" type="email" name="email" placeholder="Email" required autoFocus {...login} onFocus={handlerFocus} ref={refs.email}/>
+            <input className="forms_field-input" type="email" name="email" placeholder="Email" required autoFocus {...email} onFocus={handlerFocus} ref={refs.email}/>
           </div>
           <div className="forms_field">
             <input className="forms_field-input" type="password" name="password" placeholder="Password" required {...password} onFocus={handlerFocus} ref={refs.password}/>

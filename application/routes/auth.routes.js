@@ -55,11 +55,11 @@ router.post('/register',
 // /api/auth/login
 router.post('/login', async (req, res) => {
     try {
-      const { login, password } = req.body
-      const candidate = await User.findOne({ login })
+      const { email, password } = req.body
+      const candidate = await User.findOne({ email })
 
       if (!candidate) {
-        return res.status(400).json({ message:`User ${login} not found...` })
+        return res.status(400).json({ message:`User ${email} not found...` })
       }
 
       const isMatch = await bcrypt.compare( password, candidate.password )
@@ -70,7 +70,7 @@ router.post('/login', async (req, res) => {
 
       const token = jwt.sign( { userId: candidate.id }, SECRET, { expiresIn: '10h' } )
 
-      res.status(201).json({ login, token, userId: candidate.id, avatar: candidate.avatar })
+      res.status(201).json({ email, token, userId: candidate.id })
     } catch (e) {
       res.status(500).json({ message:`Something wrong ${e}...` })
     }

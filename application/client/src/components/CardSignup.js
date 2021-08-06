@@ -1,12 +1,14 @@
 import { useRef } from "react"
 import { useAuth } from "../hooks/auth.hook"
 import { useFetch } from "../hooks/fetch.hook"
+import useStorage from "../hooks/storage.hook"
 
 export default function CardSignup() {
-  const email = useAuth()
-  const password = useAuth()
+  const email = useAuth(),
+        password = useAuth()
   const { request, error } = useFetch()
-  const refs = { email: useRef(), password: useRef(), msg: useRef()}
+  const refs = { email: useRef(), password: useRef(), msg: useRef() }
+  const { saveCredentials } = useStorage()
   console.log('CardSignup render ...')
 
   const handlerClick = async (e) => {
@@ -15,23 +17,35 @@ export default function CardSignup() {
     try {
       const data = await request('/api/auth/register', 'POST', body)
       console.log('User registration sucsessfull ...', data, error)
+      saveCredentials(data)
     } catch(e) {
-      // console.log('User register error ...', e)
-      if (e.status === 412 ) {
-        e.val.forEach(n => {
-          refs[n.param].current.classList.add('error')
-          refs.msg.current.innerHTML = refs.msg.current.innerHTML + `${n.msg} <br>`
-        })
-      } else {
-        refs.msg.current.innerHTML = `${e.val} <br>`
-      }
-      refs.msg.current.focus()
+      handlingErrors(e)
     }
+  }
+
+  const handlingErrors = (e) => {
+    if (e.status === 412 ) {
+      e.val.forEach(n => {
+        refs[n.param].current.classList.add('error')
+        addWarnings(n.msg)
+      })
+    } else {
+      setWarnings(e.val)
+    }
+    refs.msg.current.focus()
   }
 
   const handlerFocus = (e) => {
     e.target.classList.remove('error')
-    refs.msg.current.innerHTML = ''
+    setWarnings('')
+  }
+  
+  const addWarnings = (msg) => {
+    refs.msg.current.innerHTML = refs.msg.current.innerHTML + `${msg} <br>`
+  }
+
+  const setWarnings = (msg) => {
+    if (refs.msg.current) refs.msg.current.innerHTML = msg
   }
 
   return (
@@ -45,6 +59,7 @@ export default function CardSignup() {
                     name="email" 
                     placeholder="Email" 
                     required
+                    autoFocus
                     {...email}
                     onFocus={handlerFocus}
                     ref={refs.email} />
