@@ -78,7 +78,7 @@ export default function CardSignup() {
         <div className="forms_buttons">
           <input className="forms_buttons-action" type="submit" value="SignUp" onClick={handlerClick} />
         </div>
-        <div className="forms_warnings" ref={refs.msg}>
+        <div className="forms_warnings down-error" ref={refs.msg}>
         </div>
       </form>
     </div>

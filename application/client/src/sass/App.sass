@@ -323,6 +323,9 @@ input
 .error
   animation: error 1s infinite
 
+.down-error
+  animation: down-error 1s steps(2, end) infinite both
+
 @keyframes shadow
   from 
     color: transparent
@@ -331,6 +334,13 @@ input
 @keyframes error
   from 
     background: pink
+
+@keyframes down-error
+  from 
+    background: deeppink
+  to
+    background: transparent
+
 
 /**
  *************************************** Responsive
