@@ -165,23 +165,116 @@ footer
   height: 100%
   background: #ccc
   background-size: cover
+  overflow: hidden
 
 /**
  *************************************** main window
  */
-.clients, .chat, .templates
+.clients, .templates
   height: 100%
-  
+  overflow: auto
+
 .clients
-  flex: 1 1 15%
+  flex: 1 1 20%
   background: hotpink
+  &_item
+    padding: 0.5rem 0 0.5rem 0
+    height: 4rem
+    width: 100%
+    // border-radius: 50%
+    overflow: hidden
+    display: flex
+    &:hover
+      cursor: pointer
+      background: lightblue
+    &-avatar
+      height: 100%
+      border-radius: 50%
+      padding: .2rem 1rem
+    &-status
+      color: $black
+      width: 100%
+      padding: 0.3rem
 
 .chat
   flex: 1 1 45%
+  height: 100%
   background: lightblue
+  display: flex
+  flex-flow: column nowrap
+  justify-content: space-between
+  &_field
+    flex: 1 1 auto
+    padding: 1rem
+    overflow: auto
+    &-message:nth-child(odd)
+      margin-top: 1rem
+      width: 80%
+      background: deepskyblue
+      padding: .3rem
+      &::after
+        content: ''
+        border-left: solid 2rem deepskyblue
+        border-bottom: solid 1rem transparent
+        float: left
+      p
+        font-family: $ff-text
+        color: $black
+
+    &-message:nth-child(even)
+      margin-top: 1rem
+      width: 80%
+      background: pink
+      padding: .3rem
+      margin-left: auto
+      &::after
+        content: ''
+        border-right: solid 2rem pink
+        border-bottom: solid 1rem transparent
+        float: right
+      p
+        font-family: $ff-text
+        color: $black
+        text-align: right
+
+  &_input
+    flex: 0 0 auto
+    background: $black
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding-right: .5rem
+    &-text
+      flex: 1 1 auto
+      height: 3rem
+      border: none
+      color: $black
+      font-family: $ff
+      font-size: 1.2rem
+      line-height: 1.5rem
+      font-weight: $ff-light
+      padding: 0 .5rem 0 .5rem
+      &::placeholder
+        color: gray
+      &:focus
+        outline: none
+        background: beige
+    &-icon
+      height: 2rem
+      margin-left: .5rem
+      &:hover
+        cursor: pointer
+      // filter: grayscale(100%)
+
+p.msg-data
+  font-size: .8rem
+  line-height: 1.5rem
+  color: gray
+p.msg-text
+  padding-bottom: 1rem
 
 .templates
-  flex: 1 1 40%
+  flex: 1 1 35%
 
 /**
  *************************************** Responsive
