@@ -177,6 +177,7 @@ footer
 .clients
   flex: 1 1 20%
   background: hotpink
+  min-width: 9rem
   &_item
     padding: 0.5rem 0 0.5rem 0
     height: 4rem
@@ -208,29 +209,31 @@ footer
     padding: 1rem
     overflow: auto
     &-message:nth-child(odd)
-      margin-top: 1rem
+      margin-top: 1.5rem
       width: 80%
       background: deepskyblue
-      padding: .3rem
+      padding: .5rem
+      border-radius: 1rem
       &::after
         content: ''
-        border-left: solid 2rem deepskyblue
-        border-bottom: solid 1rem transparent
+        border-left: solid 3rem deepskyblue
+        border-bottom: solid 1.5rem transparent
         float: left
       p
         font-family: $ff-text
         color: $black
 
     &-message:nth-child(even)
-      margin-top: 1rem
+      margin-top: 1.5rem
       width: 80%
-      background: pink
-      padding: .3rem
+      background: cornsilk
+      padding: .5rem
       margin-left: auto
+      border-radius: 1rem
       &::after
         content: ''
-        border-right: solid 2rem pink
-        border-bottom: solid 1rem transparent
+        border-right: solid 3rem cornsilk
+        border-bottom: solid 1.5rem transparent
         float: right
       p
         font-family: $ff-text
@@ -271,7 +274,7 @@ p.msg-data
   line-height: 1.5rem
   color: gray
 p.msg-text
-  padding-bottom: 1rem
+  padding: .2rem 0 1rem 0
 
 .templates
   flex: 1 1 35%
