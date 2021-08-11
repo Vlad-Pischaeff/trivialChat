@@ -281,18 +281,22 @@ footer
 
 #divider
   content: ''
-  width: 1rem
-  height: 1rem
+  width: .8rem
+  height: .8rem
   background: deeppink
   border-radius: 50%
   position: absolute
-  right: -.5rem
+  right: -.4rem
   top: 45%
+  transition: transform .5s linear, border-radius .5s linear, width .5s linear, height .5s linear, right .5s linear
   &:hover
+    right: -.6rem
+    width: 1.2rem
+    height: 1.2rem
     cursor: col-resize
     background: deepskyblue
     border-radius: 0
-    transform: rotate(45deg)
+    transform: rotate(315deg)
 
 .templates
   flex: 1 1 35%
