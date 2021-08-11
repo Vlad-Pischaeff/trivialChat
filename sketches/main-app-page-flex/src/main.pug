@@ -14,28 +14,44 @@ block content
       section.main_container
         .clients
           .clients_item
-            img(src='./img/user/user01.jpg').clients_item-avatar
+            .clients_item-img
+              .clients_item-img-pulse
+              img(src='./img/user/user01.jpg').clients_item-img-img
             .clients_item-status Banjo 1
           .clients_item 
-            img(src='./img/user/user02.jpg').clients_item-avatar
+            .clients_item-img
+              .clients_item-img-pulse
+              img(src='./img/user/user02.jpg').clients_item-img-img
             .clients_item-status Banjo 2
           .clients_item 
-            img(src='./img/user/user03.jpg').clients_item-avatar
+            .clients_item-img
+              .clients_item-img-pulse
+              img(src='./img/user/user03.jpg').clients_item-img-img
             .clients_item-status Banjo 3
           .clients_item 
-            img(src='./img/user/user04.jpg').clients_item-avatar
+            .clients_item-img
+              .clients_item-img-pulse
+              img(src='./img/user/user04.jpg').clients_item-img-img
             .clients_item-status Banjo 4
           .clients_item 
-            img(src='./img/user/user05.jpg').clients_item-avatar
+            .clients_item-img
+              .clients_item-img-pulse
+              img(src='./img/user/user05.jpg').clients_item-img-img
             .clients_item-status Banjo 5
           .clients_item 
-            img(src='./img/user/user06.jpg').clients_item-avatar
+            .clients_item-img
+              .clients_item-img-pulse
+              img(src='./img/user/user06.jpg').clients_item-img-img
             .clients_item-status Banjo 6
           .clients_item 
-            img(src='./img/user/user07.jpg').clients_item-avatar
+            .clients_item-img
+              .clients_item-img-pulse
+              img(src='./img/user/user07.jpg').clients_item-img-img
             .clients_item-status Banjo 7
           .clients_item 
-            img(src='./img/user/user08.jpg').clients_item-avatar
+            .clients_item-img
+              .clients_item-img-pulse
+              img(src='./img/user/user08.jpg').clients_item-img-img
             .clients_item-status Banjo 8
 
         .chat
@@ -73,5 +89,7 @@ block content
             input.chat_input-text(type="text" placeholder="type your answer ..." required autofocus)
             img(src='./img/ok.png').chat_input-icon
             img(src='./img/attach.png').chat_input-icon
+
+          #divider(draggable="true")
 
         .templates
