@@ -5,19 +5,21 @@ import MainPage from './pages/MainPage'
 import { Route, Switch, Redirect } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { Emitter } from "./service/Service"
-import useStorage from './hooks/storage.hook'
+import { useStorage } from './hooks/storage.hook'
 
 function App() {
   const [ isAuthenticated, setIsAuthenticated ] = useState(false)
   const { getCredentials } = useStorage()
 
-  !isAuthenticated && getCredentials() && setIsAuthenticated(true)
+  if (!isAuthenticated) {
+    getCredentials() && setIsAuthenticated(true)
+  } 
 
   useEffect(() => {
     Emitter.on('authenticated', () => setIsAuthenticated(true))
   }, [])
 
-  // console.log('App ...', isAuthenticated)
+  console.log('App ...', isAuthenticated)
 
   return (
     isAuthenticated

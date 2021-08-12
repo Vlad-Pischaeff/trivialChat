@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react'
-// import { useGlobalCredentialsContext } from '../context/context'
+import { useStorage } from './storage.hook'
+
 
 function UserException(val, status) {
   this.status = status
@@ -9,8 +10,8 @@ function UserException(val, status) {
 export const useFetch = () => {
   const [ loading, setLoading ] = useState(false)
   const [ error, setError ] = useState(null)
-  // const { credentials } = useGlobalCredentialsContext()
-  const credentials  = {}
+  // const { getCredentials } = useStorage()
+  const credentials = {}
   const header = Object.keys(credentials).length !== 0 
     ? { 'Content-Type': 'application/json', Authorization: credentials.token }
     : { 'Content-Type': 'application/json' }

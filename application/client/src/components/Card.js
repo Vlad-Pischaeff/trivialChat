@@ -2,7 +2,7 @@ import { useRef } from "react"
 import { useAuth } from "../hooks/auth.hook"
 import { useFetch } from "../hooks/fetch.hook"
 import { Emitter } from "../service/Service"
-import useStorage from "../hooks/storage.hook"
+import { useStorage } from "../hooks/storage.hook"
 import { useHistory } from 'react-router-dom'
 
 export default function Card(props) {

@@ -1,14 +1,15 @@
-import { useCallback, useState } from "react"
+import { useCallback } from "react"
 
-export default function useStorage() {
-  const [ credentials, setCredentials ] = useState('') /* Probably not needed later */
+export const useStorage = () => {
 
   const saveCredentials = useCallback((data) => {
     sessionStorage.setItem('credentials', JSON.stringify(data))
-    setCredentials(data)                              /* Probably not needed later */
   }, [])
 
-  const getCredentials = useCallback(() => JSON.parse(sessionStorage.getItem('credentials')), [])
+  const getCredentials = useCallback(() => {
+    let data = JSON.parse(sessionStorage.getItem('credentials'))
+    return data ? data : false
+  }, [])
 
-  return { credentials, saveCredentials, getCredentials }
+  return { saveCredentials, getCredentials }
 }
