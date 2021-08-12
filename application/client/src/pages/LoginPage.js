@@ -17,7 +17,7 @@ export default function LoginPage() {
     }
   }, [])
 
-  // console.log('LoginPage render ...')
+  console.log('LoginPage render ...')
   
   return (
     <>

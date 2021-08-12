@@ -1,10 +1,13 @@
 import { useRef } from "react"
 import { useAuth } from "../hooks/auth.hook"
 import { useFetch } from "../hooks/fetch.hook"
+import { Emitter } from "../service/Service"
 import useStorage from "../hooks/storage.hook"
+import { useHistory } from 'react-router-dom'
 
 export default function Card(props) {
   const { type } = props
+  const history = useHistory()
   const email = useAuth(), password = useAuth()
   const { request, error } = useFetch()
   const refs = { email: useRef(), password: useRef(), msg: useRef() }
@@ -20,6 +23,8 @@ export default function Card(props) {
       const data = await request(url, 'POST', body)
       saveCredentials(data)
       console.log(`User ${type} sucsessfull ...`, data, error)
+      Emitter.emit('authenticated')
+      history.push('/home')
     } catch(e) {
       handlingErrors(e)
     }

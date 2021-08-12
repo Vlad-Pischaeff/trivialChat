@@ -8,7 +8,7 @@ export default function AsidePictureSlider() {
 
   useEffect(() => {
     slider(imgRef)
-  }, [GS.slider])
+  }, [])
 
   // console.log('aside slider ...', GS.slider, cn[GS.page].aside_img)
 

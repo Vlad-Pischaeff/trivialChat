@@ -24,8 +24,9 @@ export const useFetch = () => {
         }
 
         const response = await fetch(url, {method, body, headers})
+        // console.log('useFetch response ...', response)
         const data = await response.json()
-        
+        // console.log('useFetch data ...', data)
         if (!response.ok) {
           throw new UserException(Object.values(data), response.status) 
         }
@@ -37,7 +38,7 @@ export const useFetch = () => {
         setError(e)
         throw e
       }
-  }, [])
+  }, [header])
 
   return { request, loading, error, header }
 }
