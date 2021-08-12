@@ -188,6 +188,7 @@ footer
       cursor: pointer
       background: #4c4c4c
     &:hover &-img-pulse
+      background: deeppink
       box-shadow: 0px 0px 8px 4px deeppink
     &-avatar
       height: 100%
@@ -305,6 +306,7 @@ footer
  *************************************** optional classes
  */        
 .active
+  background: deeppink
   box-shadow: 0px 0px 8px 4px deeppink
 
 .pulse
@@ -316,8 +318,6 @@ p.msg-data
   color: gray
 p.msg-text
   padding: .2rem 0 1rem 0
-
-
 
 /**
  *************************************** Responsive
@@ -336,7 +336,9 @@ p.msg-text
 
 /**/
 
-@keyframes pulsing 
+@keyframes pulsing
+  from
+    background: aquamarine
   to 
     transform: scale(1.4)
     opacity: 0
