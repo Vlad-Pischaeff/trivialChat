@@ -1,6 +1,5 @@
 import { useState, useCallback } from 'react'
-import { useStorage } from './storage.hook'
-
+import { $G } from '../service/Service'
 
 function UserException(val, status) {
   this.status = status
@@ -10,10 +9,8 @@ function UserException(val, status) {
 export const useFetch = () => {
   const [ loading, setLoading ] = useState(false)
   const [ error, setError ] = useState(null)
-  // const { getCredentials } = useStorage()
-  const credentials = {}
-  const header = Object.keys(credentials).length !== 0 
-    ? { 'Content-Type': 'application/json', Authorization: credentials.token }
+  const header = Object.keys($G.ACC).length !== 0 
+    ? { 'Content-Type': 'application/json', Authorization: $G.ACC.token }
     : { 'Content-Type': 'application/json' }
 
   const request = useCallback( 

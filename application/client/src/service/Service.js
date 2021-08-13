@@ -9,25 +9,30 @@ export const Emitter = {
   emit: (event, payload) => eventEmitter.emit(event, payload)
 }
 
-export const GS = {
-  page: 'login',
-  slider: true
+const httpPrefix = window.location.protocol
+let { hostname } = window.location  
+export const $URL = `${httpPrefix}//${hostname}:5000`
+
+export const $G = {
+  ACC: {},
+  PAGE: 'LOGIN',
+  SLIDER: true
 }
 
-export const cn = {
-  login: { 
+export const $C = {
+  LOGIN: { 
     aside: 'laside',
-    aside_img: 'laside_img hide085',
+    aside_img: 'laside_img',
     logo: 'llogo',
     logo_text: 'llogo_text'
   },
-  main: { 
+  MAIN: { 
     aside: 'maside',
     aside_img: 'maside_img',
     logo: 'mlogo',
     logo_text: 'mlogo_text'
   },
-  hide0: 'hide0',
-  hide1: 'hide1',
-  hide085: 'hide085'
+  HIDE0: 'hide0',
+  HIDE1: 'hide1',
+  HIDE085: 'hide085'
 }

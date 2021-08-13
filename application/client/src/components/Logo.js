@@ -1,10 +1,12 @@
-import { cn, GS } from "../js/classNames"
+import { $C, $G } from "../service/Service"
 
 export default function Logo() {
 
+  console.log('Logo render ...', $G)
+  
   return (
-    <section className={cn[GS.page].logo}>
-      <p className={cn[GS.page].logo_text}>TRIVIAL CHAT</p>
+    <section className={$C[$G.PAGE].logo}>
+      <p className={$C[$G.PAGE].logo_text}>TRIVIAL CHAT</p>
     </section>
   )
 }

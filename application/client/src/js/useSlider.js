@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react"
-import { cn, GS } from "./classNames"
-const httpPrefix = window.location.protocol
-let { hostname } = window.location  
-const URL = `${httpPrefix}//${hostname}:5000`
+import { $C, $G, $URL } from "../service/Service"
 let timer = null
 let counter = 34
 let j = 1
@@ -10,24 +7,24 @@ let j = 1
 export const useSlider = () => {
   const [ stopSlider, setStopSlider ] = useState(false)
 
-  useEffect(() => {
-      let container = document.querySelector('aside')
-      let child = container.children
-      let elem = createDiv(1)
-      if (stopSlider) {
-        clearTimeout(timer)
-        while(child.length) {
-          child[0].remove()
-        }
-      }
-      container.append(elem)
-  }, [stopSlider])
+  // useEffect(() => {
+  //     let container = document.querySelector('aside')
+  //     let child = container.children
+  //     let elem = createDiv(1)
+  //     if (stopSlider) {
+  //       clearTimeout(timer)
+  //       while(child.length) {
+  //         child[0].remove()
+  //       }
+  //     }
+  //     container.append(elem)
+  // }, [stopSlider])
 
   const createDiv = (index) => {
     let divImg = document.createElement('div')
-    divImg.className = `${cn[GS.page].aside_img} hide0`
-    if (GS.page === 'login')
-      divImg.style.backgroundImage = `url(${URL}/img/img${index}.jpg)`
+    divImg.className = `${$C[$G.PAGE].aside_img} hide0`
+    if ($G.PAGE === 'LOGIN')
+      divImg.style.backgroundImage = `url(${$URL}/img/img${index}.jpg)`
     return divImg
   }
 
@@ -46,7 +43,7 @@ export const useSlider = () => {
             imgRef.current.append(div)
           }
           
-          await sleep(100)
+          await sleep(500)
 
           items[0].style.opacity = 0
           items[1].style.opacity = 0.85

@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import loginCardFlip from '../js/useCardFlip'
 import { Emitter } from '../service/Service'
-import HeaderLoginPage from '../components/HeaderLoginPage'
-import FooterLoginPage from '../components/FooterLoginPage'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
 import AsidePictureSlider from '../components/AsidePictureSlider'
 import Logo from '../components/Logo'
 import LoginPageProfile from '../components/LoginPageProfile'
@@ -27,9 +27,8 @@ export default function LoginPage() {
         <main className="main"> 
 
           <Logo />
-          
-          <HeaderLoginPage />
-          
+          <Header />
+
           <section className="main_container">
             <LoginPageProfile />
             <div className="user_forms" id="user_options-forms">
@@ -40,7 +39,7 @@ export default function LoginPage() {
         
         </main>
       </div>
-      <FooterLoginPage />
+      <Footer />
     </>
   )
 }

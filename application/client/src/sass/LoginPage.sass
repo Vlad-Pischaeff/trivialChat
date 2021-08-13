@@ -1,48 +1,15 @@
 @import 'index.sass'
 
-button
-  background-color: transparent
-  padding: 0
-  border: 0
-  outline: 0
-  cursor: pointer
-
-header
-  flex: 0 0 $h-header
-  line-height: $h-header
-  background: $smoky-black
-  text-transform: uppercase
-  text-align: right
-  padding: 0 1rem
-
-footer
-  height: $h-footer
-  width: 100vw
-  line-height: $h-footer
-  background: $darksmoky-black
-  text-transform: uppercase
-  text-align: center
-  float: right
-  p
-    color: $gray
-    font-size: calc(#{$h-footer} / 5)
-    letter-spacing: .4rem
-
-input::placeholder
-  color: $gray
-
-.wrap
-  width: 100%
-  height: calc(100vh - #{$h-header})
-  background: $gray
-  display: flex
-  flex-flow: row nowrap
-
 /**
  *************************************** Left image style
  */
 .laside, .maside
   position: relative
+  display: flex
+  flex-flow: column nowrap
+  justify-content: space-between
+  align-items: center
+  background: $black
   transition: flex 1s linear
 
 .laside

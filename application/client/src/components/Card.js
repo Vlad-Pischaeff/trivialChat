@@ -14,7 +14,7 @@ export default function Card(props) {
   const { saveCredentials } = useStorage()
   const url = type === 'login' ? '/api/auth/login' : '/api/auth/register'
     
-  console.log(`Card ${type} render ...`)
+  console.log(`Card ${type} render ...`, url)
 
   const handlerClick = async (e) => {
     e.preventDefault()
@@ -23,7 +23,7 @@ export default function Card(props) {
       const data = await request(url, 'POST', body)
       saveCredentials(data)
       console.log(`User ${type} sucsessfull ...`, data, error)
-      Emitter.emit('authenticated')
+      Emitter.emit('authenticated', data)
       history.push('/home')
     } catch(e) {
       handlingErrors(e)
