@@ -2,7 +2,7 @@ export const avatarEffect = () => {
   const bg = document.querySelector('.profile_avatarbg')
   const avatar = document.querySelector('.profile_avatar')
   let TOP = 20, BOTTOM = 20, i = 0
-  let delay = 200
+  let delay = 1500
   let idx = [3, 3, 3, 3], bg_idx = [3, 3, 3, 3]
   let grad = [0, 0, 0, 0], bg_grad = [180, 180, 180, 180]
   let val = [0, 0, 0, 0], bg_val = [0, 0, 0, 0]
@@ -23,8 +23,8 @@ export const avatarEffect = () => {
   
   // console.log('avatarEffect ...', bg, avatar)
 
-  idx = idx.map(n => getRandomArbitrary(2, 6))
-  bg_idx = bg_idx.map(n => getRandomArbitrary(2, 6))
+  idx = idx.map(n => getRandomArbitrary(8, 20))
+  bg_idx = bg_idx.map(n => getRandomArbitrary(8, 20))
 
   const timerID = setInterval(() => {
     grad = grad.map((n, i) => n += idx[i])
@@ -40,8 +40,8 @@ export const avatarEffect = () => {
       i += 1
     } else {
       i = 0
-      idx = idx.map(n => getRandomArbitrary(2, 6))
-      bg_idx = bg_idx.map(n => getRandomArbitrary(2, 6))
+      idx = idx.map(n => getRandomArbitrary(8, 20))
+      bg_idx = bg_idx.map(n => getRandomArbitrary(8, 20))
     }
     // console.log(i, idx)
   }, delay)
