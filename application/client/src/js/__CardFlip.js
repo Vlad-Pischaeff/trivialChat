@@ -1,4 +1,4 @@
-const loginCardFlip = (trigger) => {
+const __CardFlip = (trigger) => {
   const FormsLogin = document.getElementById('user-login')
   const FormsSignup = document.getElementById('user-signup')
   const userFormsLogin = document.getElementById('form_user-login')
@@ -33,4 +33,4 @@ const loginCardFlip = (trigger) => {
     : flip_toLogin()
 }
 
-export default loginCardFlip
+export default __CardFlip

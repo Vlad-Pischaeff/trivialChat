@@ -1,4 +1,4 @@
-export const setResize = () => {
+export const __Resize = () => {
   const chat = document.querySelector('.chat')
   const templates = document.querySelector('.templates')
   const divider = document.getElementById('divider')

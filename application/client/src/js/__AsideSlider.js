@@ -4,7 +4,7 @@ let timer = null
 let counter = 34
 let j = 1
 
-export const useSlider = () => {
+export const __AsideSlider = () => {
   const [ stopSlider, setStopSlider ] = useState(false)
 
   // useEffect(() => {

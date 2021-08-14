@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import loginCardFlip from '../js/useCardFlip'
+import __CardFlip from '../js/__CardFlip'
 import { Emitter } from '../service/Service'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
@@ -11,7 +11,7 @@ import Card from '../components/Card'
 export default function LoginPage() {
 
   useEffect(() => {
-    Emitter.on('change_title', (title) => loginCardFlip(title))
+    Emitter.on('change_title', (title) => __CardFlip(title))
     return () => {
       Emitter.off('change_title')
     }

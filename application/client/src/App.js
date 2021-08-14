@@ -11,19 +11,17 @@ function App() {
   const [ isAuthenticated, setIsAuthenticated ] = useState(false)
   const { getCredentials } = useStorage()
 
-  if (!isAuthenticated) {           /* if has credentials in sessionStorage */
-    if (getCredentials()) {         /* get this credentials */
-      setIsAuthenticated(true)      /* set FLAG isAuthenticated to TRUE */
-      $G.PAGE = 'MAIN'              /* use MAIN page */
-    }
+  const setAuth = () => {
+    setIsAuthenticated(true)                    /* set FLAG isAuthenticated to TRUE */
+    $G.PAGE = 'MAIN'                            /* set MAIN page */
+  }
+
+  if (!isAuthenticated && getCredentials()) {   /* if has credentials in sessionStorage */
+      setAuth()             
   } 
 
   useEffect(() => {
-    Emitter.on('authenticated', (data) => {
-      $G.ACC = data
-      $G.PAGE = 'MAIN'
-      setIsAuthenticated(true)
-    })
+    Emitter.on('authenticated', setAuth)
   }, [])
 
   console.log('App ...', isAuthenticated, $G)

@@ -22,9 +22,9 @@ export default function Card(props) {
     try {
       const data = await request(url, 'POST', body)
       saveCredentials(data)
-      console.log(`User ${type} sucsessfull ...`, data, error)
-      Emitter.emit('authenticated', data)
+      Emitter.emit('authenticated')
       history.push('/home')
+      // console.log(`User ${type} sucsessfull ...`, data, error)
     } catch(e) {
       handlingErrors(e)
     }

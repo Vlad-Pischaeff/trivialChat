@@ -1,4 +1,4 @@
-const loginTitleEffect = (trigger) => {
+const __TitleEffect = (trigger) => {
   const signupButton = document.getElementById('switch-button')
   const descriptionTitle = document.querySelector(".description_form-title")
   const animation = 'shadow 1s ease'
@@ -24,4 +24,4 @@ const loginTitleEffect = (trigger) => {
     : flip_toLogin()
 }
 
-export default loginTitleEffect
+export default __TitleEffect

@@ -1,4 +1,4 @@
-export const avatarEffect = () => {
+export const __AvatarEffect = () => {
   const bg = document.querySelector('.profile_avatarbg')
   const avatar = document.querySelector('.profile_avatar')
   let TOP = 20, BOTTOM = 20, i = 0

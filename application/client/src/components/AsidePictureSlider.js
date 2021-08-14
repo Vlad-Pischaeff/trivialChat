@@ -1,15 +1,15 @@
 import { useEffect, useRef } from "react"
-import { useSlider } from "../js/useSlider"
+import { __AsideSlider } from "../js/__AsideSlider"
+import { __AvatarEffect } from "../js/__AvatarEffect"
 import { $C, $G, $URL } from "../service/Service"
-import { avatarEffect } from "../js/setAvatarEffect"
 
 export default function AsidePictureSlider() {
-  const { slider } = useSlider()
+  const { slider } = __AsideSlider()
   const imgRef = useRef()
 
   useEffect(() => {
     $G.PAGE === 'LOGIN' && slider(imgRef)
-    $G.PAGE === 'MAIN' && avatarEffect()
+    $G.PAGE === 'MAIN' && __AvatarEffect()
   }, [])
 
   console.log('aside slider ...', $G.PAGE, $C[$G.PAGE])
