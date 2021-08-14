@@ -17,7 +17,7 @@ function App() {
   }
 
   if (!isAuthenticated && getCredentials()) {   /* if has credentials in sessionStorage */
-      setAuth()             
+    setAuth()             
   } 
 
   useEffect(() => {
