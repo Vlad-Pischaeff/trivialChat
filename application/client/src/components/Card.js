@@ -9,7 +9,7 @@ export default function Card(props) {
   const { type } = props
   const history = useHistory()
   const email = useAuth(), password = useAuth()
-  const { request, error } = useFetch()
+  const { request } = useFetch()
   const refs = { email: useRef(), password: useRef(), msg: useRef() }
   const { saveCredentials } = useStorage()
   const url = type === 'login' ? '/api/auth/login' : '/api/auth/register'

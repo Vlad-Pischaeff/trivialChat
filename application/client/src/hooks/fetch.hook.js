@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState } from 'react'
 import { $G } from '../service/Service'
 
 function UserException(val, status) {
@@ -13,8 +13,7 @@ export const useFetch = () => {
     ? { 'Content-Type': 'application/json', Authorization: $G.ACC.token }
     : { 'Content-Type': 'application/json' }
 
-  const request = useCallback( 
-    async (url, method = 'GET', body = null, headers = header) => {
+  const request = async (url, method = 'GET', body = null, headers = header) => {
       setLoading(true)
       try {
         if (body) {
@@ -36,7 +35,7 @@ export const useFetch = () => {
         setError(e)
         throw e
       }
-  }, [header])
+  }
 
   return { request, loading, error, header }
 }

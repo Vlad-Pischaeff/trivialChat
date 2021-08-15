@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import AsidePictureSlider from "../components/AsidePictureSlider"
+import ClientList from "../components/ClientList"
 import Footer from "../components/Footer"
 import Header from "../components/Header"
 import Logo from "../components/Logo"
@@ -24,18 +25,7 @@ export default function MainPage() {
           <section className="main_container">
 
             <div className="clients">
-              {
-                Array(24).fill(null).map((_, i) => {
-                  return (
-                    <div key={i} className="clients_item">
-                      <div className="clients_item-img">
-                        <div className="clients_item-img-pulse"></div><img className="clients_item-img-img" src={`${$URL}/img/users/user${i}.png`} />
-                      </div>
-                      <div className="clients_item-status">Banjo {i}</div>
-                    </div>
-                  )
-                })
-              }
+              <ClientList />
             </div>
 
             <div className="chat">
@@ -54,7 +44,9 @@ export default function MainPage() {
 
               </div>
               <div className="chat_input">
-                <input className="chat_input-text" type="text" placeholder="type your answer ..." required autoFocus/><img className="chat_input-icon" src={`${$URL}/img/app/ok.png`}/><img className="chat_input-icon" src={`${$URL}/img/app/attach.png`}/>
+                <input className="chat_input-text" type="text" placeholder="type your answer ..." required autoFocus/>
+                <img className="chat_input-icon" src={`${$URL}/img/app/ok.png`} alt='OK' />
+                <img className="chat_input-icon" src={`${$URL}/img/app/attach.png`} alt='Attachment' />
               </div>
               <div id="divider" draggable="true"></div>
             </div>
