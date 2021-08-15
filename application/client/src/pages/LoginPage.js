@@ -23,12 +23,9 @@ export default function LoginPage() {
     <>
       <div className='wrap'>
         <AsidePictureSlider />
-
         <main className="main"> 
-
           <Logo />
           <Header />
-
           <section className="main_container">
             <LoginPageProfile />
             <div className="user_forms" id="user_options-forms">
@@ -36,7 +33,6 @@ export default function LoginPage() {
               <Card type="signup" />
             </div>
           </section>
-        
         </main>
       </div>
       <Footer />

@@ -9,16 +9,14 @@ function UserException(val, status) {
 export const useFetch = () => {
   const [ loading, setLoading ] = useState(false)
   const [ error, setError ] = useState(null)
-  const header = Object.keys($G.ACC).length !== 0 
-    ? { 'Content-Type': 'application/json', Authorization: $G.ACC.token }
-    : { 'Content-Type': 'application/json' }
+  const header = { 'Content-Type': 'application/json', 
+                    ...( $G.ACC.token && { Authorization: $G.ACC.token } )
+                  }
 
   const request = async (url, method = 'GET', body = null, headers = header) => {
       setLoading(true)
       try {
-        if (body) {
-          body = JSON.stringify(body)
-        }
+        body = body ? JSON.stringify(body) : null
 
         const response = await fetch(url, {method, body, headers})
         // console.log('useFetch response ...', response)
