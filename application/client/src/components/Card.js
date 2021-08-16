@@ -20,7 +20,7 @@ export default function Card(props) {
       Emitter.off(`wrong email ${type}`)
       Emitter.off(`wrong password ${type}`)
     }
-  })
+  }, [])
 
   console.log(`Card ${type} render ...`)
 
