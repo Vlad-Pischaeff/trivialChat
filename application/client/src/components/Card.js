@@ -3,6 +3,7 @@ import { Emitter } from "../service/Service"
 import InputEmail from "./InputEmail"
 import InputPassword from "./InputPassword"
 import InputLogin from "./InputLogin"
+import ForgotPassword from "./ForgotPassword"
 
 export default function Card(props) {
   const { type } = props
@@ -57,7 +58,7 @@ export default function Card(props) {
         <div className="forms_buttons">
           { 
             type === 'login' &&
-              <button className="forms_buttons-forgot" type="button">Forgot password?</button>
+              <ForgotPassword />
           }
           <InputLogin type={type} />
         </div>
