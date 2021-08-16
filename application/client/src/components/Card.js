@@ -4,6 +4,7 @@ import InputEmail from "./InputEmail"
 import InputPassword from "./InputPassword"
 import InputLogin from "./InputLogin"
 import ForgotPassword from "./ForgotPassword"
+import WarningsField from "./WarningsField"
 
 export default function Card(props) {
   const { type } = props
@@ -64,8 +65,10 @@ export default function Card(props) {
         </div>
         {
           type === 'login' 
-            ? <div className="forms_warnings down-error" ref={loginWarnRef}></div>
-            : <div className="forms_warnings down-error" ref={signupWarnRef}></div>
+            ? <WarningsField type='login' />
+            : <WarningsField type='signup' />
+            // ? <div className="forms_warnings down-error" ref={loginWarnRef}></div>
+            // : <div className="forms_warnings down-error" ref={signupWarnRef}></div>
         }
       </form>
     </div>

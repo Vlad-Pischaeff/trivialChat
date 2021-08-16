@@ -75,7 +75,7 @@ const start = async () => {
       let params = parser(`${req.url}`, true)
       console.log('websocket app started...', params.query.userName, req.url, req.headers['sec-websocket-key'], params)
     
-    /* parse url ws://host:port/ws?param=value ************ */
+    /* end parse url *************************************** */
 
       ws.isAlive = true
     //   let client = {}
