@@ -8,8 +8,8 @@ export default function InputEmail(props) {
   const inputRef = useRef()
 
   useEffect(() => {
-    Emitter.on(`wrong email ${type}`, () => inputRef.current.classList.add('error'))
-    Emitter.on('input change', () => inputRef.current && inputRef.current.classList.remove('error'))
+    Emitter.on(`wrong email ${type}`, setError)
+    Emitter.on('input change', resetError)
     return () => {
       Emitter.off(`wrong email ${type}`)
       Emitter.off('input change')
@@ -22,8 +22,16 @@ export default function InputEmail(props) {
 
   const handlerFocus = (e) => {
     e.target.value = ''
-    inputRef.current && inputRef.current.classList.remove('error')
+    resetError()
     Emitter.emit(`clear warnings ${type}`)
+  }
+
+  const resetError = () => {
+    inputRef.current && inputRef.current.classList.remove('error')
+  }
+
+  const setError = () => {
+    inputRef.current && inputRef.current.classList.add('error')
   }
 
   console.log('input email ...', email.value, $G.EMAIL, inputRef)

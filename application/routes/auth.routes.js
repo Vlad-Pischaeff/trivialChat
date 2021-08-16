@@ -53,8 +53,18 @@ router.post('/register',
 )
 
 // /api/auth/login
-router.post('/login', async (req, res) => {
+router.post('/login', 
+  [
+    check('email', 'Uncorrect email ...').isEmail()
+  ],
+  async (req, res) => {
     try {
+      const errors = validationResult(req)
+
+      if (!errors.isEmpty()) {
+        return res.status(412).json({ ...errors.array() })
+      }
+
       const { email, password } = req.body
       const candidate = await User.findOne({ email })
 

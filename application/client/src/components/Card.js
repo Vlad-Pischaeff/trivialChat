@@ -10,8 +10,8 @@ export default function Card(props) {
   const signupWarnRef = useRef()
     
   useEffect(() => {
-    Emitter.on(`clear warnings ${type}`, () => setWarnings('', type))
-    Emitter.on(`wrong response ${type}`, (msg) => setWarnings(msg, type))
+    Emitter.on(`clear warnings ${type}`, () => setWarnings(''))
+    Emitter.on(`wrong response ${type}`, (msg) => setWarnings(msg))
     Emitter.on(`wrong email ${type}`, (msg) => addWarnings(msg))
     Emitter.on(`wrong password ${type}`, (msg) => addWarnings(msg))
     return () => {
@@ -24,16 +24,18 @@ export default function Card(props) {
 
   console.log(`Card ${type} render ...`)
 
-  const addWarnings = (msg, type) => {
-    type === 'login'
-      ? loginWarnRef.current.innerHTML = loginWarnRef.current.innerHTML `${msg} <br>`
-      : signupWarnRef.current.innerHTML = signupWarnRef.current.innerHTML + `${msg} <br>`
+  const addWarnings = (msg) => {
+    if (loginWarnRef.current)
+      loginWarnRef.current.innerHTML += `${msg} <br>`
+    if (signupWarnRef.current)
+      signupWarnRef.current.innerHTML += `${msg} <br>`
   }
 
-  const setWarnings = (msg, type) => {
-    type === 'login'
-      ? loginWarnRef.current.innerHTML = msg
-      : signupWarnRef.current.innerHTML = msg
+  const setWarnings = (msg) => {
+    if (loginWarnRef.current)
+      loginWarnRef.current.innerHTML = msg
+    if (signupWarnRef.current)
+      signupWarnRef.current.innerHTML = msg
   }
 
   return (

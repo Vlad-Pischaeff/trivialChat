@@ -8,8 +8,8 @@ export default function InputPassword(props) {
   const inputRef = useRef()
 
   useEffect(() => {
-    Emitter.on(`wrong password ${type}`, () => inputRef.current.classList.add('error'))
-    Emitter.on('input change', () => inputRef.current && inputRef.current.classList.remove('error'))
+    Emitter.on(`wrong password ${type}`, setError)
+    Emitter.on('input change', resetError)
     return () => {
       Emitter.off(`wrong password ${type}`)
       Emitter.off('input change')
@@ -22,8 +22,16 @@ export default function InputPassword(props) {
 
   const handlerFocus = (e) => {
     e.target.value = ''
-    inputRef.current && inputRef.current.classList.remove('error')
+    resetError()
     Emitter.emit(`clear warnings ${type}`)
+  }
+
+  const resetError = () => {
+    inputRef.current && inputRef.current.classList.remove('error')
+  }
+
+  const setError = () => {
+    inputRef.current && inputRef.current.classList.add('error')
   }
 
   console.log('input password ...', password.value, $G.PASSWORD, inputRef)
