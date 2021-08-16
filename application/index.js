@@ -8,6 +8,7 @@ const https = require('https')
 const WebSocket = require('ws')
 const path = require('path')
 const mongoose = require('mongoose')
+const parser = require('url-parse')
 
 const privateKey  = fs.readFileSync('./keys/privkey.pem', 'utf8')
 const certificate = fs.readFileSync('./keys/cert.pem', 'utf8')
@@ -66,8 +67,16 @@ const start = async () => {
 
     wss = new WebSocket.Server({ server, path: '/ws' })
     
-    wss.on('connection', ws => {
-      console.log('websocket app started...')
+    wss.on('connection', (ws, req) => {
+
+    /* parse url ws://host:port/ws?param=value ************ */
+    /* let parse url 'ws:/localhost:5000/ws?userName=vlad' */
+
+      let params = parser(`${req.url}`, true)
+      console.log('websocket app started...', params.query.userName, req.url, req.headers['sec-websocket-key'], params)
+    
+    /* parse url ws://host:port/ws?param=value ************ */
+
       ws.isAlive = true
     //   let client = {}
     
