@@ -15,6 +15,8 @@ export const $URL = `${httpPrefix}//${hostname}:5000`
 
 export const $G = {
   ACC: {},
+  EMAIl: '',
+  PASSWORD: '',
   PAGE: 'LOGIN',
   SLIDER: true
 }

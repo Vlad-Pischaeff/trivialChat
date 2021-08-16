@@ -1,58 +1,39 @@
-import { useRef } from "react"
-import { useAuth } from "../hooks/auth.hook"
-import { useFetch } from "../hooks/fetch.hook"
+import { useEffect, useRef } from "react"
 import { Emitter } from "../service/Service"
-import { useStorage } from "../hooks/storage.hook"
-import { useHistory } from 'react-router-dom'
+import InputEmail from "./InputEmail"
+import InputPassword from "./InputPassword"
+import InputLogin from "./InputLogin"
 
 export default function Card(props) {
   const { type } = props
-  const history = useHistory()
-  const email = useAuth(), password = useAuth()
-  const { request } = useFetch()
-  const refs = { email: useRef(), password: useRef(), msg: useRef() }
-  const { saveCredentials } = useStorage()
-  const url = type === 'login' ? '/api/auth/login' : '/api/auth/register'
+  const loginWarnRef = useRef()
+  const signupWarnRef = useRef()
     
-  console.log(`Card ${type} render ...`, url)
-
-  const handlerClick = async (e) => {
-    e.preventDefault()
-    const body = { email: email.value, password: password.value }
-    try {
-      const data = await request(url, 'POST', body)
-      saveCredentials(data)
-      Emitter.emit('authenticated')
-      history.push('/home')
-      // console.log(`User ${type} sucsessfull ...`, data, error)
-    } catch(e) {
-      handlingErrors(e)
+  useEffect(() => {
+    Emitter.on(`clear warnings ${type}`, () => setWarnings('', type))
+    Emitter.on(`wrong response ${type}`, (msg) => setWarnings(msg, type))
+    Emitter.on(`wrong email ${type}`, (msg) => addWarnings(msg))
+    Emitter.on(`wrong password ${type}`, (msg) => addWarnings(msg))
+    return () => {
+      Emitter.off(`clear warnings ${type}`)
+      Emitter.off(`wrong response ${type}`)
+      Emitter.off(`wrong email ${type}`)
+      Emitter.off(`wrong password ${type}`)
     }
+  })
+
+  console.log(`Card ${type} render ...`)
+
+  const addWarnings = (msg, type) => {
+    type === 'login'
+      ? loginWarnRef.current.innerHTML = loginWarnRef.current.innerHTML `${msg} <br>`
+      : signupWarnRef.current.innerHTML = signupWarnRef.current.innerHTML + `${msg} <br>`
   }
 
-  const handlingErrors = (e) => {
-    if (e.status === 412 ) {
-      e.val.forEach(n => {
-        refs[n.param].current.classList.add('error')
-        addWarnings(n.msg)
-      })
-    } else {
-      setWarnings(e.val)
-    }
-    refs.msg.current.focus()
-  }
-
-  const handlerFocus = (e) => {
-    e.target.classList.remove('error')
-    setWarnings('')
-  }
-  
-  const addWarnings = (msg) => {
-    refs.msg.current.innerHTML = refs.msg.current.innerHTML + `${msg} <br>`
-  }
-
-  const setWarnings = (msg) => {
-    if (refs.msg.current) refs.msg.current.innerHTML = msg
+  const setWarnings = (msg, type) => {
+    type === 'login'
+      ? loginWarnRef.current.innerHTML = msg
+      : signupWarnRef.current.innerHTML = msg
   }
 
   return (
@@ -65,41 +46,24 @@ export default function Card(props) {
             ? <h2 className="forms_title">Login</h2>
             : <h2 className="forms_title">Sign Up</h2>
         }
+
         <fieldset className="forms_fieldset">
-          <div className="forms_field">
-            <input  className="forms_field-input" 
-                    type="email" 
-                    name="email" 
-                    placeholder="Email" 
-                    required
-                    autoFocus
-                    {...email}
-                    onFocus={handlerFocus}
-                    ref={refs.email} />
-          </div>
-          <div className="forms_field">
-            <input  className="forms_field-input" 
-                    type="password" 
-                    name="password" 
-                    placeholder="Password" 
-                    required 
-                    {...password} 
-                    onFocus={handlerFocus}
-                    ref={refs.password} />
-          </div>
+          <InputEmail type={type} />
+          <InputPassword type={type} />
         </fieldset>
+
         <div className="forms_buttons">
           { 
             type === 'login' &&
               <button className="forms_buttons-forgot" type="button">Forgot password?</button>
           }
-          <input  className="forms_buttons-action" 
-                  type="submit" 
-                  value={type === 'login' ? 'Login' : 'Sign up'} 
-                  onClick={handlerClick} />
+          <InputLogin type={type} />
         </div>
-        <div className="forms_warnings down-error" ref={refs.msg}>
-        </div>
+        {
+          type === 'login' 
+            ? <div className="forms_warnings down-error" ref={loginWarnRef}></div>
+            : <div className="forms_warnings down-error" ref={signupWarnRef}></div>
+        }
       </form>
     </div>
   )
