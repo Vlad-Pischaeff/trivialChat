@@ -1,0 +1,47 @@
+extends elements/layout 
+
+block content
+  .wrap
+    aside.laside
+      .profile
+        img(src='./img/profile2.png').profile_img
+      img(src='./img/settings.svg').settings_img
+    main.main 
+      section.logo
+        p.logo_text TRIVIAL CHAT
+      header 
+        p main page
+      section.main_container
+        .clients
+          - var n = 1;
+          while n < 12
+            .clients_item
+              .clients_item-img
+                .clients_item-img-pulse
+                img(src='./img/user/user' + n + '.png').clients_item-img-img
+              .clients_item-status Banjo !{n}
+            - n++
+
+        .chat
+          .chat_field
+            each val in [1, 2, 3, 4, 5]
+              .chat_field-message 
+                p.msg-data date 20-07-2021 !{val}
+                p.msg-text Banjo tote bag bicycle rights, High Life sartorial cray craft beer whatever street art fap
+
+
+          .chat_input
+            input.chat_input-text(type="text" placeholder="type your answer ..." required autofocus)
+            img(src='./img/ok.png').chat_input-icon
+            img(src='./img/attach.png').chat_input-icon
+
+          #divider(draggable="true")
+
+        .templates
+        section.tchat
+          .tchat_wrap 
+            iframe(src="https://chat.cheburator.info", frameborder="0", scrolling="no") 
+            .tchat_wrap-close
+          .tchat_icon
+            .tchat_icon-ring 
+            .tchat_icon-button
