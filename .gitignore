@@ -1,4 +1,2 @@
-*/build
-*/node_modules
-*/keys/*
 /application/config/default.json
+.vscode
