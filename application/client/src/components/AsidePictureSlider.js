@@ -22,9 +22,9 @@ export default function AsidePictureSlider() {
           : <>
               <div className="profile">
                 <div className="profile_avatarbg"></div>
-                <img className="profile_avatar" src={`${$URL}/img/app/profile2.png`} />
+                <img className="profile_avatar" src={`${$URL}/img/app/profile2.png`} alt='' />
               </div>
-              <img className="settings_img" src={`${$URL}/img/app/settings.svg`} />
+              <img className="settings_img" src={`${$URL}/img/app/settings.svg`} alt='' />
             </>
       }
     </aside>

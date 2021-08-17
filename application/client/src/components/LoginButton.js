@@ -3,7 +3,7 @@ import { useFetch } from "../hooks/fetch.hook"
 import { useStorage } from "../hooks/storage.hook"
 import { Emitter, $G } from "../service/Service"
 
-export default function InputLogin(props) {
+export default function LoginButton(props) {
   const { type } = props
   const { request } = useFetch()
   const history = useHistory()
@@ -12,7 +12,9 @@ export default function InputLogin(props) {
 
   const handlerClick = async (e) => {
     e.preventDefault()
-    const body = { email: $G.EMAIL, password: $G.PASSWORD }
+    const body = type === 'login' 
+      ? { email: $G.EMAIL, password: $G.PASSWORD }
+      : { email: $G.SEMAIL, password: $G.SPASSWORD }
     try {
       const data = await request(url, 'POST', body)
       saveCredentials(data)

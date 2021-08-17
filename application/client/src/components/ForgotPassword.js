@@ -1,12 +1,15 @@
-export default function ForgotPassword() {
+export default function ForgotPassword(props) {
+  const { type } = props
 
   const handlerClick = () => {
     console.log('Forgot password ...')
   }
 
-  return (
-    <button className="forms_buttons-forgot" type="button" onClick={handlerClick} >
-      Forgot password?
-    </button>
-  )
+  return type === 'login'
+    ? (
+        <button className="forms_buttons-forgot" type="button" onClick={handlerClick} >
+          Forgot password?
+        </button>
+      )
+    : <> </>
 }

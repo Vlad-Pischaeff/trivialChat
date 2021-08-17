@@ -16,7 +16,7 @@ export default function WarningsField(props) {
       Emitter.off(`wrong email ${type}`)
       Emitter.off(`wrong password ${type}`)
     }
-  }, [])
+  }, [type])
 
   const addWarnings = (msg) => {
     if (warnRef.current)

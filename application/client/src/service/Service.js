@@ -17,6 +17,8 @@ export const $G = {
   ACC: {},
   EMAIl: '',
   PASSWORD: '',
+  SEMAIL: '',
+  SPASSWORD: '',
   PAGE: 'LOGIN',
   SLIDER: true
 }

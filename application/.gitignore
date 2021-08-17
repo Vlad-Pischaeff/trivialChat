@@ -1,4 +1,4 @@
 /build
 /node_modules
 /keys/*
-/config/default.json
+*/config/default.json

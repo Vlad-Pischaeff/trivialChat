@@ -9,15 +9,17 @@ export default function InputEmail(props) {
 
   useEffect(() => {
     Emitter.on(`wrong email ${type}`, setError)
-    Emitter.on('input change', resetError)
+    Emitter.on(`input change`, resetError)
     return () => {
       Emitter.off(`wrong email ${type}`)
-      Emitter.off('input change')
+      Emitter.off(`input change`)
     }
-  }, [])
+  }, [type])
 
   useEffect(() => {
-    $G.EMAIL = email.value
+    type === 'login'
+      ? $G.EMAIL = email.value
+      : $G.SEMAIL = email.value
   })
 
   const handlerFocus = (e) => {
@@ -34,7 +36,7 @@ export default function InputEmail(props) {
     inputRef.current && inputRef.current.classList.add('error')
   }
 
-  console.log('input email ...', email.value, $G.EMAIL, inputRef)
+  console.log(`input email ${type} ...`, email.value)
 
   return (
     <div className="forms_field">

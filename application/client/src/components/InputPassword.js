@@ -9,15 +9,17 @@ export default function InputPassword(props) {
 
   useEffect(() => {
     Emitter.on(`wrong password ${type}`, setError)
-    Emitter.on('input change', resetError)
+    Emitter.on(`input change`, resetError)
     return () => {
       Emitter.off(`wrong password ${type}`)
-      Emitter.off('input change')
+      Emitter.off(`input change`)
     }
-  }, [])
+  }, [type])
 
   useEffect(() => {
-    $G.PASSWORD = password.value
+    type === 'login'
+      ? $G.PASSWORD = password.value
+      : $G.SPASSWORD = password.value
   })
 
   const handlerFocus = (e) => {
@@ -34,7 +36,7 @@ export default function InputPassword(props) {
     inputRef.current && inputRef.current.classList.add('error')
   }
 
-  console.log('input password ...', password.value, $G.PASSWORD, inputRef)
+  console.log(`input password ${type} ...`, password.value)
 
   return (
     <div className="forms_field">
