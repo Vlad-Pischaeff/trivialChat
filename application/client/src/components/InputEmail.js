@@ -36,7 +36,7 @@ export default function InputEmail(props) {
     inputRef.current && inputRef.current.classList.add('error')
   }
 
-  console.log(`input email ${type} ...`, email.value)
+  // console.log(`input email ${type} ...`, email.value)
 
   return (
     <div className="forms_field">

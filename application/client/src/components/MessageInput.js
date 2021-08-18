@@ -4,7 +4,7 @@ import { $URL } from '../service/Service'
 export default function MessageInput() {
   const message = useAuth()
 
-  console.log('MessageInput render ...', message.value)
+  // console.log('MessageInput render ...', message.value)
 
   return (
     <div className="chat_input">

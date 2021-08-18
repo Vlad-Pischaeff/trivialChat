@@ -14,7 +14,7 @@ export default function MainPage() {
     __Resize()
   }, [])
 
-  console.log('MainPage render ...')
+  // console.log('MainPage render ...')
 
   return (
     <>

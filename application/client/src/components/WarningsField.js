@@ -28,7 +28,7 @@ export default function WarningsField(props) {
       warnRef.current.innerHTML = msg
   }
 
-  console.log(`WarningsField ${type} render ...`)
+  // console.log(`WarningsField ${type} render ...`)
 
   return (
     <div className="forms_warnings down-error" ref={warnRef}></div>

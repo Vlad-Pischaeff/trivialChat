@@ -12,7 +12,7 @@ export default function AsidePictureSlider() {
     $G.PAGE === 'MAIN' && __AvatarEffect()
   }, [])
 
-  console.log('aside slider ...', $G.PAGE, $C[$G.PAGE])
+  // console.log('aside slider ...', $G.PAGE, $C[$G.PAGE])
 
   return (
     <aside className={$C[$G.PAGE].aside} ref={imgRef} >

@@ -2,14 +2,17 @@ import './sass/LoginPage.sass'
 import './sass/MainPage.sass'
 import LoginPage from './pages/LoginPage'
 import MainPage from './pages/MainPage'
-import { Route, Switch, Redirect } from 'react-router-dom'
+import { Route, Switch, Redirect, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { Emitter, $G } from "./service/Service"
 import { useStorage } from './hooks/storage.hook'
+import FirstSettingsPage from './pages/FirstSettingsPage'
 
 function App() {
   const [ isAuthenticated, setIsAuthenticated ] = useState(false)
   const { getCredentials } = useStorage()
+  const location = useLocation()
+  const background = location.state && location.state.background
 
   const setAuth = () => {
     setIsAuthenticated(true)                    /* set FLAG isAuthenticated to TRUE */
@@ -24,16 +27,24 @@ function App() {
     Emitter.on('authenticated', setAuth)
   }, [])
 
-  console.log('App ...', isAuthenticated, $G)
+  // console.log('App ...', isAuthenticated, $G, background, location)
+  console.log('App bg & loc ...', background, location)
 
   return (
     isAuthenticated
       ? 
-        <Switch>
-          <Route exact path='/home' component={MainPage}/>
-          <Route exact path='/login' component={LoginPage}/>
-          <Redirect to='/home' />
-        </Switch>
+        <>
+          <Switch location={background || location}>
+            <Route exact path='/home' component={MainPage}/>
+            <Route exact path='/login' component={LoginPage}/>
+            <Route exact path='/modal' component={FirstSettingsPage}/>
+            <Redirect to='/home' />
+          </Switch>
+          {
+            background && 
+              <Route exact path='/modal' component={FirstSettingsPage}/>
+          }
+        </>
       : 
         <Switch>
           <Route exact path='/login' component={LoginPage}/>

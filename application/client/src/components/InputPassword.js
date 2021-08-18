@@ -36,7 +36,7 @@ export default function InputPassword(props) {
     inputRef.current && inputRef.current.classList.add('error')
   }
 
-  console.log(`input password ${type} ...`, password.value)
+  // console.log(`input password ${type} ...`, password.value)
 
   return (
     <div className="forms_field">
