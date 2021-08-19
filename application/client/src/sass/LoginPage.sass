@@ -39,7 +39,7 @@
 .llogo,
 .mlogo
   position: absolute
-  z-index: 1
+  z-index: 0
   font-face: $ff
 
   font-weight: bold
@@ -181,26 +181,55 @@
   &_field
     &:not(:last-of-type)
       margin-bottom: 20px
+    &-code
+      display: flex
+      align-items: center
 
+    &-input
+      width: 100%
+      border-bottom: 1px solid $gray
+      padding: 6px 20px 6px 6px
+      font-family: $ff
+      font-size: 1.2rem
+      font-weight: $ff-light
+      color: $black
+      letter-spacing: .1rem
+      transition: border-color .2s ease-in-out
+      margin-top: .5rem
+      &:focus
+        border-bottom: 2px solid $gray
+
+    &-inputcopy
+      position: relative
+      height: 2rem
+      margin-left: 1rem
+      margin-top: .5rem
+      & img
+        height: 100%
+      &::before
+        // content: attr(data-text)
+        // position: absolute
+      &:hover::before
+        content: attr(data-text)
+        position: absolute
+        display: block
+        height: 3rem
+        width: 10rem
+        font-size: .7rem
+        color: $gray
+        background: white
+        padding: .5rem
+        top: -4rem
+        left: 1rem
+        border-radius: .3rem .3rem .3rem 0 / .3rem .3rem .3rem 0
+        box-shadow: 0 0 10px $gray
+      &:hover
+        cursor: pointer
+          
   &_fieldset
     border: transparent
     background: oldlace
     padding: 1rem
-
-  &_field-input
-    width: 100%
-    border-bottom: 1px solid $gray
-    padding: 6px 20px 6px 6px
-    font-family: $ff
-    font-size: 1.2rem
-    font-weight: $ff-light
-    color: $black
-    letter-spacing: .1rem
-    transition: border-color .2s ease-in-out
-    margin-top: .5rem
-
-    &:focus
-      border-bottom: 2px solid $gray
 
   &_buttons
     display: flex
@@ -270,6 +299,10 @@ input
   &[disabled]
     background: $white
     border-bottom: none
+
+  &[name="code"]
+    font-size: 0.8rem
+    height: 2rem
 /**
  *************************************** Additional classes
  */

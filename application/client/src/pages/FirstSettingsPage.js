@@ -1,6 +1,5 @@
 import InputCode from "../components/InputCode"
-import InputPassword from "../components/InputPassword"
-import InputSiteName from "../components/InputSiteName"
+import InputWebAddress from "../components/InputWebAddress"
 import SettingsButton from "../components/SettingsButton"
 import { $G } from '../service/Service'
 
@@ -22,7 +21,7 @@ export default function FirstSettingsPage() {
             <p>{$G.ACC.email}</p>
 
             <fieldset className="forms_fieldset">  
-              <InputSiteName />
+              <InputWebAddress />
               <InputCode />
             </fieldset>
 

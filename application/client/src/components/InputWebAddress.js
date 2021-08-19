@@ -1,18 +1,15 @@
-import { useEffect, useRef } from "react"
-import { useAuth } from "../hooks/auth.hook"
+import { useRef } from "react"
+import { Emitter } from "../service/Service"
 
-export default function InputSiteName() {
-  const sitename = useAuth()
+export default function InputWebAddress() {
   const inputRef = useRef()
 
-  useEffect(() => {
-    inputRef.current.value = ''
-  }, [])
-
   const handlerFocus = (e) => {
-    e.preventDefault()
-    console.log('site name focus ...', e)
     e.target.value = ''
+  }
+
+  const handlerChange = (e) => {
+    Emitter.emit('web address', e.target.value)
   }
 
   return (
@@ -25,8 +22,8 @@ export default function InputSiteName() {
               placeholder="www.yoursite.com"
               required
               autoFocus
-              {...sitename}
-              onFocus={handlerFocus} 
+              onFocus={handlerFocus}
+              onChange={handlerChange}
               ref={inputRef} />
     </div>
   )

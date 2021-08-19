@@ -13,7 +13,7 @@ export default function SettingsButton() {
   return (
     <input className="forms_buttons-action" 
       type="button" 
-      value='OK' 
+      value='SAVE' 
       onClick={handlerClick} />
   )
 }
