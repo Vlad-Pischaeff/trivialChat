@@ -11,8 +11,8 @@ export default function SettingsButton() {
   console.log('SettingsButton history...', history)
 
   return (
-    <input  className="forms_buttons-action" 
-      type="submit" 
+    <input className="forms_buttons-action" 
+      type="button" 
       value='OK' 
       onClick={handlerClick} />
   )

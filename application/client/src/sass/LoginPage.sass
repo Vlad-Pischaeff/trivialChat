@@ -164,6 +164,10 @@
 .forms
   &_form
     transition: opacity .4s ease-in-out
+    & p
+      color: black
+      font-size: 1.2rem
+      padding: 1rem
 
   &_title
     margin-bottom: 45px
@@ -193,6 +197,7 @@
     color: $black
     letter-spacing: .1rem
     transition: border-color .2s ease-in-out
+    margin-top: .5rem
 
     &:focus
       border-bottom: 2px solid $gray
@@ -243,6 +248,9 @@
 /**
  *************************************** Inputs style
  */
+label
+  color: $gray
+
 input
   background-color: transparent
   padding: 0
@@ -259,6 +267,9 @@ input
     letter-spacing: .1rem
     color: $gray
 
+  &[disabled]
+    background: $white
+    border-bottom: none
 /**
  *************************************** Additional classes
  */

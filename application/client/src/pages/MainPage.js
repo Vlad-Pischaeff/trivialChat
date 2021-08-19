@@ -7,6 +7,7 @@ import Footer from "../components/Footer"
 import Header from "../components/Header"
 import Logo from "../components/Logo"
 import { __Resize } from "../js/__Resize"
+import Templates from "../components/Templates"
 
 export default function MainPage() {
 
@@ -30,7 +31,7 @@ export default function MainPage() {
               <MessageInput />
               <div id="divider" draggable="true"></div>
             </div>
-            <div className="templates"></div>
+            <Templates />
           </section>
         </main>
       </div>
