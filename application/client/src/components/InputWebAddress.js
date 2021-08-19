@@ -6,15 +6,19 @@ export default function InputWebAddress() {
 
   const handlerFocus = (e) => {
     e.target.value = ''
+    Emitter.emit('clear web address')
   }
 
   const handlerChange = (e) => {
+    e.target.value = e.target.value.toLowerCase()
     Emitter.emit('web address', e.target.value)
   }
 
+  console.log('InputWebAddress render ...')
+
   return (
     <div className="forms_field">
-      <label htmlFor="web">Type Your Web Address:</label>
+      <label htmlFor="web">Enter Your Web Address:</label>
       <input  className="forms_field-input" 
               autoComplete="off"
               type="url" 

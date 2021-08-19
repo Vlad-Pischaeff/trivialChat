@@ -13,7 +13,8 @@ export default function Card(props) {
     <div  className={type === 'login' ? "user_forms-login flip0" : "user_forms-signup flip-180"} 
           id={type === 'login' ? "user-login" : "user-signup"}>
       <form className={type === 'login' ? "forms_form hide1" : "forms_form hide0"}  
-            id={type === 'login' ? "form_user-login" : "form_user-signup"}>
+            id={type === 'login' ? "form_user-login" : "form_user-signup"}
+            autocomplete="off" >
 
         <h2 className="forms_title">{type ==='login' ? 'Login' : 'Sign Up'}</h2>
 

@@ -206,23 +206,25 @@
       margin-top: .5rem
       & img
         height: 100%
-      &::before
-        // content: attr(data-text)
-        // position: absolute
-      &:hover::before
-        content: attr(data-text)
+      &:hover::before, &:hover::after
         position: absolute
         display: block
-        height: 3rem
+        left: 1rem
+      &:hover::before
+        content: attr(data-text)
         width: 10rem
         font-size: .7rem
-        color: $gray
-        background: white
+        background: hotpink
         padding: .5rem
-        top: -4rem
-        left: 1rem
-        border-radius: .3rem .3rem .3rem 0 / .3rem .3rem .3rem 0
+        bottom: 2.5rem
+        border-radius: .4rem .4rem .4rem 0 / .4rem .4rem .4rem 0
         box-shadow: 0 0 10px $gray
+      &:hover::after
+        content: ''
+        border-top: solid 1rem hotpink
+        border-right: solid 1rem transparent
+        bottom: 2rem
+
       &:hover
         cursor: pointer
           

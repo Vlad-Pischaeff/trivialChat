@@ -18,7 +18,7 @@ export default function FirstSettingsPage() {
           <form className="forms_form hide1" id="form_user-login" autoComplete="off">
 
             <h2 className="forms_title">First settings</h2>
-            <p>{$G.ACC.email}</p>
+            <p>{$G.ACC ? $G.ACC.email : ''}</p>
 
             <fieldset className="forms_fieldset">  
               <InputWebAddress />
