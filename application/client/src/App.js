@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import { Emitter, $G } from "./service/Service"
 import { useStorage } from './hooks/storage.hook'
 import FirstSettingsPage from './pages/FirstSettingsPage'
+import ClientPage from './pages/ClientPage'
 
 function App() {
   const [ isAuthenticated, setIsAuthenticated ] = useState(false)
@@ -37,6 +38,7 @@ function App() {
           <Switch location={background || location}>
             <Route exact path='/home' component={MainPage}/>
             <Route exact path='/login' component={LoginPage}/>
+            <Route exact path='/client' component={ClientPage}/>
             <Route exact path='/modal' component={FirstSettingsPage}/>
             <Redirect to='/home' />
           </Switch>
@@ -48,6 +50,7 @@ function App() {
       : 
         <Switch>
           <Route exact path='/login' component={LoginPage}/>
+          <Route exact path='/client' component={ClientPage}/>
           <Redirect to='/login' />
         </Switch>
   )

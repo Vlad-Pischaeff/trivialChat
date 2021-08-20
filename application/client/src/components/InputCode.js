@@ -1,18 +1,12 @@
 import { useEffect, useRef } from "react"
 import { $G, $URL, Emitter } from "../service/Service"
 import aes from 'crypto-js/aes'
-// import CryptoJS from 'crypto-js'
 
 export default function InputCode() {
   const inputRef = useRef()
 
   useEffect(() => {
-    Emitter.on('web address', data => {
-      inputRef.current.value = crypt(data)
-      // let bytes = aes.decrypt(inputRef.current.value, $G.ACC.email)
-      // let str = bytes.toString(CryptoJS.enc.Utf8)
-      // console.log('decrypt2 ...', str)
-    })
+    Emitter.on('web address', data => inputRef.current.value = crypt(data))
     Emitter.on('clear web address', () => inputRef.current.value = '')
     return () => {
       Emitter.off('web address')
@@ -47,7 +41,7 @@ export default function InputCode() {
               name="code"
               disabled
               ref={inputRef} />
-      <picture  className="forms_field-inputcopy" 
+      <picture  className="forms_field-inputcopy tooltip" 
                 data-text="Copy CODE to the clipboard and then paste it to the WordPress plugin configuration page">
         <img  src={`${$URL}/img/app/copy.png`} 
               alt='copy code' 

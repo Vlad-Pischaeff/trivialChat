@@ -8,6 +8,7 @@ export default function Templates() {
   return (
     <div className="templates">
       <Link to={{ pathname: "/modal", state: { background: location }}}>Modal Page</Link>
+      <Link to="/client">Client Page</Link>
     </div>
   )
 }

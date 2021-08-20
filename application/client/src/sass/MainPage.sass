@@ -1,26 +1,5 @@
 @import 'index.sass'
 
-/**
- *************************************** Left image style
- */
-// .laside
-//   flex: 0 0 8rem
-//   position: relative
-//   display: flex
-//   flex-flow: column nowrap
-//   justify-content: space-between
-//   align-items: center
-//   background: $black
-//   &_img
-//     position: absolute
-//     top: 0
-//     left: 0
-//     background-size: cover
-//     background-position: 0% 50%
-//     height: 100%
-//     width: 100%
-//     transition: opacity 4s linear, background-position 20s linear
-
 .profile
   width: 5rem
   height: 5rem
@@ -178,6 +157,7 @@
     justify-content: space-between
     align-items: center
     padding-right: .5rem
+    width: 100%
     &-text
       flex: 1 1 auto
       height: 3rem
@@ -198,6 +178,12 @@
     &-icon
       height: 2rem
       margin-left: .5rem
+      &:hover
+        cursor: pointer
+    &-icon2
+      height: 2rem
+      margin-left: .5rem
+      filter: invert(100%)
       &:hover
         cursor: pointer
 

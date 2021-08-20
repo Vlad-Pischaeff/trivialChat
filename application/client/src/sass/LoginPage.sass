@@ -206,25 +206,6 @@
       margin-top: .5rem
       & img
         height: 100%
-      &:hover::before, &:hover::after
-        position: absolute
-        display: block
-        left: 1rem
-      &:hover::before
-        content: attr(data-text)
-        width: 10rem
-        font-size: .7rem
-        background: hotpink
-        padding: .5rem
-        bottom: 2.5rem
-        border-radius: .4rem .4rem .4rem 0 / .4rem .4rem .4rem 0
-        box-shadow: 0 0 10px $gray
-      &:hover::after
-        content: ''
-        border-top: solid 1rem hotpink
-        border-right: solid 1rem transparent
-        bottom: 2rem
-
       &:hover
         cursor: pointer
           
@@ -268,6 +249,7 @@
       &:hover
         background-color: lightblue
         color: $salmon
+        cursor: pointer
 
   &_warnings
     background: $salmon

@@ -111,6 +111,33 @@ input::placeholder
     box-shadow: 0 0 15px #333
     animation: modal-app .25s linear
 
+/**
+ *************************************** Tooltip style
+ */
+
+.pos-rel
+  position: relative
+
+.tooltip
+  &:hover::before, &:hover::after
+    position: absolute
+    display: block
+    left: 50%
+  &:hover::before
+    content: attr(data-text)
+    width: 10rem
+    font-size: .7rem
+    background: hotpink
+    padding: .5rem
+    bottom: 2.5rem
+    border-radius: .4rem .4rem .4rem 0 / .4rem .4rem .4rem 0
+    box-shadow: 0 0 10px $gray
+  &:hover::after
+    content: ''
+    border-top: solid 1rem hotpink
+    border-right: solid 1rem transparent
+    bottom: 2rem
+
 @keyframes modal-bg-app
   from
     background: transparent

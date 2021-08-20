@@ -11,9 +11,12 @@ export default function SettingsButton() {
   console.log('SettingsButton history...', history)
 
   return (
-    <input className="forms_buttons-action" 
-      type="button" 
-      value='SAVE' 
-      onClick={handlerClick} />
+    <div  className="pos-rel tooltip" 
+          data-text="Check that Your site name is spelled correctly and save the changes">
+      <input  className="forms_buttons-action" 
+              type="button" 
+              value='SAVE' 
+              onClick={handlerClick} />
+    </div>
   )
 }
