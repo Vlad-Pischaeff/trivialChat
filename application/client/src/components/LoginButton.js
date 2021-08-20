@@ -17,6 +17,7 @@ export default function LoginButton(props) {
       : { email: $G.SEMAIL, password: $G.SPASSWORD }
     try {
       const data = await request(url, 'POST', body)
+      // console.log(`LoginButton ${type} sucsessfull ...`, data)
       saveCredentials(data)
       Emitter.emit('authenticated')
       history.push('/home')

@@ -29,7 +29,7 @@ function App() {
   }, [])
 
   // console.log('App ...', isAuthenticated, $G, background, location)
-  console.log('App bg & loc ...', background, location)
+  // console.log('App bg & loc ...', background, location)
 
   return (
     isAuthenticated

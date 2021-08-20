@@ -15,7 +15,7 @@ export const $URL = `${httpPrefix}//${hostname}:5000`
 
 export const $G = {
   ACC: {},
-  EMAIl: '',
+  EMAIL: '',
   PASSWORD: '',
   SEMAIL: '',
   SPASSWORD: '',

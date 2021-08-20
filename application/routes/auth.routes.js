@@ -80,7 +80,8 @@ router.post('/login',
 
       const token = jwt.sign( { userId: candidate.id }, SECRET, { expiresIn: '10h' } )
 
-      res.status(201).json({ email, token, userId: candidate.id })
+      // res.status(201).json({ email, token, userId: candidate.id })
+      res.status(201).json({...candidate._doc, token })
     } catch (e) {
       res.status(500).json({ message:`Something wrong ${e}...` })
     }

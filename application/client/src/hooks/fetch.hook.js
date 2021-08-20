@@ -10,7 +10,7 @@ export const useFetch = () => {
   const [ loading, setLoading ] = useState(false)
   const [ error, setError ] = useState(null)
   const header = { 'Content-Type': 'application/json', 
-                    ...( $G.ACC.token && { Authorization: $G.ACC.token } )
+                    ...( $G.ACC && $G.ACC.token && { Authorization: $G.ACC.token } )
                   }
 
   const request = async (url, method = 'GET', body = null, headers = header) => {

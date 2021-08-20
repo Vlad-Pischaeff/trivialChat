@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom"
 export default function Templates() {
   const location  = useLocation()
 
-  console.log('Templates location...', location)
+  // console.log('Templates location...', location)
 
   return (
     <div className="templates">

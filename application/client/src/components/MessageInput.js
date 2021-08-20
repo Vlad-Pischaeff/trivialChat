@@ -11,7 +11,7 @@ export default function MessageInput() {
       <input  className="chat_input-text" 
               name="message" 
               type="text" 
-              placeholder="type your answer ..." 
+              placeholder="type your answer here ..." 
               required 
               autoFocus 
               {...message} />
