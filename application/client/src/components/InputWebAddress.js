@@ -1,8 +1,6 @@
-import { useRef } from "react"
 import { Emitter } from "../service/Service"
 
 export default function InputWebAddress() {
-  const inputRef = useRef()
 
   const handlerFocus = (e) => {
     e.target.value = ''
@@ -27,8 +25,7 @@ export default function InputWebAddress() {
               required
               autoFocus
               onFocus={handlerFocus}
-              onChange={handlerChange}
-              ref={inputRef} />
+              onChange={handlerChange} />
     </div>
   )
 }

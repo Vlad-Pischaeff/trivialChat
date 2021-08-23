@@ -22,7 +22,7 @@ export default function FirstSettingsPage() {
 
             <fieldset className="forms_fieldset">  
               <InputWebAddress />
-              <InputCode />
+              {/* <InputCode /> */}
             </fieldset>
 
             <div className="forms_buttons">

@@ -1,0 +1,27 @@
+extends elements/layout 
+
+block content
+  section.cp#App(v-cloak)
+    .cp_header
+      picture.cp_header-avatar
+        img.cp_header-avatarimg(src='./img/profile2.png' alt='')
+        .cp_header-avatarbg
+      .cp_header-card
+        p {{ inputVal }}
+    .cp_body
+      .chat_field(ref="msgs")
+          .chat_field-message(v-for='(msg, idx) in messages')
+            p.msg-data date 20-07-2021
+            p.msg-text {{ msg }}, {{ idx + 1 }}
+    .cp_footer
+      .chat_input
+        input.chat_input-text(
+                  name="question" 
+                  type="text" 
+                  :placeholder='placeholderStr'
+                  :value='inputVal'
+                  @input='inputHandler'
+                  @keypress.enter ='addMessage'
+                  required 
+                  autofocus ) 
+        img.chat_input-icon2(src='./img/ok2.png' alt='OK' @click='addMessage')
