@@ -109,7 +109,7 @@
 .chat
   flex: 1 1 45%
   height: 100%
-  background: lightblue
+  background: #666
   display: flex
   flex-flow: column nowrap
   justify-content: space-between
@@ -123,24 +123,24 @@
       padding: .5rem
       width: 80%
       border-radius: 1rem
-      box-shadow: 0 0 1rem #8888
+      box-shadow: 0 0 1rem #6bffffc4
     &-message:nth-child(odd)
-      background: lightcyan
+      background: #555
       &::after
         content: ''
-        border-left: solid 3rem lightcyan
+        border-left: solid 3rem #555
         border-bottom: solid 1.5rem transparent
         float: left
       p
         font-family: $ff-text
-        color: $black
+        color: aqua
 
     &-message:nth-child(even)
-      background: cornsilk
+      background: darkturquoise
       margin-left: auto
       &::after
         content: ''
-        border-right: solid 3rem cornsilk
+        border-right: solid 3rem darkturquoise
         border-bottom: solid 1.5rem transparent
         float: right
       p
@@ -208,9 +208,14 @@
 .templates
   flex: 1 1 35%
   padding: 1rem
+  background: #888;
+  display: flex;
+  flex-flow: column nowrap
+  text-shadow: 0 0 .5rem aqua
   & a
     text-decoration: none
-    color: $black
+    color: aqua
+    padding: .2rem 0
     
 /**
  *************************************** optional classes

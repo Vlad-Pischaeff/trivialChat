@@ -16,6 +16,7 @@ const credentials = {key: privateKey, cert: certificate}
 
 const PORT = config.get('port') || 5000
 const MONGO_URL = config.get('mongoUrl')
+const User = require('./models/User')
 
 const isProduction = process.env.NODE_ENV === 'production'
                       ? true
@@ -71,6 +72,8 @@ const start = async () => {
     const server = await Server.listen(PORT, () => {
         console.log('http/https server started ...')
     })
+
+    await getUsers()
 
     wss = new WebSocket.Server({ server, path: '/ws' })
     
@@ -151,3 +154,20 @@ const start = async () => {
 }
 
 start()
+
+const getUsers = async () => {
+  try {
+    const users = await User.find({})
+    let countedSites = users.reduce((allNames, name) => {
+      allNames[name.site] = name.email
+      return allNames
+    }, {})
+    let countedEmails = users.reduce((allNames, name) => {
+      allNames[name.email] = name.site
+      return allNames
+    }, {})
+    console.log('get Users ...', countedSites, countedEmails)
+  } catch(e) {
+    console.log('getUsers error ...', e)
+  }
+}

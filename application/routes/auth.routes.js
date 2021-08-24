@@ -40,9 +40,8 @@ router.post('/register',
           return res.status(500).json({message:`User ${email} not created...`})
         } else {
           const token = jwt.sign( { userId: doc.id }, SECRET, { expiresIn: '10h' } )
-          res.status(201).json({ email, userId: doc.id, token })
+          res.status(201).json({ ...doc._doc, token })
           // res.status(201).json({message:`User ${login} created...`})
-          // res.status(201).json({ message: 'OK'})
         }
       })
     } catch (e) {

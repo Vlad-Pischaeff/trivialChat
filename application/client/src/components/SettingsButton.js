@@ -26,6 +26,7 @@ export default function SettingsButton() {
 
   const updateUserSite = async () => {
     const body = { site: site }
+    console.log('SettingsButton ...', $G.ACC)
     try {
       const data = await request(`/api/auth/user/${$G.ACC._id}`, 'PATCH', body)
       let newdata = { ...data, token }
