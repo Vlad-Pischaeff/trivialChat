@@ -39,6 +39,13 @@ app.use(cors())
 
 app.use('/img', express.static(path.join(__dirname, 'img' )))
 app.use('/fonts', express.static(path.join(__dirname, 'fonts' )))
+app.use('/css', express.static(path.join(__dirname, 'css' )))
+app.use('/js', express.static(path.join(__dirname, 'js' )))
+app.get('/tchat', (req, res) => {
+    console.log('tchat req...', 'to ...', req.headers.host, 'from ...', req.headers.referer, req.url)
+    res.sendFile(path.resolve(__dirname, 'tchat', 'main.html'))
+  }
+)
 
 app.use('/api/auth', require('./routes/auth.routes'))
 // app.use('/api/room', require('./routes/room.routes'))

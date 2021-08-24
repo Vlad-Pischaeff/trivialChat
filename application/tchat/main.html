@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <title>My Site</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="ie=edge" http-equiv="x-ua-compatible">
+    <link rel="stylesheet" href="./css/style.min.css">
+  </head>
+  <body>
+    <section class="cp" id="App" v-cloak>
+      <div class="cp_header">
+        <picture class="cp_header-avatar"><img class="cp_header-avatarimg" src="./img/app/profile2.png" alt="">
+          <div class="cp_header-avatarbg"></div>
+        </picture>
+        <div class="cp_header-card">
+          <p>{{ inputVal }}</p>
+        </div>
+      </div>
+      <div class="cp_body">
+        <div class="chat_field">
+          <div class="chat_field-message" v-for="(msg, idx) in messages" ref="msg">
+            <p class="msg-data">date 20-07-2021</p>
+            <p class="msg-text">{{ msg }}, {{ idx + 1 }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="cp_footer">
+        <div class="chat_input">
+          <input class="chat_input-text" name="question" type="text" :placeholder="placeholderStr" :value="inputVal" @input="inputHandler" @keypress.enter="addMessage" required autofocus><img class="chat_input-icon2" src="./img/app/ok2.png" alt="OK" @click="addMessage">
+        </div>
+      </div>
+    </section>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="./js/script.js"></script>
+  </body>
+</html>
