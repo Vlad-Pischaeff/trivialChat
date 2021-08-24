@@ -9,7 +9,8 @@ const App = {
                   'Nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in',  
                   'Reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.', 
                   'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt', 
-                  'mollit anim id est laborum']
+                  'mollit anim id est laborum'],
+      update: false
     }
   },
   methods: {
@@ -20,16 +21,22 @@ const App = {
       if (this.inputVal !== '') {
         this.messages.push(this.inputVal)
         this.inputVal  = ''
+        this.update = true
       }
     },
   },
   watch: {
     inputVal(value) {
       console.log('inputVal ...', value)
-    },
-    messages(val) {
-      console.log('messages ...', val.length)
     }
+  },
+  updated() {
+    this.$nextTick(function () {
+      if (this.update) {
+        this.$refs.msg.scrollIntoView({ behavior: 'smooth' })
+        this.update = false
+      }
+    })
   }
 }
 Vue.createApp(App).mount('#App')

@@ -40,7 +40,7 @@
     height: 3rem
   &_body
     height: calc(100vh - 8rem)
-    background: whitesmoke
+    background: honeydew
     overflow: auto
     min-width: 12rem
 
@@ -63,10 +63,10 @@
       border-radius: 1rem
       box-shadow: 0 0 1rem #8888
     &-message:nth-child(odd)
-      background: lightcyan
+      background: deepskyblue
       &::after
         content: ''
-        border-left: solid 3rem lightcyan
+        border-left: solid 3rem deepskyblue
         border-bottom: solid 1.5rem transparent
         float: left
       p
@@ -74,11 +74,11 @@
         color: $black
 
     &-message:nth-child(even)
-      background: cornsilk
+      background: darkturquoise
       margin-left: auto
       &::after
         content: ''
-        border-right: solid 3rem cornsilk
+        border-right: solid 3rem darkturquoise
         border-bottom: solid 1.5rem transparent
         float: right
       p
@@ -92,7 +92,7 @@
     display: flex
     justify-content: space-between
     align-items: center
-    padding-right: .5rem
+    // padding-right: .5rem
     width: 100%
     &-text
       flex: 1 1 auto
@@ -109,15 +109,17 @@
         font-size: 1.2rem
       &:focus
         outline: none
-        background: cornsilk
+        background: darkturquoise
     &-icon
       height: 2rem
       margin-left: .5rem
       &:hover
         cursor: pointer
     &-icon2
-      height: 2rem
-      margin-left: .5rem
+      height: 3rem
+      padding: .5rem
       filter: invert(100%)
       &:hover
+        filter: invert(0%)
+        background: darkturquoise
         cursor: pointer
