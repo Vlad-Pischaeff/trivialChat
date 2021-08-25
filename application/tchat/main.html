@@ -20,8 +20,8 @@
       <div class="cp_body">
         <div class="chat_field">
           <div class="chat_field-message" v-for="(msg, idx) in messages" ref="msg">
-            <p class="msg-data">date 20-07-2021</p>
-            <p class="msg-text">{{ msg }}, {{ idx + 1 }}</p>
+            <p class="msg-data">{{ msg.date }}</p>
+            <p class="msg-text">{{ msg.msg }}, {{ idx + 1 }}</p>
           </div>
         </div>
       </div>

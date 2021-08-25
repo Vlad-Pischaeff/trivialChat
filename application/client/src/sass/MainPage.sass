@@ -123,9 +123,10 @@
       padding: .5rem
       width: 80%
       border-radius: 1rem
-      box-shadow: 0 0 1rem #6bffffc4
+      box-shadow: 0 0 1rem #333
     &-message:nth-child(odd)
       background: #555
+      box-shadow: 0 0 1rem #6bffffc4
       &::after
         content: ''
         border-left: solid 3rem #555
@@ -211,12 +212,15 @@
   background: #888;
   display: flex;
   flex-flow: column nowrap
-  text-shadow: 0 0 .5rem aqua
+  // text-shadow: 0 0 .5rem aqua
   & a
     text-decoration: none
-    color: aqua
+    color: $black
     padding: .2rem 0
-    
+  & a:hover 
+    color: aqua
+    text-shadow: 0 0 1rem aqua
+
 /**
  *************************************** optional classes
  */        

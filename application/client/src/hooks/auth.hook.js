@@ -9,8 +9,11 @@ export const useAuth = () => {
     setValue(e.target.value) 
   }, [])
 
+  const handlerOnFocus = useCallback(() => { setValue('') }, [])
+
   return { 
     value,
-    onChange: handlerOnChange
+    onChange: handlerOnChange,
+    onFocus: handlerOnFocus
   }
 }

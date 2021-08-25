@@ -11,7 +11,9 @@ export const Emitter = {
 
 const httpPrefix = window.location.protocol
 let { hostname } = window.location  
+let wsPrefix = httpPrefix === 'http:' ? 'ws:' : 'wss:'
 export const $URL = `${httpPrefix}//${hostname}:5000`
+export const $WS_URL = `${wsPrefix}//${hostname}:5000/ws`
 
 export const $G = {
   ACC: {},
@@ -20,7 +22,8 @@ export const $G = {
   SEMAIL: '',
   SPASSWORD: '',
   PAGE: 'LOGIN',
-  SLIDER: true
+  SLIDER: true,
+  WS: null
 }
 
 export const $C = {

@@ -25,7 +25,7 @@ const Server = isProduction
                 ? https.createServer(credentials, app)
                 : http.createServer(app)
 
-const clients = new Set()
+const clients = {}
 
 app.use(express.json({ extended: true }))
 app.use(cors())
@@ -43,7 +43,7 @@ app.use('/fonts', express.static(path.join(__dirname, 'fonts' )))
 app.use('/css', express.static(path.join(__dirname, 'css' )))
 app.use('/js', express.static(path.join(__dirname, 'js' )))
 app.get('/tchat', (req, res) => {
-    console.log('tchat req...', 'to ...', req.headers.host, 'from ...', req.headers.referer, req.url)
+    console.log('tchat req...', 'to ...', req.headers.host, 'from ...', req.headers.referer, req.url, req.originalUrl)
     res.sendFile(path.resolve(__dirname, 'tchat', 'main.html'))
   }
 )
@@ -73,7 +73,7 @@ const start = async () => {
         console.log('http/https server started ...')
     })
 
-    await getUsers()
+    const { countedSites, countedEmails } = await getUsers()
 
     wss = new WebSocket.Server({ server, path: '/ws' })
     
@@ -82,31 +82,27 @@ const start = async () => {
     /* parse url ws://host:port/ws?param=value ************ */
     /* let parse url 'ws:/localhost:5000/ws?userName=vlad' */
 
-      let params = parser(`${req.url}`, true)
-      console.log('websocket app started...', params.query.userName, req.url, req.headers['sec-websocket-key'], params)
-    
+      let params = parser(`${req.headers.origin}${req.url}`, true)
+      console.log('websocket app started...', params.query.userName, req.url, req.headers['sec-websocket-key'], req.headers.origin)
+      let { hostname, query } = params
+      // console.log('params...', hostname, query)
     /* end parse url *************************************** */
 
       ws.isAlive = true
-    //   let client = {}
-    
+      clients[query.userName] = ws
+      // console.log('clients...', clients)
+
       ws.on('message', message => {
         try {
           let data = JSON.parse(message)
-          console.log('received: %s', data, wss.clients.size)
-    //       if (data.action === 'online') {
-    //         if (data.state) {
-    //           // ...add clients to Set
-    //           client.id = data.id
-    //           client.socket = ws
-    //           clients.add(client)
-    //         } else {
-    //           ws.isAlive = false
-    //         }
-    //       } else {
-    //         wss.clients.forEach(client => client.send(message))
-    //         console.log('sended: %s', message)
-    //       }
+          // console.log('received: %s', message, wss.clients.size, hostname, countedSites[hostname])
+          if (data.from) {
+            let destination = countedSites[hostname]
+            clients[destination].send(JSON.stringify(data))
+          }
+          if (data.to) {
+            clients[data.to].send(JSON.stringify(data))
+          }
         } catch(e) {
           console.log('Received unrecognized message ... ', message)
         }
@@ -114,12 +110,7 @@ const start = async () => {
     
       ws.on('pong', () => {
         ws.isAlive = true
-    //     // console.log('all clients ...', clients.size)
         console.log('isAlive', ws.isAlive,`${new Date()}`)
-    //     for (let client of clients) {
-    //       let message = JSON.stringify({ action: 'online', state: true, id: client.id })
-    //       wss.clients.forEach(client => client.send(message))
-    //     }
       })
     })
     
@@ -166,7 +157,7 @@ const getUsers = async () => {
       allNames[name.email] = name.site
       return allNames
     }, {})
-    console.log('get Users ...', countedSites, countedEmails)
+    return { countedSites, countedEmails }
   } catch(e) {
     console.log('getUsers error ...', e)
   }
