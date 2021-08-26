@@ -10,7 +10,7 @@ export default function Client(props) {
     Emitter.emit('selected user', idx)
   }
 
-  console.log('Client render...', index, idx)
+  // console.log('Client render...', index, idx)
 
   return (
     <div className={"clients_item " + (index === idx ? "client-selected" : "")} onClick={handlerClick}>

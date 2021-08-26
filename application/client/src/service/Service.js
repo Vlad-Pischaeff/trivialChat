@@ -25,6 +25,7 @@ export const $G = {
   SLIDER: true,
 }
 
+export const $CLT = []
 export const $MSG = {}
 
 export const $C = {

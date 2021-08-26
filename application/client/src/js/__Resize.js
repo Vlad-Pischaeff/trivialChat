@@ -12,7 +12,7 @@ export const __Resize = () => {
     document.addEventListener('mousemove', onMouseMove)
     document.addEventListener('mouseup', onMouseUp)
 
-    divider.style.zIndex = 1000
+    // divider.style.zIndex = 1
     let shiftX = e.pageX - chat.getBoundingClientRect().right
 
     function moveAt(pageX) {
@@ -21,7 +21,6 @@ export const __Resize = () => {
         chat.style.flexBasis = `${cBasis}%`
         templates.style.flexBasis = `${summ - cBasis}%`
       }
-      // console.log(cBasis)
     }
 
     function onMouseMove(event) {
@@ -31,7 +30,6 @@ export const __Resize = () => {
     function onMouseUp() {
       document.removeEventListener('mousemove', onMouseMove)
       document.removeEventListener('mouseup', onMouseUp)
-      // console.log('mouse up...')
     }
   }
 
