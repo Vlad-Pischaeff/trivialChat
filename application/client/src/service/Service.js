@@ -23,8 +23,9 @@ export const $G = {
   SPASSWORD: '',
   PAGE: 'LOGIN',
   SLIDER: true,
-  WS: null
 }
+
+export const $MSG = {}
 
 export const $C = {
   LOGIN: { 
@@ -42,4 +43,10 @@ export const $C = {
   HIDE0: 'hide0',
   HIDE1: 'hide1',
   HIDE085: 'hide085'
+}
+
+export const randomInteger = (min, max) => {
+  // случайное число от min до (max+1)
+  let rand = min + Math.random() * (max + 1 - min)
+  return Math.floor(rand)
 }

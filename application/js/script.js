@@ -9,7 +9,7 @@ const App = {
                   { to: 'me', msg: 'Nisi ut aliquip ex ea commodo consequat', date: '2001-07-11'},
                   { from: 'me', msg: 'Reprehenderit in voluptate velit esse', date: '2001-07-11'},
                   { to: 'me', msg: 'Excepteur sint occaecat cupidatat non', date: '2001-07-11'},
-                  { from: 'me', msg: 'mollit anim id est laborum', date: '2001-07-11'},],
+                  { from: 'me', msg: 'mollit anim id est laborum', date: '2001-07-11'}],
       update: false,
       ws: null,
       userID: null
@@ -21,11 +21,12 @@ const App = {
     },
     addMessage() {
       if (this.inputVal !== '') {
-        let message = { 'from': this.userID, 'msg': this.inputVal, 'date': (new Date()).toLocaleString('ru-RU') }
+        let message = { 'from': this.userID, 'msg': this.inputVal, 'date': Date.now() }
         this.ws.send(JSON.stringify(message))
         this.messages.push(message)
         this.inputVal  = ''
         this.update = true
+        console.log('Messages ...', this.messages, this.userID)
       }
     },
   },

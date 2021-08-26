@@ -1,11 +1,12 @@
 import { useAuth } from '../hooks/auth.hook'
 import { $URL, $G } from '../service/Service'
+import { $WS } from '../service/ServiceWebSocket'
 
 export default function MessageInput() {
   const message = useAuth()
 
   const sendMessage = () => {
-    $G.WS.send(JSON.stringify({'from': $G.ACC.email, 'msg': message.value }))
+    $WS.send(JSON.stringify({'from': $G.ACC.email, 'msg': message.value }))
     message.onFocus()
   }
 

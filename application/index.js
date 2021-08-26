@@ -93,18 +93,20 @@ const start = async () => {
       // console.log('clients...', clients)
 
       ws.on('message', message => {
+        // console.log('received1: ...', JSON.parse(message))
         try {
           let data = JSON.parse(message)
-          // console.log('received: %s', message, wss.clients.size, hostname, countedSites[hostname])
-          if (data.from) {
+          console.log('received2: %s', message, wss.clients.size, hostname, countedSites[hostname])
+          if (data.from && countedSites[hostname]) {
             let destination = countedSites[hostname]
+            console.log('destination...', destination)
             clients[destination].send(JSON.stringify(data))
           }
           if (data.to) {
             clients[data.to].send(JSON.stringify(data))
           }
         } catch(e) {
-          console.log('Received unrecognized message ... ', message)
+          console.log('Error while received WebSocket message ... ', message)
         }
       })
     
@@ -122,21 +124,6 @@ const start = async () => {
         ws.ping()
       })
     }, 10000)
-
-    // // setInterval(() => {
-    // //   // console.log('set interval...', clients)
-    // //   clients.forEach(ws => {
-    // //     // console.log('Is Web Socket Alive ...', ws.socket.isAlive)
-    // //     if (!ws.socket.isAlive) {
-    // //       let message = JSON.stringify({ action: 'online', state: false, id: ws.id })
-    // //       clients.delete(ws)
-    // //       wss.clients.forEach(client => client.send(message))
-    // //       return ws.socket.terminate()
-    // //     }
-    // //     ws.socket.isAlive = false
-    // //     ws.socket.ping()
-    // //   })
-    // // }, 10000)
 
   } catch (e) {
     console.log('Server error ...', e)

@@ -8,15 +8,14 @@ import Header from "../components/Header"
 import Logo from "../components/Logo"
 import { __Resize } from "../js/__Resize"
 import Templates from "../components/Templates"
-import { $G, $WS_URL } from '../service/Service'
+import { $G, Emitter } from '../service/Service'
 
 export default function MainPage() {
   $G.ACC = JSON.parse(sessionStorage.getItem('credentials'))
 
   useEffect(() => {
     __Resize()
-    $G.WS = new WebSocket($WS_URL + '?userName=' + $G.ACC.email) 
-    $G.WS.onmessage = (msg) => console.log('reseived message ...', JSON.parse(msg.data))
+    Emitter.emit('init WS')
   }, [])
 
   // console.log('MainPage render ...')

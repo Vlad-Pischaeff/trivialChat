@@ -20,8 +20,10 @@
       <div class="cp_body">
         <div class="chat_field">
           <div class="chat_field-message" v-for="(msg, idx) in messages" ref="msg">
-            <p class="msg-data">{{ msg.date }}</p>
-            <p class="msg-text">{{ msg.msg }}, {{ idx + 1 }}</p>
+            <div :class="msg.from ? 'chat_field-messagefrom' : 'chat_field-messageto'">
+              <p class="msg-data">{{ new Date(msg.date).toLocaleString() }}</p>
+              <p class="msg-text">{{ msg.msg }}, {{ idx + 1 }}</p>
+            </div>
           </div>
         </div>
       </div>

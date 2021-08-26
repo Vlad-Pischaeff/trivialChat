@@ -40,7 +40,7 @@
     height: 3rem
   &_body
     height: calc(100vh - 8rem)
-    background: honeydew
+    background: aliceblue
     overflow: auto
     min-width: 12rem
 
@@ -54,16 +54,16 @@
   position: relative
   &_field
     flex: 1 1 auto
-    padding: 1rem
+    padding: 0 1rem 1rem 1rem
     overflow: auto
     &-message
-      margin-top: 1.5rem
+      margin-top: 1rem
+    &-messageto
       padding: .5rem
-      width: 80%
+      margin-right: 25%
       border-radius: 1rem
-      box-shadow: 0 0 1rem #8888
-    &-message:nth-child(odd)
       background: deepskyblue
+      box-shadow: 0 0 .7rem #5555
       &::after
         content: ''
         border-left: solid 3rem deepskyblue
@@ -73,12 +73,15 @@
         font-family: $ff-text
         color: $black
 
-    &-message:nth-child(even)
-      background: darkturquoise
-      margin-left: auto
+    &-messagefrom
+      padding: .5rem
+      margin-left: 25%
+      border-radius: 1rem
+      background: powderblue
+      box-shadow: 0 0 .7rem #5555
       &::after
         content: ''
-        border-right: solid 3rem darkturquoise
+        border-right: solid 3rem powderblue
         border-bottom: solid 1.5rem transparent
         float: right
       p
@@ -109,7 +112,7 @@
         font-size: 1.2rem
       &:focus
         outline: none
-        background: darkturquoise
+        background: powderblue
     &-icon
       height: 2rem
       margin-left: .5rem
@@ -121,5 +124,5 @@
       filter: invert(100%)
       &:hover
         filter: invert(0%)
-        background: darkturquoise
+        background: powderblue
         cursor: pointer
