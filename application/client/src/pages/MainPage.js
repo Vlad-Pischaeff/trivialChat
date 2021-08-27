@@ -16,6 +16,11 @@ export default function MainPage() {
   useEffect(() => {
     __Resize()
     Emitter.emit('init WS')
+    if (Notification.permission === 'denied') {
+      Notification.requestPermission().then(function(result) {
+        console.log(result)
+      })
+    }
   }, [])
 
   // console.log('MainPage render ...')

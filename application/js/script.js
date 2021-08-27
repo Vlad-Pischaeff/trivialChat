@@ -50,8 +50,9 @@ const App = {
       // Vue data binding means you don't need any extra work to
       // update your UI. Just set the `time` and Vue will automatically
       // update the `<h2>`.
+      this.messages.push(JSON.parse(event.data))
+      this.update = true
       console.log('vue messages...', event.data)
-      // this.time = event.data;
     }
     this.ws.onopen = () => {
       this.ws.send(JSON.stringify({'msg': 'initial connection...'}))

@@ -1,12 +1,21 @@
+import { useEffect, useState } from 'react'
 import { useAuth } from '../hooks/auth.hook'
-import { $URL, $G } from '../service/Service'
+import { Emitter, $URL, $G } from '../service/Service'
 import { $WS } from '../service/ServiceWebSocket'
 
 export default function MessageInput() {
   const message = useAuth()
+  const [ user, setUser ] = useState(null)
+
+  useEffect(() => {
+    Emitter.on('selected user', (data) => {
+      setUser(data.user)
+    })
+  }, [])
 
   const sendMessage = () => {
-    $WS.send(JSON.stringify({'from': $G.ACC.email, 'msg': message.value }))
+    // $WS.send(JSON.stringify({'from': $G.ACC.email, 'msg': message.value }))
+    $WS.send(JSON.stringify({'to': user, 'msg': message.value, 'date': Date.now() }))
     message.onFocus()
   }
 

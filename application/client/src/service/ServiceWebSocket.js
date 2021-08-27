@@ -15,7 +15,7 @@ Emitter.on('init WS', () => {
   $WS.onmessage = (msg) => {
     let data = JSON.parse(msg.data)
     console.log('reseived message ...', data)
-    Emitter.emit('received message from', data.from)
+    Emitter.emit('received message from', data)
   }
 
 })

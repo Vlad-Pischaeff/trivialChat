@@ -61,32 +61,32 @@
     &-messageto
       padding: .5rem
       margin-right: 25%
+      margin-bottom: .5rem
       border-radius: 1rem
       background: deepskyblue
       box-shadow: 0 0 .7rem #5555
       &::after
         content: ''
         border-left: solid 3rem deepskyblue
-        border-bottom: solid 1.5rem transparent
+        border-bottom: solid 1rem transparent
         float: left
       p
         font-family: $ff-text
-        color: $black
 
     &-messagefrom
       padding: .5rem
       margin-left: 25%
+      margin-bottom: .5rem
       border-radius: 1rem
       background: powderblue
       box-shadow: 0 0 .7rem #5555
       &::after
         content: ''
         border-right: solid 3rem powderblue
-        border-bottom: solid 1.5rem transparent
+        border-bottom: solid 1rem transparent
         float: right
       p
         font-family: $ff-text
-        color: $black
         text-align: right
 
   &_input
@@ -126,3 +126,9 @@
         filter: invert(0%)
         background: powderblue
         cursor: pointer
+
+.msg-data
+  font-size: .8rem
+  color: #666
+.msg-text
+  color: $black
