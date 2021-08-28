@@ -16,7 +16,7 @@ export default function MainPage() {
   useEffect(() => {
     __Resize()
     Emitter.emit('init WS')
-    if (Notification.permission === 'denied') {
+    if (Notification.permission === 'denied' || Notification.permission === 'default') {
       Notification.requestPermission().then(function(result) {
         console.log(result)
       })

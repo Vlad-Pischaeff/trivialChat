@@ -15,7 +15,9 @@ export default function MessageInput() {
 
   const sendMessage = () => {
     // $WS.send(JSON.stringify({'from': $G.ACC.email, 'msg': message.value }))
-    $WS.send(JSON.stringify({'to': user, 'msg': message.value, 'date': Date.now() }))
+    if ($G.INDEX !== undefined) {
+      $WS.send(JSON.stringify({'to': user, 'msg': message.value, 'date': Date.now() }))
+    }
     message.onFocus()
   }
 

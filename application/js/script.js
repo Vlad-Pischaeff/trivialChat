@@ -3,13 +3,13 @@ const App = {
     return {
       placeholderStr: 'type your question ...',
       inputVal: '', 
-      messages: [ { from: 'me', msg: 'Lorem ipsum dolor sit amet, consectetur', date: '2001-07-11'},
-                  { to: 'me', msg: 'sed do eiusmod tempor incididunt ut', date: '2001-07-11'},
-                  { from: 'me', msg: 'Ut enim ad minim veniam, quis nostrud', date: '2001-07-11'},
-                  { to: 'me', msg: 'Nisi ut aliquip ex ea commodo consequat', date: '2001-07-11'},
-                  { from: 'me', msg: 'Reprehenderit in voluptate velit esse', date: '2001-07-11'},
-                  { to: 'me', msg: 'Excepteur sint occaecat cupidatat non', date: '2001-07-11'},
-                  { from: 'me', msg: 'mollit anim id est laborum', date: '2001-07-11'}],
+      messages: [ { from: 'me', msg: 'Lorem ipsum dolor sit amet, consectetur mollit anim id est laborum mollit anim id est laborum mollit anim id est laborum mollit anim id est laborum mollit anim id est laborum mollit anim id est laborum mollit anim id est laborum mollit anim id est laborum mollit anim id est laborum mollit anim id est laborum', date: 1630159825486},
+                  { to: 'me', msg: 'sed do eiusmod tempor incididunt ut', date: 1630159825486},
+                  { to: 'me', msg: 'Ut enim ad minim veniam, quis nostrud', date: 1630159825486},
+                  { to: 'me', msg: 'Nisi ut aliquip ex ea commodo consequat', date: 1630159825486},
+                  { from: 'me', msg: 'Reprehenderit in voluptate velit esse', date: 1630159825486},
+                  { from: 'me', msg: 'Excepteur sint occaecat cupidatat non', date: 1630159825486},
+                  { from: 'me', msg: 'mollit anim id est laborum', date: 1630159825486},],
       update: false,
       ws: null,
       userID: null
@@ -50,9 +50,9 @@ const App = {
       // Vue data binding means you don't need any extra work to
       // update your UI. Just set the `time` and Vue will automatically
       // update the `<h2>`.
+      console.log('vue messages...', event.data)
       this.messages.push(JSON.parse(event.data))
       this.update = true
-      console.log('vue messages...', event.data)
     }
     this.ws.onopen = () => {
       this.ws.send(JSON.stringify({'msg': 'initial connection...'}))

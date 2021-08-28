@@ -23,6 +23,7 @@ export const $G = {
   SPASSWORD: '',
   PAGE: 'LOGIN',
   SLIDER: true,
+  INDEX: undefined
 }
 
 export const $USR = []

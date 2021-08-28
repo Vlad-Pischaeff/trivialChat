@@ -1,6 +1,6 @@
 import Client from "./Client"
 import ClientEmpty from "./ClientEmpty"
-import { Emitter, randomInteger, $USR } from "../service/Service"
+import { Emitter, randomInteger, $USR, $G } from "../service/Service"
 import { useEffect, useState } from "react"
 
 export default function ClientList() {
@@ -31,12 +31,13 @@ export default function ClientList() {
       })
       setClients([...$USR])
       setIndex(data.index)
+      $G.INDEX = data.index
     })
   }, [])
 
   const notifyMe = (body) => {
 		var notification = new Notification ("Received new message...", {
-			tag : "tchat",
+			header : "tchat",
 			body : body,
 			icon : "https://itproger.com/img/notify.png"
 		})
