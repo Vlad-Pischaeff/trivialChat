@@ -3,7 +3,7 @@ const App = {
     return {
       placeholderStr: 'type your question ...',
       inputVal: '', 
-      messages: [ { from: 'me', msg: 'Lorem ipsum dolor sit amet, consectetur', date: '2001-07-11'},
+      messages: [ { from: 'me', msg: 'Lorem ipsum dolor sit amet, consectetur mollit anim id est laborum mollit anim id est laborum mollit anim id est laborum mollit anim id est laborum mollit anim id est laborum mollit anim id est laborum mollit anim id est laborum mollit anim id est laborum mollit anim id est laborum mollit anim id est laborum', date: '2001-07-11'},
                   { to: 'me', msg: 'sed do eiusmod tempor incididunt ut', date: '2001-07-11'},
                   { to: 'me', msg: 'Ut enim ad minim veniam, quis nostrud', date: '2001-07-11'},
                   { to: 'me', msg: 'Nisi ut aliquip ex ea commodo consequat', date: '2001-07-11'},
@@ -51,7 +51,8 @@ const App = {
       // update your UI. Just set the `time` and Vue will automatically
       // update the `<h2>`.
       console.log('vue messages...', event.data)
-      // this.time = event.data;
+      this.messages.push(JSON.parse(event.data))
+      this.update = true
     }
     this.ws.onopen = () => {
       this.ws.send(JSON.stringify({'msg': 'initial connection...'}))
