@@ -1,31 +1,31 @@
 import { useEffect, useState } from 'react'
-import { Emitter, $URL, $USR } from '../service/Service'
+import { Emitter, $URL, $USR, $G } from '../service/Service'
 
 export default function Client(props) {
   const { prop } = props
-  const { n, i, clientIndex} = prop
-  const [ active, setActive ] = useState(true)
+  const { n, i } = prop
+  const [ newMsgTrigger, setNewMsgTrigger ] = useState(true)
   let arr_last = n.msgarr.length - 1
 
   useEffect(() => {
     Emitter.on('received message from', (data) => {
-      if (data.from === n.user && clientIndex !== i) {
-        setActive(true)
+      if (data.from === n.user && $G.INDEX !== i) {
+        setNewMsgTrigger(true)
       }
     })
   }, [])
 
   const handlerClick = () => {
-    active && setActive(false)
+    newMsgTrigger && setNewMsgTrigger(false)
     Emitter.emit('selected user', { 'index': i, 'user': $USR[i].user } )
   }
 
-  console.log('Client render...', n, clientIndex, i, prop)
+  console.log('Client render...', n, $G.INDEX, i, prop)
 
   return (
-    <div className={"clients_item " + (clientIndex === i ? "client-selected" : "")} onClick={handlerClick}>
+    <div className={"clients_item " + ($G.INDEX === i ? "client-selected" : "")} onClick={handlerClick}>
       <div className="clients_item-img">
-        <div className={'clients_item-img-pulse ' + (active && clientIndex !== i ? 'pulse' : '')}></div>
+        <div className={'clients_item-img-pulse ' + (newMsgTrigger && $G.INDEX !== i ? 'pulse' : '')}></div>
         <img className="clients_item-img-img" src={`${$URL}/img/users/user${n.pict}.png`} alt=''/>
       </div>
       <div className="clients_item-status">

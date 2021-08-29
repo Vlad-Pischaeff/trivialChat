@@ -5,7 +5,6 @@ import { useEffect, useState } from "react"
 
 export default function ClientList() {
   const [ clients, setClients ] = useState([])
-  const [ clientIndex, setClientIndex ] = useState(null)
 
   // console.log('ClientList render ...', clients, $USR)
 
@@ -13,36 +12,36 @@ export default function ClientList() {
     Emitter.on('received message from', (data) => {
       if (!$USR.some(n => n.user === data.from)) {
         $USR.push({ 'user': data.from, 
-                    'pict': randomInteger(0,23), 
+                    'pict': randomInteger(0,46), 
                     'msgarr': [{ 'msg1': data.msg, 'date': data.date }], 
                     'cnt': 1})
       } else {
         $USR.forEach((n, i) => {
           if (n.user === data.from) {
-            if (i !== clientIndex)  n.cnt = n.cnt + 1
+            if (i !== $G.INDEX)  n.cnt = n.cnt + 1
             n.msgarr.push({'msg1': data.msg, 'date': data.date})
           }
         })
       }
       setClients([...$USR])
       notifyMe(data.msg)
-      console.log('ClientList recieved message from...', data, $USR, 'index...', clientIndex)
+      console.log('ClientList recieved message from...', data, $USR, 'index...', $G.INDEX)
     })
     Emitter.on('selected user', (data) => {
       $USR.forEach(n => {
         if (n.user === data.user) n.cnt = 0
       })
       setClients([...$USR])
-      setClientIndex(data.index)
       $G.INDEX = data.index
+      console.log('ClientList selected user ...', $G.INDEX, data.index)
     })
   }, [])
 
   const notifyMe = (body) => {
 		var notification = new Notification ("Received new message...", {
-			header : "tchat",
+			title : "TCHAT: client send to You...",
 			body : body,
-			icon : "https://itproger.com/img/notify.png"
+			icon : "http://192.168.0.200:5000/img/app/message.png"
 		})
 	}
 
@@ -53,7 +52,7 @@ export default function ClientList() {
           ? <ClientEmpty />
           : clients.map((n, i) => {
               return (
-                <Client prop={{n, i, clientIndex}} key={i} />
+                <Client prop={{n, i}} key={i} />
               )
             })
       }

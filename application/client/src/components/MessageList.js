@@ -9,12 +9,12 @@ export default function MessageList() {
 
   useEffect(() => {
     Emitter.on('selected user', (data) => {
-      console.log('MessageList ...', data.index, data.user, $USR)
+      console.log('MessageList selected user...', data.index, data.user, $USR)
       setMsgs($USR[data.index].msgarr)
     })
+    Emitter.on('selected user', () => setNewMsg(Date.now()))
     Emitter.on('reply to user', () => setNewMsg(Date.now()))
     Emitter.on('received message from', () => setNewMsg(Date.now()))
-    Emitter.on('selected user', () => setNewMsg(Date.now()))
   }, [])
 
   useEffect(() => {
@@ -23,15 +23,17 @@ export default function MessageList() {
 
   return (
     <div className="chat_field">
-      {
-        msgs.map((item, idx) => {
-          return (
-            <div  key={idx} className="chat_field-message"
-                  data-align={item.msg1 ? 'from': 'to'} ref={msgRef} >
-              <Message key={idx} idx={idx} item={item}  />
-            </div>
-          )
-        })
+      { 
+        msgs.length === 0 
+          ? <div>No messages...</div>
+          : msgs.map((item, idx) => {
+            return (
+              <div  key={idx} className="chat_field-message"
+                    data-align={item.msg1 ? 'from': 'to'} ref={msgRef} >
+                <Message key={idx} idx={idx} item={item}  />
+              </div>
+            )
+          })
       }
     </div>
   )
