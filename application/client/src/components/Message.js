@@ -1,5 +1,5 @@
 export default function Message(props) {
-  const { item, idx } = props
+  const { item } = props
 
   return (
       <div  className={item.msg1 ? 'chat_field-messagefrom': 'chat_field-messageto'}>
