@@ -1,6 +1,6 @@
 import Client from "./Client"
 import ClientEmpty from "./ClientEmpty"
-import { Emitter, randomInteger, $USR, $G } from "../service/Service"
+import { Emitter, randomInteger, $USR, $URL, $G } from "../service/Service"
 import { useEffect, useState } from "react"
 
 export default function ClientList() {
@@ -41,7 +41,7 @@ export default function ClientList() {
 		var notification = new Notification ("Received new message...", {
 			title : "TCHAT: client send to You...",
 			body : body,
-			icon : "http://192.168.0.200:5000/img/app/message.png"
+			icon : `${$URL}/img/app/message.png`
 		})
 	}
 

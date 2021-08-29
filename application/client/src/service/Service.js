@@ -35,7 +35,7 @@ export const $G = {
         {
           "msg0": ... ,         msg0 - message from admin, msg1 - message from user
           "date": ... 
-        }
+        }, {}, {} ...
       ] ,
       "cnt": ...                cnt - count new unreaded messages
     }, 
