@@ -5,32 +5,35 @@ import { useEffect, useState } from "react"
 
 export default function ClientList() {
   const [ clients, setClients ] = useState([])
-  const [ index, setIndex ] = useState(null)
+  const [ clientIndex, setClientIndex ] = useState(null)
 
-  console.log('ClientList render ...', clients, $USR)
+  // console.log('ClientList render ...', clients, $USR)
 
   useEffect(() => {
     Emitter.on('received message from', (data) => {
       if (!$USR.some(n => n.user === data.from)) {
-        $USR.push({'user': data.from, 'pict': randomInteger(0,23), 'msg': data.msg, 'cnt': 1, 'date': data.date})
+        $USR.push({ 'user': data.from, 
+                    'pict': randomInteger(0,23), 
+                    'msgarr': [{ 'msg1': data.msg, 'date': data.date }], 
+                    'cnt': 1})
       } else {
-        $USR.forEach(n => {
+        $USR.forEach((n, i) => {
           if (n.user === data.from) {
-            n.cnt = n.cnt + 1
-            n.msg = data.msg
+            if (i !== clientIndex)  n.cnt = n.cnt + 1
+            n.msgarr.push({'msg1': data.msg, 'date': data.date})
           }
         })
       }
       setClients([...$USR])
       notifyMe(data.msg)
-      console.log('ClientList recieved message from3...', data, $USR)
+      console.log('ClientList recieved message from...', data, $USR, 'index...', clientIndex)
     })
     Emitter.on('selected user', (data) => {
       $USR.forEach(n => {
         if (n.user === data.user) n.cnt = 0
       })
       setClients([...$USR])
-      setIndex(data.index)
+      setClientIndex(data.index)
       $G.INDEX = data.index
     })
   }, [])
@@ -50,7 +53,7 @@ export default function ClientList() {
           ? <ClientEmpty />
           : clients.map((n, i) => {
               return (
-                <Client idx={i} index={index} item={n} key={i} />
+                <Client prop={{n, i, clientIndex}} key={i} />
               )
             })
       }

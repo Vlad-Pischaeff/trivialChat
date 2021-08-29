@@ -1,22 +1,21 @@
 import { useEffect, useState } from 'react'
 import { useAuth } from '../hooks/auth.hook'
-import { Emitter, $URL, $G } from '../service/Service'
+import { Emitter, $URL, $G, $USR } from '../service/Service'
 import { $WS } from '../service/ServiceWebSocket'
 
 export default function MessageInput() {
   const message = useAuth()
-  const [ user, setUser ] = useState(null)
+  const [ data, setData ] = useState({})
 
   useEffect(() => {
-    Emitter.on('selected user', (data) => {
-      setUser(data.user)
-    })
+    Emitter.on('selected user', (data) => setData(data))
   }, [])
 
   const sendMessage = () => {
-    // $WS.send(JSON.stringify({'from': $G.ACC.email, 'msg': message.value }))
     if ($G.INDEX !== undefined) {
-      $WS.send(JSON.stringify({'to': user, 'msg': message.value, 'date': Date.now() }))
+      $WS.send(JSON.stringify({ 'to': data.user, 'msg': message.value, 'date': Date.now() }))
+      $USR[data.index].msgarr.push({ 'msg0':  message.value, 'date': Date.now() })
+      Emitter.emit('reply to user', { 'touser': data.user, 'date': Date.now() })
     }
     message.onFocus()
   }

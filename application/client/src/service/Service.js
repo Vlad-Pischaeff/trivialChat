@@ -26,6 +26,22 @@ export const $G = {
   INDEX: undefined
 }
 
+/*
+  USR = [
+    {
+      "user": ... ,
+      "pict": ... ,
+      "msgarr": [
+        {
+          "msg0": ... ,         msg0 - message from admin, msg1 - message from user
+          "date": ... 
+        }
+      ] ,
+      "cnt": ...                cnt - count new unreaded messages
+    }, 
+    {}, {} ...
+  ]
+*/
 export const $USR = []
 export const $MSG = {}
 

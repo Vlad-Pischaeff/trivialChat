@@ -182,6 +182,7 @@
   margin: 1rem
   color: #bbb
 
+
 .chat
   flex: 1 1 45%
   height: 100%
@@ -195,31 +196,30 @@
     padding: 1rem
     overflow: auto
     &-message
-      margin-top: 1.5rem
+      display: flex
+      &[data-align='to']
+        justify-content: start
+      &[data-align='from']
+        justify-content: end
+    &-messageto,
+    &-messagefrom
+      position: relative
+      max-width: 70%
       padding: .5rem
-      width: 80%
-      border-radius: 1rem
-      box-shadow: 0 0 1rem #333
-    &-message:nth-child(odd)
+      margin-bottom: .5rem
+      opacity: 1
+      animation: showmsg .5s ease-in-out
+    &-messageto
+      border-radius: 1rem 1rem 1rem 0 / 1rem 1rem 1rem 0 
       background: #555
       box-shadow: 0 0 1rem #6bffffc4
-      &::after
-        content: ''
-        border-left: solid 3rem #555
-        border-bottom: solid 1.5rem transparent
-        float: left
       p
         font-family: $ff-text
         color: aqua
-
-    &-message:nth-child(even)
+    &-messagefrom
+      border-radius: 1rem 1rem 0 1rem / 1rem 1rem 0 1rem
       background: darkturquoise
-      margin-left: auto
-      &::after
-        content: ''
-        border-right: solid 3rem darkturquoise
-        border-bottom: solid 1.5rem transparent
-        float: right
+      box-shadow: 0 0 .7rem #333
       p
         font-family: $ff-text
         color: $black
@@ -319,4 +319,8 @@ p.msg-text
     background: aquamarine
   to 
     transform: scale(1.4)
+    opacity: 0
+
+@keyframes showmsg
+  from
     opacity: 0

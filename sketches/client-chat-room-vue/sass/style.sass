@@ -44,45 +44,37 @@
     overflow: auto
     min-width: 12rem
 
-.chat
-  flex: 1 1 45%
-  height: 100%
-  background: lightblue
-  display: flex
-  flex-flow: column nowrap
-  justify-content: space-between
-  position: relative
-  &_field
-    padding: 1rem
-    overflow: auto
-    &-message
-      display: flex
-      &[data-align='to']
-        justify-content: start
-      &[data-align='from']
-        justify-content: end
-    &-messageto,
-    &-messagefrom
-      position: relative
-      max-width: 50%
-      padding: .5rem
-      margin-bottom: .5rem
-      box-shadow: 0 0 .7rem #4445
-      opacity: 1
-      animation: show .5s ease-in-out
-    &-messageto
-      border-radius: 1rem 1rem 1rem 0 / 1rem 1rem 1rem 0 
-      background: deepskyblue
-      p
-        font-family: $ff-text
-    &-messagefrom
-      border-radius: 1rem 1rem 0 1rem / 1rem 1rem 0 1rem
-      background: lightblue
-      p
-        font-family: $ff-text
-        text-align: right
+.chat_field
+  padding: 1rem
+  overflow: auto
+  &-message
+    display: flex
+    &[data-align='to']
+      justify-content: start
+    &[data-align='from']
+      justify-content: end
+  &-messageto,
+  &-messagefrom
+    position: relative
+    max-width: 70%
+    padding: .5rem
+    margin-bottom: .5rem
+    box-shadow: 0 0 .7rem #4445
+    opacity: 1
+    animation: show .5s ease-in-out
+  &-messageto
+    border-radius: 1rem 1rem 1rem 0 / 1rem 1rem 1rem 0 
+    background: deepskyblue
+    p
+      font-family: $ff-text
+  &-messagefrom
+    border-radius: 1rem 1rem 0 1rem / 1rem 1rem 0 1rem
+    background: lightblue
+    p
+      font-family: $ff-text
+      text-align: right
 
-  &_input
+.chat_input
     flex: 0 0 auto
     background: #454545
     display: flex
