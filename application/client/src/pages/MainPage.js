@@ -1,4 +1,5 @@
 import { useEffect } from "react"
+import { useHistory } from "react-router"
 import AsidePictureSlider from "../components/AsidePictureSlider"
 import ClientList from "../components/ClientList"
 import MessageList from "../components/MessageList"
@@ -6,11 +7,12 @@ import MessageInput from "../components/MessageInput"
 import Footer from "../components/Footer"
 import Header from "../components/Header"
 import Logo from "../components/Logo"
-import { __Resize } from "../js/__Resize"
 import Templates from "../components/Templates"
+import { __Resize } from "../js/__Resize"
 import { $G, Emitter } from '../service/Service'
 
 export default function MainPage() {
+  const history = useHistory()
   $G.ACC = JSON.parse(sessionStorage.getItem('credentials'))
 
   useEffect(() => {
@@ -21,6 +23,7 @@ export default function MainPage() {
         console.log(result)
       })
     }
+    if (!$G.ACC.site || $G.ACC.site === '') history.push('/modal')
   }, [])
 
   // console.log('MainPage render ...')

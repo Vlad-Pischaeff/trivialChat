@@ -41,7 +41,7 @@ export default function ClientList() {
 		var notification = new Notification ("Received new message...", {
 			title : "TCHAT: client send to You...",
 			body : body,
-			icon : `${$URL}/img/app/message.png`
+			icon : `${$URL}/img/users/user1.png`
 		})
 	}
 

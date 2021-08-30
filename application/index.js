@@ -26,6 +26,9 @@ const Server = isProduction
                 : http.createServer(app)
 
 const clients = {}
+let countedSites = {}
+let countedEmails = {}
+const emitter = require('./routes/service')
 
 app.use(express.json({ extended: true }))
 app.use(cors())
@@ -73,7 +76,8 @@ const start = async () => {
         console.log('http/https server started ...')
     })
 
-    const { countedSites, countedEmails } = await getUsers()
+    emitter.on('get users', getUsers)
+    emitter.emit('get users')
 
     wss = new WebSocket.Server({ server, path: '/ws' })
     
@@ -90,10 +94,8 @@ const start = async () => {
 
       ws.isAlive = true
       clients[query.userName] = ws
-      // console.log('clients...', clients)
 
       ws.on('message', message => {
-        // console.log('received1: ...', JSON.parse(message))
         try {
           let data = JSON.parse(message)
           console.log('received2: %s', message, wss.clients.size, hostname, countedSites[hostname])
@@ -136,15 +138,16 @@ start()
 const getUsers = async () => {
   try {
     const users = await User.find({})
-    let countedSites = users.reduce((allNames, name) => {
+    countedSites = users.reduce((allNames, name) => {
       allNames[name.site] = name.email
       return allNames
     }, {})
-    let countedEmails = users.reduce((allNames, name) => {
+    countedEmails = users.reduce((allNames, name) => {
       allNames[name.email] = name.site
       return allNames
     }, {})
-    return { countedSites, countedEmails }
+    console.log('emitter on GET USERS ...', countedSites, countedEmails)
+    // return { countedSites, countedEmails }
   } catch(e) {
     console.log('getUsers error ...', e)
   }

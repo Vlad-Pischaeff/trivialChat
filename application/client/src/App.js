@@ -2,12 +2,13 @@ import './sass/LoginPage.sass'
 import './sass/MainPage.sass'
 import LoginPage from './pages/LoginPage'
 import MainPage from './pages/MainPage'
+import FirstSettingsPage from './pages/FirstSettingsPage'
+import SettingsPage from './pages/SettingsPage'
 import { Route, Switch, Redirect, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { Emitter, $G } from "./service/Service"
 import { useStorage } from './hooks/storage.hook'
-import FirstSettingsPage from './pages/FirstSettingsPage'
-import ClientPage from './pages/ClientPage'
+
 
 function App() {
   const [ isAuthenticated, setIsAuthenticated ] = useState(false)
@@ -29,7 +30,6 @@ function App() {
   }, [])
 
   // console.log('App ...', isAuthenticated, $G, background, location)
-  // console.log('App bg & loc ...', background, location)
 
   return (
     isAuthenticated
@@ -38,19 +38,22 @@ function App() {
           <Switch location={background || location}>
             <Route exact path='/home' component={MainPage}/>
             <Route exact path='/login' component={LoginPage}/>
-            <Route exact path='/client' component={ClientPage}/>
             <Route exact path='/modal' component={FirstSettingsPage}/>
+            <Route exact path='/settings' component={SettingsPage}/>
             <Redirect to='/home' />
           </Switch>
           {
             background && 
               <Route exact path='/modal' component={FirstSettingsPage}/>
           }
+          {
+            background && 
+              <Route exact path='/settings' component={SettingsPage}/>
+          }
         </>
       : 
         <Switch>
           <Route exact path='/login' component={LoginPage}/>
-          <Route exact path='/client' component={ClientPage}/>
           <Redirect to='/login' />
         </Switch>
   )

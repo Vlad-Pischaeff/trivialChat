@@ -1,9 +1,11 @@
 import { useEffect, useRef } from "react"
+import { Link, useLocation } from "react-router-dom"
 import { __AsideSlider } from "../js/__AsideSlider"
 import { __AvatarEffect } from "../js/__AvatarEffect"
 import { $C, $G, $URL } from "../service/Service"
 
 export default function AsidePictureSlider() {
+  const location = useLocation()
   const { slider } = __AsideSlider()
   const imgRef = useRef()
 
@@ -24,7 +26,9 @@ export default function AsidePictureSlider() {
                 <div className="profile_avatarbg"></div>
                 <img className="profile_avatar" src={`${$URL}/img/app/profile2.png`} alt='' />
               </div>
-              <img className="settings_img" src={`${$URL}/img/app/settings.svg`} alt='' />
+              <Link to={{ pathname: "/settings", state: { background: location }}}>
+                <img className="settings_img" src={`${$URL}/img/app/settings.svg`} alt='' />
+              </Link>
             </>
       }
     </aside>
