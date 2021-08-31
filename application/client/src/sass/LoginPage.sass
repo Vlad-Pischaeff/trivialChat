@@ -164,6 +164,18 @@
       justify-content: flex-end
 
 .forms
+  &_wrap
+    display: flex
+    justify-content: space-between
+    &-left
+      flex: 1 1 50%
+      background: lightblue
+      &-flexr
+        display: flex
+    &-right
+      flex: 1 1 50%
+      background: oldlace
+
   &_form
     transition: opacity .4s ease-in-out
     position: relative
@@ -260,6 +272,14 @@
     font-family: $ff-text
     font-weight: bold
     text-transform: uppercase
+
+  &_avatar-img
+    width: 7rem
+    height: 7rem
+    border-radius: 50%
+    padding: 1rem
+    &:hover
+      cursor: pointer
 
 /**
  *************************************** Inputs style

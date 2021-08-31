@@ -124,6 +124,7 @@ input::placeholder
 
 .pos-rel
   position: relative
+  display: inline-block
 
 .tooltip
   &:hover::before, &:hover::after
@@ -136,7 +137,7 @@ input::placeholder
     font-size: .7rem
     background: hotpink
     padding: .5rem
-    bottom: 120%
+    bottom: 110%
     border-radius: .4rem .4rem .4rem 0 / .4rem .4rem .4rem 0
     box-shadow: 0 0 10px $gray
   &:hover::after
@@ -144,6 +145,14 @@ input::placeholder
     border-top: solid 1rem hotpink
     border-right: solid 1rem transparent
     bottom: 100%
+
+.h-2rem
+  height: 2rem
+.h-2_5rem
+  height: 2.5rem
+
+.bg_lightblue
+  background: lightblue
 
 @keyframes modal-bg-app
   from
