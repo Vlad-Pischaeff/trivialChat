@@ -10,9 +10,11 @@ import Logo from "../components/Logo"
 import Templates from "../components/Templates"
 import { __Resize } from "../js/__Resize"
 import { $G, Emitter } from '../service/Service'
+import { useLocation } from "react-router-dom"
 
 export default function MainPage() {
   const history = useHistory()
+  const location = useLocation()
   $G.ACC = JSON.parse(sessionStorage.getItem('credentials'))
 
   useEffect(() => {
@@ -23,10 +25,19 @@ export default function MainPage() {
         console.log(result)
       })
     }
-    if (!$G.ACC.site || $G.ACC.site === '') history.push('/modal')
+    setTimeout(() => {
+      if (!$G.ACC.site || $G.ACC.site === '') {
+        let loc = {
+          pathname: '/modaladdr',
+          state: { background: location }
+        }
+        history.push(loc)
+      }
+    }, 2000)
+
   }, [])
 
-  // console.log('MainPage render ...')
+  // console.log('MainPage render ... history...', history.location.pathname)
 
   return (
     <>

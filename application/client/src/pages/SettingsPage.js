@@ -1,6 +1,6 @@
 import { $G, $URL } from '../service/Service'
 import InputSettingsWebAddress from '../components/InputSettingsWebAddress'
-import SettingsButton from '../components/SettingsButton'
+import ButtonSetProfile from '../components/ButtonSetProfile'
 import { useHistory } from 'react-router-dom'
 
 export default function SettingsPage() {
@@ -29,7 +29,7 @@ export default function SettingsPage() {
             </fieldset>
 
             <div className="forms_buttons">
-              <SettingsButton />
+              <ButtonSetProfile />
             </div>
             <div className="btn_close-std" onClick={handlerClose}></div>
           </form>

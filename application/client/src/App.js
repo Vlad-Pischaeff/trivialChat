@@ -38,13 +38,13 @@ function App() {
           <Switch location={background || location}>
             <Route exact path='/home' component={MainPage}/>
             <Route exact path='/login' component={LoginPage}/>
-            <Route exact path='/modal' component={FirstSettingsPage}/>
+            <Route exact path='/modaladdr' component={FirstSettingsPage}/>
             <Route exact path='/settings' component={SettingsPage}/>
             <Redirect to='/home' />
           </Switch>
           {
             background && 
-              <Route exact path='/modal' component={FirstSettingsPage}/>
+              <Route exact path='/modaladdr' component={FirstSettingsPage}/>
           }
           {
             background && 

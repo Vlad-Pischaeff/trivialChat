@@ -7,7 +7,7 @@ export default function Templates() {
 
   return (
     <div className="templates">
-      <Link to={{ pathname: "/modal", state: { background: location }}}>Modal Page</Link>
+      <Link to={{ pathname: "/modaladdr", state: { background: location }}}>Modal Page</Link>
       <a href="http://localhost:5000/tchat">Client Page</a>
     </div>
   )

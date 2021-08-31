@@ -22,12 +22,14 @@ export default function AsidePictureSlider() {
         $G.PAGE === 'LOGIN'
           ? <div className={$C[$G.PAGE].aside_img} ></div>
           : <>
-              <div className="profile">
+              <section className="profile">
                 <div className="profile_avatarbg"></div>
                 <img className="profile_avatar" src={`${$URL}/img/app/profile2.png`} alt='' />
-              </div>
+              </section>
               <Link to={{ pathname: "/settings", state: { background: location }}}>
-                <img className="settings_img" src={`${$URL}/img/app/settings.svg`} alt='' />
+                <section className="tooltip pos-rel" data-text="Configure Your profile settings...">
+                  <img className="settings_img" src={`${$URL}/img/app/settings.svg`} alt='' />
+                </section>
               </Link>
             </>
       }
