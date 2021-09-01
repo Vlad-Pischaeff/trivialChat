@@ -1,21 +1,16 @@
 import { useEffect, useRef } from "react"
-import { Emitter, $G } from "../service/Service"
+import { $G } from "../service/Service"
 
 export default function InputSettingsWebAddress() {
   const inputRef = useRef()
 
   useEffect(() => {
-    inputRef.current.value = $G.ACC.site
+    inputRef.current.value = $G.ACC.site ? $G.ACC.site : ''
   }, [])
-
-  const handlerFocus = (e) => {
-    // e.target.value = ''
-    // Emitter.emit('clear web address')
-  }
 
   const handlerChange = (e) => {
     e.target.value = e.target.value.toLowerCase()
-    Emitter.emit('web address', e.target.value)
+    $G.ACC.site = e.target.value
   }
 
   return (
@@ -26,7 +21,6 @@ export default function InputSettingsWebAddress() {
               type="url" 
               id="web" name="web"
               placeholder={$G.ACC.site}
-              onFocus={handlerFocus}
               onChange={handlerChange} 
               ref={inputRef} />
     </div>

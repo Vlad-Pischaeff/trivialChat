@@ -17,7 +17,7 @@ export default function Card(props) {
             autoComplete="off" >
 
         <h2 className="forms_title">{type ==='login' ? 'Login' : 'Sign Up'}</h2>
-
+        <p></p>
         <fieldset className="forms_fieldset">
           <InputEmail type={type} />
           <InputPassword type={type} />

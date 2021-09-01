@@ -1,18 +1,16 @@
-import { Emitter } from "../service/Service"
+import { $G } from "../service/Service"
 
 export default function InputWebAddress() {
 
   const handlerFocus = (e) => {
     e.target.value = ''
-    Emitter.emit('clear web address')
+    $G.ACC.site = e.target.value
   }
 
   const handlerChange = (e) => {
     e.target.value = e.target.value.toLowerCase()
-    Emitter.emit('web address', e.target.value)
+    $G.ACC.site = e.target.value
   }
-
-  console.log('InputWebAddress render ...')
 
   return (
     <div className="forms_field">

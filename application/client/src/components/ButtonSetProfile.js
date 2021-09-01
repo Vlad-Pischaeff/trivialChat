@@ -1,7 +1,9 @@
+import { $G } from "../service/Service"
+
 export default function ButtonSetProfile() {
 
   const handlerClick = () => {
-    console.log('ButtonSetProfile click...')
+    console.log('ButtonSetProfile click...', $G.ACC)
   }
 
   return (

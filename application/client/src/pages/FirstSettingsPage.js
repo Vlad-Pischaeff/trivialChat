@@ -23,8 +23,8 @@ export default function FirstSettingsPage() {
         <section  className="modal_form" id="first-settings">
           <form className="forms_form hide1" id="form_first-settings" autoComplete="off">
 
-            <h2 className="forms_title">First settings</h2>
-            <p>{$G.ACC ? $G.ACC.email : ''}</p>
+            <h2 className="forms_title">First settings for {$G.ACC ? $G.ACC.email : ''}</h2>
+            <p></p>
 
             <fieldset className="forms_fieldset">  
               <InputWebAddress />
