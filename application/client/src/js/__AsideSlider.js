@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { $C, $G, $URL } from "../service/Service"
 let timer = null
-let counter = 34
+let counter = 40
 let j = 1
 
 export const __AsideSlider = () => {

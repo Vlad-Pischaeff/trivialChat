@@ -9,7 +9,6 @@ import { useEffect, useState } from 'react'
 import { Emitter, $G } from "./service/Service"
 import { useStorage } from './hooks/storage.hook'
 
-
 function App() {
   const [ isAuthenticated, setIsAuthenticated ] = useState(false)
   const { getCredentials } = useStorage()

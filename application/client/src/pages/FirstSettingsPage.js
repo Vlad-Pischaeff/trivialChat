@@ -1,12 +1,17 @@
 import { useHistory } from "react-router-dom"
-// import InputCode from "../components/InputCode"
 import InputWebAddress from "../components/InputWebAddress"
 import ButtonSetWebAddr from "../components/ButtonSetWebAddr"
 import { $G } from '../service/Service'
+import { useEffect } from "react"
+import __TooltipPosition from "../js/__TooltipPosition"
 
 export default function FirstSettingsPage() {
   const history = useHistory()
   $G.ACC = JSON.parse(sessionStorage.getItem('credentials'))
+
+  useEffect(() => {
+    __TooltipPosition()
+  }, [])
 
   const handlerClose = () => {
     history.goBack()
@@ -28,7 +33,6 @@ export default function FirstSettingsPage() {
 
             <fieldset className="forms_fieldset">  
               <InputWebAddress />
-              {/* <InputCode /> */}
             </fieldset>
 
             <div className="forms_buttons">
@@ -37,7 +41,7 @@ export default function FirstSettingsPage() {
             <div className="btn_close-std" onClick={handlerClose}></div>
           </form>
         </section>
-
+        {/* <div className="tip"></div> */}
       </div>
     </>
   )

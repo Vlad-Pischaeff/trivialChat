@@ -28,8 +28,7 @@ export default function ButtonSetWebAddr() {
   }
 
   return (
-    <div  className="pos-rel tooltip" 
-          data-text="Check that Your site name is spelled correctly and save the changes">
+    <div data-tip="Check that Your site name is spelled correctly and save the changes">
       <input  className="forms_buttons-action" 
               type="button" 
               value='SAVE' 
