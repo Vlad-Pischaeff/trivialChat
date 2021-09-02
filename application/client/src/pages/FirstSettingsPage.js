@@ -24,7 +24,6 @@ export default function FirstSettingsPage() {
       <div className="modal_bg"></div>
 
       <div className='modal'>
-
         <section  className="modal_form" id="first-settings">
           <form className="forms_form hide1" id="form_first-settings" autoComplete="off">
 
@@ -41,7 +40,6 @@ export default function FirstSettingsPage() {
             <div className="btn_close-std" onClick={handlerClose}></div>
           </form>
         </section>
-        {/* <div className="tip"></div> */}
       </div>
     </>
   )
