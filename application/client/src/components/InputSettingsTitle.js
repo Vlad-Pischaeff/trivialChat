@@ -13,8 +13,7 @@ export default function InputSettingsTitle() {
   }
 
   return (
-    <div className="forms_field">
-      <label htmlFor="title">Enter title:</label>
+    <div  className="forms_field" data-tip="Enter the Title for Your application...">
       <input  className="forms_field-input" 
               autoComplete="off"
               type="text" name="title"

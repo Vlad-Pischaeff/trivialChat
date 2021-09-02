@@ -27,7 +27,7 @@ export default function AsidePictureSlider() {
                 <img className="profile_avatar" src={`${$URL}/img/app/profile2.png`} alt='' />
               </section>
               <Link to={{ pathname: "/settings", state: { background: location }}}>
-                <section className="tooltip pos-rel" data-text="Configure Your profile settings...">
+                <section data-tip="Configure Your profile settings...">
                   <img className="settings_img" src={`${$URL}/img/app/settings.svg`} alt='' />
                 </section>
               </Link>

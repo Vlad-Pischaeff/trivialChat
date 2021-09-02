@@ -14,13 +14,12 @@ export default function InputSettingsWebAddress() {
   }
 
   return (
-    <div className="forms_field">
-      <label htmlFor="web">Your Web Address:</label>
+    <div className="forms_field" data-tip="Check if Your Web address is correct...">
       <input  className="forms_field-input" 
               autoComplete="off"
               type="url" 
               id="web" name="web"
-              placeholder={$G.ACC.site}
+              placeholder={$G.ACC.site ? $G.ACC.site : "www.yoursite.com"}
               onChange={handlerChange} 
               ref={inputRef} />
     </div>

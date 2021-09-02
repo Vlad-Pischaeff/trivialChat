@@ -15,7 +15,6 @@ export default function InputWebAddress() {
   return (
     <div  className="forms_field" 
           data-tip="Please fill address of Your site...">
-      {/* <label htmlFor="web">Enter Your Web Address:</label> */}
       <input  className="forms_field-input" 
               autoComplete="off"
               type="url" 

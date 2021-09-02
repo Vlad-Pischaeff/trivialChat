@@ -1,12 +1,19 @@
 import { $G, $URL } from '../service/Service'
 import { useHistory } from 'react-router-dom'
+import { useEffect } from 'react'
 import InputSettingsWebAddress from '../components/InputSettingsWebAddress'
 import ButtonSetProfile from '../components/ButtonSetProfile'
 import InputSettingsDescription from '../components/InputSettingsDescription'
 import InputSettingsTitle from '../components/InputSettingsTitle'
+import InputSettingsGreeting from '../components/InputSettingsGreeting'
+import __TooltipPosition from '../js/__TooltipPosition'
 
 export default function SettingsPage() {
   const history = useHistory()
+
+  useEffect(() => {
+    __TooltipPosition()
+  }, [])
 
   const handlerClose = () => {
     history.goBack()
@@ -23,7 +30,7 @@ export default function SettingsPage() {
 
             <h2 className="forms_title">Settings for {$G.ACC.email}</h2>
             <div className="h-1rem"></div>
-            <div className="pos-rel tooltip h-2_5rem" data-text="Load new image fou Your avatar...">
+            <div className="pos-rel" data-tip="Load new image for Your avatar...">
               <img className="forms_avatar-img" src={`${$URL}/img/app/profile2.png`} alt='' />
             </div>
 
@@ -36,6 +43,9 @@ export default function SettingsPage() {
                 </fieldset>
               </section>
               <section className="forms_wrap-right">
+                <fieldset className="forms_fieldset">
+                  <InputSettingsGreeting />
+                </fieldset>
               </section>
             </div>
             <div className="forms_buttons">

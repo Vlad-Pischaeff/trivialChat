@@ -7,8 +7,7 @@ export default function ButtonSetProfile() {
   }
 
   return (
-    <div  className="pos-rel tooltip" 
-          data-text="Check that Your profile is correct and save the changes">
+    <div data-tip="Check that Your profile is correct and save the changes">
       <input  className="forms_buttons-action" 
               type="button" 
               value='SAVE' 
