@@ -10,7 +10,6 @@ export default function InputSettingsGreeting() {
       inputRef.current.value = $G.ACC.greeting
       setMsg($G.ACC.greeting)
     }
-    // inputRef.current.value = $G.ACC.greeting ? $G.ACC.greeting : ''
   }, [])
 
   const handlerChange = (e) => {
