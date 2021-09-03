@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from "react"
 import { $G } from "../service/Service"
 
-export default function InputSettingsGreeting() {
+export default function InputSettingsAnswer() {
   const [ msg, setMsg ] = useState('')
   const inputRef = useRef()
 
@@ -19,18 +19,18 @@ export default function InputSettingsGreeting() {
 
   return (
     <>
-      <div className="forms_field" data-tip="Enter the Greeting for Your clients...">
+      <div className="forms_field" data-tip="Enter the short answer for Your clients...">
         <input  className="forms_field-input" 
                 autoComplete="off"
-                type="text" name="greeting"
-                placeholder={$G.ACC.greeting ? $G.ACC.greeting : "Greeting for clients..."}
+                type="text" name="answer"
+                placeholder="Short answer for clients..."
                 onChange={handlerChange} 
                 ref={inputRef}
                 required />
       </div>
       <div className="chat_field-messageto">
         <p className="msg-data">{new Date('2021-07-31').toLocaleString()}</p>
-        <p className="msg-text">{msg ? msg : "greeting message to client..."}</p>
+        <p className="msg-text">{msg ? msg : "short answer for client..."}</p>
       </div>
     </>
   )

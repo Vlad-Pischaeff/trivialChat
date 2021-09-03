@@ -3,25 +3,24 @@ const __TooltipPosition = () => {
   let divImg = document.createElement('div')
   divImg.classList.add('tip')
 
+  const remove = () => divImg.remove()
+
   tooltips.forEach(el => {
 
-    el.addEventListener('mouseenter', () => {
+    el.removeEventListener('click', remove)
+
+    el.onmouseenter = () => {
       divImg.dataset.text = el.dataset.tip
       document.body.append(divImg)
-    })
+    }
 
-    el.addEventListener('mousemove', event => {
-      divImg.style.left = event.clientX +'px'
-      divImg.style.top = event.clientY + 'px'
-    })
+    el.onmousemove = (e) => {
+      divImg.style.left = e.clientX +'px'
+      divImg.style.top = e.clientY + 'px'
+    } 
 
-    el.addEventListener('mouseleave', () => {
-      divImg.remove()
-    })
-
-    el.addEventListener('click', () => {
-      divImg.remove()
-    })
+    el.onmouseleave = remove
+    el.addEventListener('click', remove)
 
   })
 

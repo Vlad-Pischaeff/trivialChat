@@ -1,10 +1,11 @@
 import { $G, Emitter } from '../service/Service'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import InputSettingsWebAddress from '../components/InputSettingsWebAddress'
 import ButtonSetProfile from '../components/ButtonSetProfile'
 import InputSettingsDescription from '../components/InputSettingsDescription'
 import InputSettingsTitle from '../components/InputSettingsTitle'
 import InputSettingsGreeting from '../components/InputSettingsGreeting'
+import InputSettingsAnswer from '../components/InputSettingsAnswer'
 import InputSettingsAvatar from '../components/InputSettingsAvatar'
 import ButtonCloseStd from '../components/ButtonCloseStd'
 import SettingsTab from '../components/SettingsTab'
@@ -12,14 +13,18 @@ import __TooltipPosition from '../js/__TooltipPosition'
 
 export default function SettingsPage() {
   const [ idx, setIdx ] = useState(0)
+  const tab = [ <><InputSettingsTitle /><InputSettingsDescription /><InputSettingsWebAddress /></>, 
+                <InputSettingsGreeting />, 
+                <InputSettingsAnswer />]
 
   useEffect(() => {
-    __TooltipPosition()
     Emitter.on('tab selected', (i) => setIdx(i))
     return () => {
       Emitter.off('tab selected')
     }
   }, [])
+
+  useEffect(() => {  __TooltipPosition() }, [idx])
 
   return (
     <>
@@ -40,18 +45,7 @@ export default function SettingsPage() {
               <section className="forms_wrap-right">
                 <SettingsTab />
                 <fieldset className="forms_fieldsetblue">
-                  {
-                    idx === 0 &&
-                      <>
-                        <InputSettingsTitle />
-                        <InputSettingsDescription />
-                        <InputSettingsWebAddress />
-                      </>
-                  }
-                  {
-                    idx === 1 &&
-                        <InputSettingsGreeting />
-                  }
+                  {tab[idx]}
                 </fieldset>
               </section>
             </div>
