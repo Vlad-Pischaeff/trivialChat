@@ -2,7 +2,8 @@ import { $G } from "../service/Service"
 
 export default function ButtonSetProfile() {
 
-  const handlerClick = () => {
+  const handlerClick = (e) => {
+    e.preventDefault()
     console.log('ButtonSetProfile click...', $G.ACC)
   }
 

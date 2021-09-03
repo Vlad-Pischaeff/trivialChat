@@ -43,7 +43,6 @@ $tooltip-position: 50%
   margin: 0
   padding: 0
   color: $white
-  // height: 100vh
 
 body
   font-family: $ff
@@ -89,6 +88,9 @@ input::placeholder
   display: flex
   flex-flow: row nowrap
 
+/**
+ *************************************** Modal windows style
+ */
 .modal
   position: fixed
   top: 0
@@ -111,13 +113,6 @@ input::placeholder
     border-radius: .3rem
     box-shadow: 0 0 15px #333
     animation: modal-app .25s linear
-  &_formset
-    padding: 1rem
-    width: 80%
-    background: white
-    border-radius: .3rem
-    box-shadow: 0 0 15px #333
-    animation: modal-app .25s linear
 
 /**
  *************************************** Tooltip style
@@ -126,26 +121,6 @@ input::placeholder
 .pos-rel
   position: relative
   display: inline-block
-
-.tooltip
-  &:hover::before, &:hover::after
-    position: absolute
-    display: block
-    left: $tooltip-position
-  &:hover::before
-    content: attr(data-text)
-    width: 10rem
-    font-size: .7rem
-    background: hotpink
-    padding: .5rem
-    bottom: 110%
-    border-radius: .4rem .4rem .4rem 0 / .4rem .4rem .4rem 0
-    box-shadow: 0 0 10px $gray
-  &:hover::after
-    content: ''
-    border-top: solid 1rem hotpink
-    border-right: solid 1rem transparent
-    bottom: 100%
 
 .tip
   position: absolute
@@ -172,15 +147,42 @@ input::placeholder
     position: relative
     display: block
 
+/**
+ *************************************** Tabs style
+ */
+.tab
+  &_front, &_back
+    display: inline-block
+    color: $black
+    height: 2rem
+    padding: .5rem
+    border-radius: .3rem .3rem 0 0 / .3rem .3rem 0 0
+  &_front
+    background: lightblue
+    color: white
+  &_back
+    background: oldlace
+    color: $gray
+    &:hover
+      cursor: pointer
+      color: black
+
+/**
+ *************************************** Global style
+ */
+
 .h-1rem
   height: 1rem
 .h-2rem
   height: 2rem
 .h-2_5rem
   height: 2.5rem
-
-.bg_lightblue
+.none
+  display: none
+.bg-blue
   background: lightblue
+.bg-lace
+  background: oldlace
 
 @keyframes modal-bg-app
   from
@@ -194,3 +196,6 @@ input::placeholder
     transform: scale(1.2)
   to
     opacity: 1
+
+@import 'LoginPage.sass'
+@import 'MainPage.sass'

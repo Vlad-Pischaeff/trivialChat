@@ -1,5 +1,3 @@
-import './sass/LoginPage.sass'
-import './sass/MainPage.sass'
 import LoginPage from './pages/LoginPage'
 import MainPage from './pages/MainPage'
 import FirstSettingsPage from './pages/FirstSettingsPage'
@@ -43,11 +41,10 @@ function App() {
           </Switch>
           {
             background && 
-              <Route exact path='/modaladdr' component={FirstSettingsPage}/>
-          }
-          {
-            background && 
-              <Route exact path='/settings' component={SettingsPage}/>
+              <Switch>
+                <Route exact path='/modaladdr' component={FirstSettingsPage}/>
+                <Route exact path='/settings' component={SettingsPage}/>
+              </Switch>
           }
         </>
       : 
