@@ -1,5 +1,5 @@
 import { $G, Emitter } from '../service/Service'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import InputSettingsWebAddress from '../components/InputSettingsWebAddress'
 import ButtonSetProfile from '../components/ButtonSetProfile'
 import InputSettingsDescription from '../components/InputSettingsDescription'
