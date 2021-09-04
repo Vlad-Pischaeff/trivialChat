@@ -3,25 +3,31 @@ export default function __TooltipPosition() {
   let divImg = document.createElement('div')
   divImg.classList.add('tip')
 
-  function remove() {
+  let removeFn = function() {
     divImg.remove()
   }
 
-  function mouseEnter() {
+  let enterFn = function() {
     divImg.dataset.text = this.dataset.tip
     document.body.append(divImg)
   }
 
-  function mouseMove(e) {
+  let moveFn = function(e) {
       divImg.style.left = e.clientX +'px'
       divImg.style.top = e.clientY + 'px'
   }
 
   tooltips.forEach(function(el){
-    el.onmouseenter = mouseEnter
-    el.onmousemove = mouseMove
-    el.onmouseleave = remove
-    el.onclick = remove
+    // el.removeEventListener('mouseenter', enterFn, true)
+    // el.addEventListener('mouseenter', enterFn, true)
+    el.onmouseenter = enterFn
+    el.onmousemove = moveFn
+    // el.removeEventListener('mouseleave', removeFn, true)
+    // el.addEventListener('mouseleave', removeFn, true)
+    el.onmouseleave = removeFn
+    // el.removeEventListener('click', removeFn, true)
+    // el.addEventListener('click', removeFn, true)
+    el.onclick = removeFn
   })
 
 }
