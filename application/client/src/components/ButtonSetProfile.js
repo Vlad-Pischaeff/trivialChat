@@ -1,4 +1,5 @@
 import { $G } from "../service/Service"
+import TooltipWrap from "./TooltipWrap"
 
 export default function ButtonSetProfile() {
 
@@ -8,11 +9,13 @@ export default function ButtonSetProfile() {
   }
 
   return (
-    <div data-tip="Check that Your profile is correct and save the changes">
+    <div>
+      <TooltipWrap tip="Check that Your profile is correct and save the changes...">
       <input  className="forms_buttons-action" 
               type="button" 
               value='SAVE' 
               onClick={handlerClick} />
-      </div>
+      </TooltipWrap>
+    </div>
   )
 }

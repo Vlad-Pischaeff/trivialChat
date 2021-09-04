@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react"
 import { $G } from "../service/Service"
+import TooltipWrap from "./TooltipWrap"
 
 export default function InputSettingsWebAddress() {
   const inputRef = useRef()
@@ -14,7 +15,8 @@ export default function InputSettingsWebAddress() {
   }
 
   return (
-    <div className="forms_field" data-tip="Check if Your Web address is correct...">
+    <div className="forms_field">
+      <TooltipWrap tip="Check if Your Web address is correct...">
       <input  className="forms_field-input" 
               autoComplete="off"
               type="url" 
@@ -22,6 +24,7 @@ export default function InputSettingsWebAddress() {
               placeholder={$G.ACC.site ? $G.ACC.site : "www.yoursite.com"}
               onChange={handlerChange} 
               ref={inputRef} />
+      </TooltipWrap>
     </div>
   )
 }

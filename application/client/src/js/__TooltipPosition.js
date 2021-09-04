@@ -1,8 +1,9 @@
+/*
 export default function __TooltipPosition() {
   const tooltips = document.querySelectorAll('[data-tip]')
   let divImg = document.createElement('div')
   divImg.classList.add('tip')
-
+  
   let removeFn = function() {
     divImg.remove()
   }
@@ -18,16 +19,10 @@ export default function __TooltipPosition() {
   }
 
   tooltips.forEach(function(el){
-    // el.removeEventListener('mouseenter', enterFn, true)
-    // el.addEventListener('mouseenter', enterFn, true)
     el.onmouseenter = enterFn
     el.onmousemove = moveFn
-    // el.removeEventListener('mouseleave', removeFn, true)
-    // el.addEventListener('mouseleave', removeFn, true)
     el.onmouseleave = removeFn
-    // el.removeEventListener('click', removeFn, true)
-    // el.addEventListener('click', removeFn, true)
     el.onclick = removeFn
   })
-
 }
+*/

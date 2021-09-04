@@ -2,6 +2,7 @@ import { useHistory } from "react-router-dom"
 import { useFetch } from "../hooks/fetch.hook"
 import { useStorage } from "../hooks/storage.hook"
 import { $G } from "../service/Service"
+import TooltipWrap from "./TooltipWrap"
 
 export default function ButtonSetWebAddr() {
   const history = useHistory()
@@ -28,11 +29,13 @@ export default function ButtonSetWebAddr() {
   }
 
   return (
-    <div data-tip="Check that Your site name is spelled correctly and save the changes">
+    <div>
+      <TooltipWrap tip="Check that Your site name is spelled correctly and save the changes...">
       <input  className="forms_buttons-action" 
               type="button" 
               value='SAVE' 
               onClick={handlerClick} />
+      </TooltipWrap>
     </div>
   )
 }

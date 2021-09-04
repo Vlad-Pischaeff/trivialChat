@@ -1,4 +1,5 @@
 import { $G } from "../service/Service"
+import TooltipWrap from "./TooltipWrap"
 
 export default function InputWebAddress() {
 
@@ -13,8 +14,8 @@ export default function InputWebAddress() {
   }
 
   return (
-    <div  className="forms_field" 
-          data-tip="Please fill address of Your site...">
+    <div  className="forms_field">
+      <TooltipWrap tip="Please fill address of Your site...">
       <input  className="forms_field-input" 
               autoComplete="off"
               type="url" 
@@ -24,6 +25,7 @@ export default function InputWebAddress() {
               autoFocus
               onFocus={handlerFocus}
               onChange={handlerChange} />
+      </TooltipWrap>
     </div>
   )
 }

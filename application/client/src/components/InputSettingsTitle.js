@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react"
 import { $G } from "../service/Service"
+import TooltipWrap from "./TooltipWrap"
 
 export default function InputSettingsTitle() {
   const inputRef = useRef()
@@ -13,7 +14,8 @@ export default function InputSettingsTitle() {
   }
 
   return (
-    <div  className="forms_field" data-tip="Enter the Title for Your application...">
+    <div className="forms_field">
+      <TooltipWrap tip="Enter the Title for Your application...">
       <input  className="forms_field-input" 
               autoComplete="off"
               type="text" name="title"
@@ -21,6 +23,8 @@ export default function InputSettingsTitle() {
               onChange={handlerChange} 
               ref={inputRef}
               required />
+      </TooltipWrap>
     </div>
+    
   )
 }

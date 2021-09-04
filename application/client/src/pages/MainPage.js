@@ -10,7 +10,6 @@ import Logo from "../components/Logo"
 import Templates from "../components/Templates"
 import { __Resize } from "../js/__Resize"
 import { $G, Emitter } from '../service/Service'
-import __TooltipPosition from "../js/__TooltipPosition"
 
 export default function MainPage() {
   const history = useHistory()
@@ -19,7 +18,6 @@ export default function MainPage() {
 
   useEffect(() => {
     __Resize()
-    __TooltipPosition()
     Emitter.emit('init WS')
     if (Notification.permission !== 'granted') {
       Notification.requestPermission().then(function(result) {

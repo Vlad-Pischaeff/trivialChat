@@ -9,7 +9,6 @@ import InputSettingsAnswer from '../components/InputSettingsAnswer'
 import InputSettingsAvatar from '../components/InputSettingsAvatar'
 import ButtonCloseStd from '../components/ButtonCloseStd'
 import SettingsTab from '../components/SettingsTab'
-import __TooltipPosition from '../js/__TooltipPosition'
 
 export default function SettingsPage() {
   const [ idx, setIdx ] = useState(0)
@@ -23,8 +22,6 @@ export default function SettingsPage() {
       Emitter.off('tab selected')
     }
   }, [])
-
-  useEffect(() => {  __TooltipPosition() }, [idx])
 
   return (
     <>

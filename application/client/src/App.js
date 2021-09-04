@@ -2,10 +2,12 @@ import LoginPage from './pages/LoginPage'
 import MainPage from './pages/MainPage'
 import FirstSettingsPage from './pages/FirstSettingsPage'
 import SettingsPage from './pages/SettingsPage'
+import Tip from './components/Tip'
 import { Route, Switch, Redirect, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { Emitter, $G } from "./service/Service"
 import { useStorage } from './hooks/storage.hook'
+
 
 function App() {
   const [ isAuthenticated, setIsAuthenticated ] = useState(false)
@@ -29,29 +31,34 @@ function App() {
   // console.log('App ...', isAuthenticated, $G, background, location)
 
   return (
-    isAuthenticated
-      ? 
-        <>
-          <Switch location={background || location}>
-            <Route exact path='/home' component={MainPage}/>
+    <>
+    {
+      isAuthenticated
+        ? 
+          <>
+            <Switch location={background || location}>
+              <Route exact path='/home' component={MainPage}/>
+              <Route exact path='/login' component={LoginPage}/>
+              <Route exact path='/modaladdr' component={FirstSettingsPage}/>
+              <Route exact path='/settings' component={SettingsPage}/>
+              <Redirect to='/home' />
+            </Switch>
+            {
+              background && 
+                <Switch>
+                  <Route exact path='/modaladdr' component={FirstSettingsPage}/>
+                  <Route exact path='/settings' component={SettingsPage}/>
+                </Switch>
+            }
+          </>
+        : 
+          <Switch>
             <Route exact path='/login' component={LoginPage}/>
-            <Route exact path='/modaladdr' component={FirstSettingsPage}/>
-            <Route exact path='/settings' component={SettingsPage}/>
-            <Redirect to='/home' />
+            <Redirect to='/login' />
           </Switch>
-          {
-            background && 
-              <Switch>
-                <Route exact path='/modaladdr' component={FirstSettingsPage}/>
-                <Route exact path='/settings' component={SettingsPage}/>
-              </Switch>
-          }
-        </>
-      : 
-        <Switch>
-          <Route exact path='/login' component={LoginPage}/>
-          <Redirect to='/login' />
-        </Switch>
+    }
+    <Tip />
+    </>
   )
 }
 

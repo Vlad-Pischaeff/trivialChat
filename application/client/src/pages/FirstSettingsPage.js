@@ -1,16 +1,10 @@
-import { useEffect } from "react"
 import InputWebAddress from "../components/InputWebAddress"
 import ButtonSetWebAddr from "../components/ButtonSetWebAddr"
 import ButtonCloseStd from "../components/ButtonCloseStd"
 import { $G } from '../service/Service'
-import __TooltipPosition from "../js/__TooltipPosition"
 
 export default function FirstSettingsPage() {
   $G.ACC = JSON.parse(sessionStorage.getItem('credentials'))
-
-  useEffect(() => {
-    __TooltipPosition()
-  }, [])
 
   // console.log('FirstSettingsPage ...', $G)
   

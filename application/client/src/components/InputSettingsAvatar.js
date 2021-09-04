@@ -1,5 +1,6 @@
 import { useRef, useState } from "react"
 import { $URL } from '../service/Service'
+import TooltipWrap from "./TooltipWrap"
 
 export default function InputSettingsAvatar() {
   const [ img, setImg ] = useState(null)
@@ -20,9 +21,11 @@ export default function InputSettingsAvatar() {
   }
 
   return (
-    <div className="pos-rel" data-tip="Load new image for Your avatar..." >
-      <input id="file-input" type="file" accept="image/*" onChange={onSelectFile} className="none" ref={inputRef}/>
-      <img className="forms_avatar-img" src={`${$URL}/img/app/profile2.png`} alt='' onClick={handlerClick}/>
+    <div className="pos-rel">
+      <TooltipWrap tip="Load new image for Your avatar...">
+        <input id="file-input" type="file" accept="image/*" onChange={onSelectFile} className="none" ref={inputRef}/>
+        <img className="forms_avatar-img" src={`${$URL}/img/app/profile2.png`} alt='' onClick={handlerClick}/>
+      </TooltipWrap>
     </div>
   )
 }

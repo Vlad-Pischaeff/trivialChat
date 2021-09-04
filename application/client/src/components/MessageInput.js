@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useAuth } from '../hooks/auth.hook'
 import { Emitter, $URL, $G, $USR } from '../service/Service'
 import { $WS } from '../service/ServiceWebSocket'
+import TooltipWrap from './TooltipWrap'
 
 export default function MessageInput() {
   const message = useAuth()
@@ -35,7 +36,9 @@ export default function MessageInput() {
               required 
               autoFocus 
               {...message} onKeyPress={handleKeyPress} />
-      <img className="chat_input-icon" src={`${$URL}/img/app/ok.png`} alt='OK' onClick={sendMessage} />
+      <TooltipWrap tip="Press to send message...">
+        <img className="chat_input-icon" src={`${$URL}/img/app/ok.png`} alt='OK' onClick={sendMessage} />
+      </TooltipWrap>
       <img className="chat_input-icon" src={`${$URL}/img/app/attach.png`} alt='Attachment' />
     </div>
   )
