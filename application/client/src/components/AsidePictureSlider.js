@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react"
 import { Link, useLocation } from "react-router-dom"
 import { __AsideSlider } from "../js/__AsideSlider"
-import { __AvatarEffect } from "../js/__AvatarEffect"
+import __AvatarEffect from "../js/__AvatarEffect"
 import { $C, $G, $URL } from "../service/Service"
 import TooltipWrap from "./TooltipWrap"
 
@@ -9,10 +9,12 @@ export default function AsidePictureSlider() {
   const location = useLocation()
   const { slider } = __AsideSlider()
   const imgRef = useRef()
+  const refAvatar = useRef()
+  const refBg = useRef()
 
   useEffect(() => {
     $G.PAGE === 'LOGIN' && slider(imgRef)
-    $G.PAGE === 'MAIN' && __AvatarEffect()
+    // $G.PAGE === 'MAIN' && __AvatarEffect(refAvatar, refBg)
   }, [])
 
   // console.log('aside slider ...', $G.PAGE, $C[$G.PAGE])
@@ -24,8 +26,8 @@ export default function AsidePictureSlider() {
           ? <div className={$C[$G.PAGE].aside_img} ></div>
           : <>
               <section className="profile">
-                <div className="profile_avatarbg"></div>
-                <img className="profile_avatar" src={`${$URL}/img/app/profile2.png`} alt='' />
+                <div className="profile_avatarbg" ref={refBg}></div>
+                <img className="profile_avatar" src={`${$URL}/img/app/profile2.png`} alt='' ref={refAvatar}/>
               </section>
               <Link to={{ pathname: "/settings", state: { background: location }}}>
                 <TooltipWrap tip="Configure Your profile settings...">

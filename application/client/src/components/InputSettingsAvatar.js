@@ -1,10 +1,23 @@
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
+import { useHistory, useLocation } from "react-router"
 import { $URL } from '../service/Service'
 import TooltipWrap from "./TooltipWrap"
 
 export default function InputSettingsAvatar() {
+  const location = useLocation()
+  const history = useHistory()
   const [ img, setImg ] = useState(null)
   const inputRef = useRef()
+
+  useEffect(() => {
+    if (img) {
+      let loc = {
+        pathname: '/cropimage',
+        state: { background: location }
+      }
+      history.push(loc)
+    }
+  }, [img])
 
   const onSelectFile = (e) => {
     console.log('onSelectFile...', e)

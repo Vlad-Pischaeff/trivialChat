@@ -7,7 +7,7 @@ import { Route, Switch, Redirect, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { Emitter, $G } from "./service/Service"
 import { useStorage } from './hooks/storage.hook'
-
+import SettingsCropImage from './pages/SettingsCropImage'
 
 function App() {
   const [ isAuthenticated, setIsAuthenticated ] = useState(false)
@@ -41,6 +41,7 @@ function App() {
               <Route exact path='/login' component={LoginPage}/>
               <Route exact path='/modaladdr' component={FirstSettingsPage}/>
               <Route exact path='/settings' component={SettingsPage}/>
+              <Route exact path='/cropimage' component={SettingsCropImage}/>
               <Redirect to='/home' />
             </Switch>
             {
@@ -48,6 +49,7 @@ function App() {
                 <Switch>
                   <Route exact path='/modaladdr' component={FirstSettingsPage}/>
                   <Route exact path='/settings' component={SettingsPage}/>
+                  <Route exact path='/cropimage' component={SettingsCropImage}/>
                 </Switch>
             }
           </>

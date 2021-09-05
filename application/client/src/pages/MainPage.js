@@ -8,7 +8,7 @@ import Footer from "../components/Footer"
 import Header from "../components/Header"
 import Logo from "../components/Logo"
 import Templates from "../components/Templates"
-import { __Resize } from "../js/__Resize"
+import __Resize from "../js/__Resize"
 import { $G, Emitter } from '../service/Service'
 
 export default function MainPage() {

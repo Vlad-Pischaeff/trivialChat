@@ -1,4 +1,4 @@
-export const __Resize = () => {
+const __Resize = () => {
   const chat = document.querySelector('.chat')
   const templates = document.querySelector('.templates')
   const divider = document.getElementById('divider')
@@ -35,3 +35,5 @@ export const __Resize = () => {
 
   divider.ondragstart = function() { return false } 
 }
+
+export default __Resize
