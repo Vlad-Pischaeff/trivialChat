@@ -148,6 +148,34 @@ input::placeholder
     display: block
     animation: showmsg .5s linear
 
+.tip-right
+  position: absolute
+  width: 0rem
+  height: 0rem
+  z-index: 3
+  &:before
+    position: relative
+    display: block
+    content: attr(data-text)
+    width: 10rem
+    font-size: .7rem
+    background: hotpink
+    padding: .5rem
+    left: 2rem
+    bottom: 2rem
+    border-radius: .4rem .4rem .4rem 0 / .4rem .4rem .4rem 0
+    box-shadow: 0 0 10px $gray
+    animation: showmsg .5s linear
+  &:after
+    content: ''
+    left: 1.6rem
+    border-right: solid .5rem hotpink
+    border-top: solid .5rem transparent
+    bottom: 2.5rem
+    position: relative
+    display: block
+    animation: showmsg .5s linear
+
 /**
  *************************************** Tabs style
  */

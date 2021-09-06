@@ -37,7 +37,7 @@ export default function SettingsPage() {
 
             <div className="forms_wrap">
               <section className="forms_wrap-left" >
-                  <InputSettingsAvatar />
+                <InputSettingsAvatar />
               </section>
               <section className="forms_wrap-right">
                 <SettingsTab />

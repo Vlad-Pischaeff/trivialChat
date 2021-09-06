@@ -4,9 +4,11 @@ import ButtonCloseStd from '../components/ButtonCloseStd'
 import ReactCrop from 'react-image-crop'
 import 'react-image-crop/dist/ReactCrop.css'
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { useLocation } from 'react-router'
 
 export default function SettingsCropImage(props) {
-  const { img } = props
+  const location = useLocation()
+  const { img } = location.state
   const [ crop, setCrop ] = useState({ x: 20, y: 20, width: 80, height: 80, aspect: 1 })
   const [ completedCrop, setCompletedCrop ] = useState(null)
   const [ finalImage, setFinalImage ] = useState(null)
@@ -66,19 +68,16 @@ export default function SettingsCropImage(props) {
 
             <div className="forms_wrap">
               <section className="forms_wrap-left" >
-
+                <canvas ref={previewCanvasRef} style={{ 'width': '15rem', 'height': '15rem', 'margin': '0 1rem'}} />
+                <canvas ref={hiddenCanvasRef} style={{"display": 'none' }} width='64' height='64' />
               </section>
               <section className="forms_wrap-right">
-                <ReactCrop imageStyle={{ maxHeight: '10rem', maxWidth: '10rem'}} 
+                <ReactCrop imageStyle={{ maxHeight: '15rem', maxWidth: '15rem'}} 
                   src={img} crop={crop} ref={imgRef}
                   onImageLoaded={onLoad}
                   onComplete={crop => setCompletedCrop(crop)}
                   onChange={crop => setCrop(crop)}
                 />
-                <div>
-                  <canvas ref={previewCanvasRef} style={{ 'width': '10rem', 'height': '10rem', 'margin': '0 1rem'}} />
-                  <canvas ref={hiddenCanvasRef} style={{"display": 'none' }} width='64' height='64' />
-                </div>
               </section>
             </div>
 

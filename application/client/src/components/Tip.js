@@ -21,7 +21,7 @@ export default function Tip() {
 
   if (showTip.show) {
     return (
-      <div className="tip" data-text={showTip.tip} ref={tipRef}></div>
+      <div className={showTip.pos} data-text={showTip.tip} ref={tipRef}></div>
     )
   } else {
     return null
