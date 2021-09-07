@@ -29,8 +29,8 @@ export default function LoginPage() {
           <section className="main_container">
             <LoginPageProfile />
             <div className="user_forms" id="user_options-forms">
-              <Card type="login" />
               <Card type="signup" />
+              <Card type="login" />
             </div>
           </section>
         </main>
