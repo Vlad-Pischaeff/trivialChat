@@ -23,10 +23,13 @@ export default function AvatarFlow() {
     }
   }, [])
 
-  useEffect(async () => {
-    if (img) {
+  useEffect(() => {
+    async function setResizedImage(img) {
       const image = await __ResizeImage(img)
       setImgResized(image)
+    } 
+    if (img) {
+      setResizedImage(img)
     }
   }, [img])
 

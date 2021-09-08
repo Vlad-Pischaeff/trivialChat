@@ -1,17 +1,22 @@
 import { useEffect, useRef } from "react"
 import { Link, useLocation } from "react-router-dom"
-import { __AsideSlider } from "../js/__AsideSlider"
+import __AsideSlider from "../js/__AsideSlider"
 import { $C, $G, $URL } from "../service/Service"
 import AvatarFlow from "./AvatarFlow"
 import TooltipWrap from "./TooltipWrap"
 
 export default function AsidePictureSlider() {
   const location = useLocation()
-  const { slider } = __AsideSlider()
   const imgRef = useRef()
 
   useEffect(() => {
-    $G.PAGE === 'LOGIN' && slider(imgRef)
+    let timerID
+    if ($G.PAGE === 'LOGIN') {
+      timerID = setInterval(() => __AsideSlider(imgRef), 5000)
+    }
+    return () => {
+      timerID = null
+    }
   }, [])
 
   // console.log('aside slider ...', $G.PAGE, $C[$G.PAGE])
