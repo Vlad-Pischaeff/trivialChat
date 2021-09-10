@@ -19,8 +19,7 @@ export default function InputSettingsWebAddress() {
       <TooltipWrap tip="Check if Your Web address is correct...">
       <input  className="forms_field-input" 
               autoComplete="off"
-              type="url" 
-              id="web" name="web"
+              type="url" name="url"
               placeholder={$G.ACC.site ? $G.ACC.site : "www.yoursite.com"}
               onChange={handlerChange} 
               ref={inputRef} />

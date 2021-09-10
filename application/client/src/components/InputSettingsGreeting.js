@@ -27,8 +27,7 @@ export default function InputSettingsGreeting() {
                 type="text" name="greeting"
                 placeholder={$G.ACC.greeting ? $G.ACC.greeting : "Greeting for clients..."}
                 onChange={handlerChange} 
-                ref={inputRef}
-                required />
+                ref={inputRef} />
         </TooltipWrap>
       </div>
       <div className="chat_field-messageto">

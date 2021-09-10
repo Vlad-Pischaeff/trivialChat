@@ -18,11 +18,9 @@ export default function InputWebAddress() {
       <TooltipWrap tip="Please fill address of Your site...">
       <input  className="forms_field-input" 
               autoComplete="off"
-              type="url" 
-              id="web" name="web"
+              type="url" name="url"
               placeholder="www.yoursite.com"
-              required
-              autoFocus
+              required autoFocus
               onFocus={handlerFocus}
               onChange={handlerChange} />
       </TooltipWrap>

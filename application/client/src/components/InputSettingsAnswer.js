@@ -7,14 +7,14 @@ export default function InputSettingsAnswer() {
   const inputRef = useRef()
 
   useEffect(() => {
-    if ($G.ACC.greeting) {
-      inputRef.current.value = $G.ACC.greeting
-      setMsg($G.ACC.greeting)
+    if ($G.ACC.answer) {
+      inputRef.current.value = $G.ACC.answer
+      setMsg($G.ACC.answer)
     }
   }, [])
 
   const handlerChange = (e) => {
-    $G.ACC.greeting = e.target.value
+    $G.ACC.answer = e.target.value
     setMsg(e.target.value)
   }
 
@@ -25,8 +25,8 @@ export default function InputSettingsAnswer() {
         <input  className="forms_field-input" 
                 autoComplete="off"
                 type="text" name="answer"
-                placeholder="Short answer for clients..."
-                onChange={handlerChange} 
+                placeholder={$G.ACC.answer ? $G.ACC.answer : "Short answer for clients..."}
+                onChange={handlerChange}answer
                 ref={inputRef}
                 required />
         </TooltipWrap>
