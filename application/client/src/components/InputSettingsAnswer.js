@@ -26,7 +26,7 @@ export default function InputSettingsAnswer() {
                 autoComplete="off"
                 type="text" name="answer"
                 placeholder={$G.ACC.answer ? $G.ACC.answer : "Short answer for clients..."}
-                onChange={handlerChange}answer
+                onChange={handlerChange}
                 ref={inputRef}
                 required />
         </TooltipWrap>

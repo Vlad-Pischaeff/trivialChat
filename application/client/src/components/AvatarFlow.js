@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-import { $URL } from "../service/Service"
+import { $URL, $G } from "../service/Service"
 import __AvatarEffect from "../js/__AvatarEffect"
 import __ResizeImage from "../js/__ResizeImage"
 import TooltipWrap from "./TooltipWrap"
@@ -61,7 +61,7 @@ export default function AvatarFlow() {
       <section className="profile" onClick={handlerClick}>
         <input id="file-input" type="file" accept="image/*" onChange={onSelectFile} className="none" ref={inputRef}/>
         <div className="profile_avatarbg" ref={refBg}></div>
-        <img className="profile_avatar" src={`${$URL}/img/app/profile2.png`} alt='' ref={refAvatar}/>
+        <img className="profile_avatar" src={$G.ACC.avatar ? $G.ACC.avatar : `${$URL}/img/app/profile2.png`} alt='' ref={refAvatar}/>
       </section>
     </TooltipWrap>
   )

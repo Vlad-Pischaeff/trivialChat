@@ -1,4 +1,4 @@
-import { $G, Emitter } from '../service/Service'
+import { $G } from '../service/Service'
 import ButtonSetProfile from '../components/ButtonSetProfile'
 import ButtonCloseStd from '../components/ButtonCloseStd'
 import ReactCrop from 'react-image-crop'
@@ -6,12 +6,12 @@ import 'react-image-crop/dist/ReactCrop.css'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useLocation } from 'react-router'
 
-export default function SettingsCropImage(props) {
+export default function SettingsCropImage() {
   const location = useLocation()
   const { img } = location.state
   const [ crop, setCrop ] = useState({ x: 20, y: 20, width: 80, height: 80, aspect: 1 })
   const [ completedCrop, setCompletedCrop ] = useState(null)
-  const [ finalImage, setFinalImage ] = useState(null)
+  // const [ finalImage, setFinalImage ] = useState(null)
   const imgRef = useRef()
   const previewCanvasRef = useRef(null)
   const hiddenCanvasRef = useRef(null)
@@ -47,8 +47,9 @@ export default function SettingsCropImage(props) {
         crop.height * dpr
       )
       hctx.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, 64, 64)
-      const base64Image = hcanvas.toDataURL('image/jpeg')
-      setFinalImage(base64Image)
+      $G.ACC.avatar = hcanvas.toDataURL('image/jpeg')
+      // const base64Image = hcanvas.toDataURL('image/jpeg')
+      // setFinalImage(base64Image)
     }
   }, [completedCrop])
 
@@ -82,7 +83,7 @@ export default function SettingsCropImage(props) {
             </div>
 
             <div className="forms_buttons">
-              <ButtonSetProfile />
+              <ButtonSetProfile save={["avatar"]} />
             </div>
             <ButtonCloseStd />
           </form>

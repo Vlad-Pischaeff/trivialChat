@@ -13,6 +13,7 @@ export default function InputWebAddress() {
     $G.ACC.site = e.target.value
   }
 
+  console.log('InputWebAddress')
   return (
     <div  className="forms_field">
       <TooltipWrap tip="Please fill address of Your site...">

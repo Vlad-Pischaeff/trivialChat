@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import __CardFlip from '../js/__CardFlip'
 import { Emitter } from '../service/Service'
 import Header from '../components/Header'

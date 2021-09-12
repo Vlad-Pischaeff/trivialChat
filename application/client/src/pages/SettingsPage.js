@@ -47,7 +47,7 @@ export default function SettingsPage() {
               </section>
             </div>
             <div className="forms_buttons">
-              <ButtonSetProfile />
+              <ButtonSetProfile save={["title", "desc", "site", "greeting", "answer"]} />
             </div>
             <ButtonCloseStd />
           </form>

@@ -1,12 +1,12 @@
 import InputWebAddress from "../components/InputWebAddress"
-import ButtonSetWebAddr from "../components/ButtonSetWebAddr"
 import ButtonCloseStd from "../components/ButtonCloseStd"
+import ButtonSetProfile from "../components/ButtonSetProfile"
 import { $G } from '../service/Service'
 
 export default function FirstSettingsPage() {
   $G.ACC = JSON.parse(sessionStorage.getItem('credentials'))
 
-  // console.log('FirstSettingsPage ...', $G)
+  console.log('FirstSettingsPage ...', $G)
   
   return (
     <>
@@ -24,7 +24,7 @@ export default function FirstSettingsPage() {
             </fieldset>
 
             <div className="forms_buttons">
-              <ButtonSetWebAddr />
+              <ButtonSetProfile save={["site"]} />
             </div>
             <ButtonCloseStd />
           </form>

@@ -1,6 +1,6 @@
 import { $URL } from "../service/Service"
 let timer = null
-let counter = 41
+let counter = 60
 let j = 1
 
 const sleep = async (t) => {
