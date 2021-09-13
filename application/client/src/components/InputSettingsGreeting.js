@@ -1,9 +1,10 @@
 import { useRef, useEffect, useState } from "react"
 import { $G } from "../service/Service"
 import TooltipWrap from "./TooltipWrap"
+import Message from "./Message"
 
 export default function InputSettingsGreeting() {
-  const [ msg, setMsg ] = useState('')
+  const [ msg, setMsg ] = useState("")
   const inputRef = useRef()
 
   useEffect(() => {
@@ -31,10 +32,7 @@ export default function InputSettingsGreeting() {
                 required />
         </TooltipWrap>
       </div>
-      <div className="chat_field-messageto">
-        <p className="msg-data">{new Date('2021-07-31').toLocaleString()}</p>
-        <p className="msg-text">{msg ? msg : "greeting message to client..."}</p>
-      </div>
+      <Message item={{'msg0': msg ? msg : "greeting message to client...", 'date': '2021-07-31'}} />
     </>
   )
 }
