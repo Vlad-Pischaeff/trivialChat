@@ -23,6 +23,8 @@ export default function SettingsPage() {
     }
   }, [])
 
+  console.log('SettingsPage...', $G.ACC)
+
   return (
     <>
       <div className="modal_bg"></div>
