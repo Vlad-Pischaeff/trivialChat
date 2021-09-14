@@ -5,7 +5,7 @@ import ButtonSetProfile from '../components/ButtonSetProfile'
 import InputSettingsDescription from '../components/InputSettingsDescription'
 import InputSettingsTitle from '../components/InputSettingsTitle'
 import InputSettingsGreeting from '../components/InputSettingsGreeting'
-import InputSettingsAnswer from '../components/InputSettingsAnswer'
+import InputSettingsAnswersContainer from '../components/InputSettingsAnswersContainer'
 import InputSettingsAvatar from '../components/InputSettingsAvatar'
 import ButtonCloseStd from '../components/ButtonCloseStd'
 import SettingsTab from '../components/SettingsTab'
@@ -14,7 +14,7 @@ export default function SettingsPage() {
   const [ idx, setIdx ] = useState(0)
   const tab = [ <><InputSettingsTitle /><InputSettingsDescription /><InputSettingsWebAddress /></>, 
                 <InputSettingsGreeting />, 
-                <InputSettingsAnswer />]
+                <InputSettingsAnswersContainer />]
 
   useEffect(() => {
     Emitter.on('tab selected', (i) => setIdx(i))

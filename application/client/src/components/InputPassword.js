@@ -9,11 +9,7 @@ export default function InputPassword(props) {
 
   useEffect(() => {
     Emitter.on(`wrong password ${type}`, setError)
-    Emitter.on(`input change`, resetError)
-    return () => {
-      Emitter.off(`wrong password ${type}`)
-      Emitter.off(`input change`)
-    }
+    return () => Emitter.off(`wrong password ${type}`)
   }, [type])
 
   useEffect(() => {
@@ -29,11 +25,15 @@ export default function InputPassword(props) {
   }
 
   const resetError = () => {
-    inputRef.current && inputRef.current.classList.remove('error')
+    inputRef.current &&
+    inputRef.current.classList.contains('error') && 
+    inputRef.current.classList.remove('error')
   }
 
   const setError = () => {
-    inputRef.current && inputRef.current.classList.add('error')
+    inputRef.current && 
+    !inputRef.current.classList.contains('error') && 
+    inputRef.current.classList.add('error')
   }
 
   // console.log(`input password ${type} ...`, password.value)

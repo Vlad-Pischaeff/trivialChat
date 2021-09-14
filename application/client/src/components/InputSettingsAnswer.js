@@ -1,9 +1,9 @@
 import { useRef, useEffect, useState } from "react"
 import { $G } from "../service/Service"
 import TooltipWrap from "./TooltipWrap"
-import Message from './Message'
 
-export default function InputSettingsAnswer() {
+export default function InputSettingsAnswer(props) {
+  const { message, idx } = props
   const [ msg, setMsg ] = useState("")
   const inputRef = useRef()
 
@@ -20,19 +20,16 @@ export default function InputSettingsAnswer() {
   }
 
   return (
-    <>
-      <div className="forms_field">
-        <TooltipWrap tip="Enter the short answer for Your clients...">
-        <input  className="forms_field-input" 
-                autoComplete="off"
-                type="text" name="answer"
-                placeholder={$G.ACC.answer ? $G.ACC.answer : "Short answer for clients..."}
-                onChange={handlerChange}
-                ref={inputRef}
-                required />
-        </TooltipWrap>
-      </div>
-      <Message item={{'msg0': msg ? msg : "Short answer for clients...", 'date': '2021-07-31'}} />
-    </>
+    <div className="forms_field">
+      <TooltipWrap tip="Enter the short answer for Your clients...">
+      <input  className="forms_field-input" 
+              autoComplete="off"
+              type="text" name="answer"
+              placeholder={$G.ACC.answer ? $G.ACC.answer : `Short answer for clients...`}
+              onChange={handlerChange}
+              ref={inputRef}
+              required />
+      </TooltipWrap>
+    </div>
   )
 }
