@@ -1,30 +1,33 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { $G, Emitter } from "../service/Service";
 import InputSettingsAnswer from "./InputSettingsAnswer";
-import Message from "./Message";
-import { $G } from "../service/Service";
+import MessageAnswer from "./MessageAnswer";
 
 export default function InputSettingsAnswersContainer() {
   const [ idx, setIdx ] = useState(0)
 
-  if (!$G.ACC.answer) {
-    $G.ACC.answer = ['', '', '']
-    console.log('InputSettingsAnswersContainer...IF...', $G.ACC.answer)
+  useEffect(() => {
+    Emitter.emit('update answer', $G.ACC.answer[idx])
+  }, [idx])
+
+  const handlerKeyPress = (e) => {
+    if (e.key === 'Tab') setIdx(prev => prev + 1)
   }
 
-  console.log('InputSettingsAnswersContainer...', $G.ACC.answer)
+  // console.log('InputSettingsAnswersContainer...', $G.ACC.answer)
 
   return (
     <>
       {
         $G.ACC.answer.map((n, i) => { 
           return (
-            <div className="forms_field" key={i} onClick={() => setIdx(i)}>
-              <InputSettingsAnswer message={$G.ACC.answer[idx]} idx={idx} /> 
+            <div className="forms_field" key={i} onClick={() => setIdx(i)} onKeyUp={handlerKeyPress}>
+              <InputSettingsAnswer idx={i} /> 
             </div>
           )
         })
       }
-      <Message item={{'msg0': $G.ACC.answer[idx] ? $G.ACC.answer[idx] : `Short answer ${idx} for clients...`, 'date': '2021-07-31'}} />
+      <MessageAnswer />
     </>
   )
 }

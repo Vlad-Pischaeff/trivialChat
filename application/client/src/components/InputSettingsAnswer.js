@@ -1,22 +1,18 @@
-import { useRef, useEffect, useState } from "react"
-import { $G } from "../service/Service"
+import { useRef, useEffect } from "react"
+import { $G, Emitter } from "../service/Service"
 import TooltipWrap from "./TooltipWrap"
 
 export default function InputSettingsAnswer(props) {
-  const { message, idx } = props
-  const [ msg, setMsg ] = useState("")
+  const { idx } = props
   const inputRef = useRef()
 
   useEffect(() => {
-    if ($G.ACC.answer[idx]) {
-      inputRef.current.value = $G.ACC.answer[idx]
-      // setMsg($G.ACC.answer)
-    }
+    if ($G.ACC.answer[idx]) inputRef.current.value = $G.ACC.answer[idx]
   }, [])
 
   const handlerChange = (e) => {
     $G.ACC.answer[idx] = e.target.value
-    // setMsg(e.target.value)
+    Emitter.emit('update answer', e.target.value)
   }
 
   return (

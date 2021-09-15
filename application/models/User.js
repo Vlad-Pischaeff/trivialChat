@@ -6,7 +6,7 @@ const schema = new Schema({
   title: { type: String },
   desc: { type: String },
   greeting: { type: String },
-  answer: { type: String },
+  answer: { type: Array, default: ['', '', ''] },
   site: { type: String },
   avatar: { type: String },
 })
