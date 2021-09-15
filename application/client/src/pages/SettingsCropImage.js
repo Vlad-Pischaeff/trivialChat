@@ -73,7 +73,7 @@ export default function SettingsCropImage() {
                 <canvas ref={hiddenCanvasRef} style={{"display": 'none' }} width='64' height='64' />
               </section>
               <section className="forms_wrap-right">
-                <ReactCrop imageStyle={{ maxHeight: '15rem', maxWidth: '15rem'}} 
+                <ReactCrop imageStyle={{ maxHeight: '15rem', maxWidth: '23rem'}} 
                   src={img} crop={crop} ref={imgRef}
                   onImageLoaded={onLoad}
                   onComplete={crop => setCompletedCrop(crop)}
