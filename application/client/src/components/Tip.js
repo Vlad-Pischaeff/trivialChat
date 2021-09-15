@@ -3,8 +3,8 @@ import { Emitter } from "../service/Service"
 
 export default function Tip() {
   const [ showTip, setShowTip ] = useState({})
-  const tipRef = useRef()
   const [ coordinates, setCoordinates ] = useState({ x: 0, y: 0 })
+  const tipRef = useRef()
 
   const handleCursorMove = useCallback(e => setCoordinates({ x: e.clientX, y: e.clientY }), [])
 
@@ -16,6 +16,7 @@ export default function Tip() {
   }, [])
 
   useEffect(() => {
+    // setup initial position of tip, when You already hover over element without move cursor
     if (showTip.show && tipRef.current) {
       tipRef.current.style.left = coordinates.x +'px'
       tipRef.current.style.top = coordinates.y + 'px'
