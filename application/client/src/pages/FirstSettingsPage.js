@@ -6,7 +6,7 @@ import { $G } from '../service/Service'
 export default function FirstSettingsPage() {
   $G.ACC = JSON.parse(sessionStorage.getItem('credentials'))
 
-  console.log('FirstSettingsPage ...', $G)
+  // console.log('FirstSettingsPage ...', $G)
   
   return (
     <>

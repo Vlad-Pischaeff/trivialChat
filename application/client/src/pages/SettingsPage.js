@@ -23,7 +23,7 @@ export default function SettingsPage() {
     }
   }, [])
 
-  console.log('SettingsPage...', $G.ACC)
+  // console.log('SettingsPage...', $G.ACC)
 
   return (
     <>
