@@ -7,8 +7,8 @@ export default function TooltipWrap({position = "tip", tip, children}) {
           onMouseLeave={() => Emitter.emit('show tip', {'show': false, 'tip': tip, 'pos': position })}
           onClick={() => Emitter.emit('show tip', {'show': false, 'tip': tip, 'pos': position })}
           onMouseMove={e => Emitter.emit('move tip', e)}
-          onMouseOver={e => Emitter.emit('show tip', {'show': true, 'tip': tip, 'pos': position, 'event': e })}>
-
+          onMouseOver={e => Emitter.emit2('show tip2', {'show': true, 'tip': tip, 'pos': position}, e)}
+          >
       {children}
     </div>
   )
