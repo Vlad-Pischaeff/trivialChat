@@ -25,7 +25,7 @@ export default function Client(props) {
   return (
     <div className={"clients_item " + ($G.INDEX === i ? "client-selected" : "")} onClick={handlerClick}>
       <div className="clients_item-img">
-        <div className={'clients_item-img-pulse ' + (newMsgTrigger && $G.INDEX !== i ? 'pulse' : '')}></div>
+        <div className={"clients_item-img-pulse " + (newMsgTrigger && $G.INDEX !== i ? 'pulse' : '')}></div>
         <img className="clients_item-img-img" src={`${$URL}/img/users/user${n.pict}.png`} alt=''/>
       </div>
       <div className="clients_item-status">

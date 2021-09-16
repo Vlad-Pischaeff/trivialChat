@@ -21,7 +21,7 @@ export default function InputSettingsAnswer(props) {
       <input  className="forms_field-input" 
               autoComplete="off"
               type="text" name="answer"
-              placeholder={$G.ACC.answer[idx] ? $G.ACC.answer[idx] : `Short answer for clients...`}
+              placeholder={$G.ACC.answer[idx] ? $G.ACC.answer[idx] : `Short answer ${idx} for clients...`}
               onChange={handlerChange}
               ref={inputRef}
               required />
