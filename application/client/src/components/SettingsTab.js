@@ -3,7 +3,7 @@ import { Emitter } from "../service/Service"
 
 export default function SettingsTab() {
   const [ idx, setIdx ] = useState(0)
-  const tab = ['Organisation', 'Greeting', 'Answers']
+  const tab = ['Header', 'Greeting', 'Answers']
 
   useEffect(() => {
     Emitter.emit('tab selected', idx)
