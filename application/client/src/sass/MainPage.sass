@@ -283,11 +283,10 @@
 
 .templates
   flex: 1 1 35%
-  padding: 1rem
+  // padding: 1rem
   background: #888;
   display: flex;
   flex-flow: column nowrap
-  // text-shadow: 0 0 .5rem aqua
   & a
     text-decoration: none
     color: $black
@@ -295,6 +294,23 @@
   & a:hover 
     color: aqua
     text-shadow: 0 0 1rem aqua
+  &_header
+    flex: 0 0 3rem
+    background: #454545
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding-right: .5rem
+    width: 100%
+  &_body
+    flex: 1 1 70%
+    padding: .5rem
+  &_footer
+    flex: 1 1 30%
+    display: flex
+    flex-flow: column nowrap
+    background: #777
+    padding: .5rem
 
 /**
  *************************************** optional classes
