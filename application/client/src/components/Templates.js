@@ -18,9 +18,11 @@ export default function Templates() {
       {
         $G.ACC.answer.map((n, i) => { 
           return (
-            <div className="forms_field" key={i} onClick={() => {}} onKeyUp={() => {}}>
-              <p>{n}</p>
-            </div>
+            <TooltipWrap position="tip" tip="Click to quick answer...">
+              <div className="templates_body-item" key={i} onClick={() => {}} onKeyUp={() => {}}>
+                <p>{n}</p>
+              </div>
+            </TooltipWrap>
           )
         })
       }

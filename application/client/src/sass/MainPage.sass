@@ -283,7 +283,6 @@
 
 .templates
   flex: 1 1 35%
-  // padding: 1rem
   background: #888;
   display: flex;
   flex-flow: column nowrap
@@ -305,6 +304,11 @@
   &_body
     flex: 1 1 70%
     padding: .5rem
+    &-item
+      width: 100%
+      padding: .5rem
+      &:hover
+        cursor: pointer
   &_footer
     flex: 1 1 30%
     display: flex
