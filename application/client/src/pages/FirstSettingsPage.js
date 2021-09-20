@@ -1,6 +1,6 @@
 import InputWebAddress from "../components/InputWebAddress"
 import ButtonCloseStd from "../components/ButtonCloseStd"
-import ButtonSetProfile from "../components/ButtonSetProfile"
+import ButtonSave from "../components/ButtonSave"
 import { $G } from '../service/Service'
 
 export default function FirstSettingsPage() {
@@ -24,7 +24,7 @@ export default function FirstSettingsPage() {
             </fieldset>
 
             <div className="forms_buttons">
-              <ButtonSetProfile save={["site"]} />
+              <ButtonSave save={["site"]} />
             </div>
             <ButtonCloseStd />
           </form>

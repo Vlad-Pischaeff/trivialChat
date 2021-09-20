@@ -135,7 +135,7 @@ input::placeholder
     font-size: .7rem
     background: hotpink
     padding: .5rem
-    bottom: 5rem
+    bottom: 4rem
     border-radius: .4rem .4rem .4rem 0 / .4rem .4rem .4rem 0
     box-shadow: 0 0 10px $gray
     animation: showmsg .5s linear
@@ -143,7 +143,7 @@ input::placeholder
     content: ''
     border-top: solid .5rem hotpink
     border-right: solid .5rem transparent
-    bottom: 5rem
+    bottom: 4rem
     position: relative
     display: block
     animation: showmsg .5s linear
@@ -157,7 +157,7 @@ input::placeholder
     position: relative
     display: block
     content: attr(data-text)
-    width: 10rem
+    width: 7rem
     font-size: .7rem
     background: hotpink
     padding: .5rem
@@ -172,6 +172,35 @@ input::placeholder
     border-right: solid .5rem hotpink
     border-top: solid .5rem transparent
     bottom: 2.5rem
+    position: relative
+    display: block
+    animation: showmsg .5s linear
+
+.tip-left
+  position: absolute
+  width: 0rem
+  height: 0rem
+  z-index: 3
+  &:before
+    position: relative
+    display: block
+    content: attr(data-text)
+    width: 7rem
+    font-size: .7rem
+    background: hotpink
+    padding: .5rem
+    left: -10rem
+    bottom: 2rem
+    border-radius: .4rem .4rem 0 .4rem / .4rem .4rem 0 .4rem
+    box-shadow: 0 0 10px $gray
+    animation: showmsg .5s linear
+  &:after
+    content: ''
+    left: 1.6rem
+    border-left: solid .5rem hotpink
+    border-top: solid .5rem transparent
+    bottom: 2.5rem
+    left: -2rem
     position: relative
     display: block
     animation: showmsg .5s linear

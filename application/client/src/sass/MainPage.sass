@@ -297,18 +297,41 @@
     flex: 0 0 3rem
     background: #454545
     display: flex
-    justify-content: space-between
+    // justify-content: space-between
     align-items: center
     padding-right: .5rem
     width: 100%
   &_body
     flex: 1 1 70%
-    padding: .5rem
+    // padding: .5rem
     &-item
       width: 100%
+      // padding: .5rem
+      display: flex
+      flex-flow: row nowrap
+      justify-content: space-between
+      align-items: flex-start
+      &:hover
+        background: #777
+      &:hover .templates_body-itemicon
+        visibility: visible
+        cursor: pointer
+    &-itemicon
+      visibility: hidden
+      filter: none
+      height: 2rem
       padding: .5rem
       &:hover
-        cursor: pointer
+        filter: invert(100%)
+    &-itemtext
+      flex: 1 1 auto
+      padding-right: .5rem
+      & p:focus
+        background: #eee
+        color: black
+      & p
+        padding: .5rem
+
   &_footer
     flex: 1 1 30%
     display: flex

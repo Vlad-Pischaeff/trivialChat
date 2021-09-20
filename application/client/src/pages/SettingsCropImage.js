@@ -1,5 +1,5 @@
 import { $G } from '../service/Service'
-import ButtonSetProfile from '../components/ButtonSetProfile'
+import ButtonSave from '../components/ButtonSave'
 import ButtonCloseStd from '../components/ButtonCloseStd'
 import ReactCrop from 'react-image-crop'
 import 'react-image-crop/dist/ReactCrop.css'
@@ -83,7 +83,7 @@ export default function SettingsCropImage() {
             </div>
 
             <div className="forms_buttons">
-              <ButtonSetProfile save={["avatar"]} />
+              <ButtonSave save={["avatar"]} />
             </div>
             <ButtonCloseStd />
           </form>

@@ -4,7 +4,7 @@ import { useStorage } from "../hooks/storage.hook"
 import { $G } from "../service/Service"
 import TooltipWrap from "./TooltipWrap"
 
-export default function ButtonSetProfile(props) {
+export default function ButtonSave(props) {
   const { save } = props
   const history = useHistory()
   const { request } = useFetch()
@@ -21,7 +21,7 @@ export default function ButtonSetProfile(props) {
     const body = save.reduce((acc, n) => {
       if ($G.ACC[n]) acc[n] = $G.ACC[n]
       return acc
-    } , {})
+    }, {})
 
     try {
       const data = await request(`/api/auth/user/${$G.ACC._id}`, 'PATCH', body)
@@ -33,13 +33,8 @@ export default function ButtonSetProfile(props) {
   }
 
   return (
-    <div>
-      <TooltipWrap tip="Check that Your settings is correct and save the changes...">
-      <input  className="forms_buttons-action" 
-              type="button" 
-              value='SAVE' 
-              onClick={handlerClick} />
-      </TooltipWrap>
-    </div>
+    <TooltipWrap tip="Save Your settings changes...">
+      <div className="forms_buttons-action" onClick={handlerClick}>SAVE</div>
+    </TooltipWrap>
   )
 }

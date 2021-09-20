@@ -1,7 +1,6 @@
 import { $G, Emitter } from '../service/Service'
 import { useEffect, useState } from 'react'
 import InputSettingsWebAddress from '../components/InputSettingsWebAddress'
-import ButtonSetProfile from '../components/ButtonSetProfile'
 import InputSettingsDescription from '../components/InputSettingsDescription'
 import InputSettingsTitle from '../components/InputSettingsTitle'
 import InputSettingsGreeting from '../components/InputSettingsGreeting'
@@ -9,6 +8,7 @@ import InputSettingsAnswersContainer from '../components/InputSettingsAnswersCon
 import InputSettingsAvatar from '../components/InputSettingsAvatar'
 import ButtonCloseStd from '../components/ButtonCloseStd'
 import SettingsTab from '../components/SettingsTab'
+import ButtonSave from '../components/ButtonSave'
 
 export default function SettingsPage() {
   const [ idx, setIdx ] = useState(0)
@@ -49,7 +49,8 @@ export default function SettingsPage() {
               </section>
             </div>
             <div className="forms_buttons">
-              <ButtonSetProfile save={["title", "desc", "site", "greeting", "answer"]} />
+              {/* <ButtonSetProfile save={["title", "desc", "site", "greeting", "answer"]} /> */}
+              <ButtonSave save={["title", "desc", "site", "greeting", "answer"]}/>
             </div>
             <ButtonCloseStd />
           </form>
