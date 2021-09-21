@@ -1,8 +1,8 @@
-import TooltipWrap from "./TooltipWrap";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react"
+import { $G } from "../service/Service"
 
 export default function QuickAnswerText(props) {
-  const { item, edit } = props
+  const { item, idx, edit } = props
   const inputRef = useRef()
 
   useEffect(() => {
@@ -11,9 +11,18 @@ export default function QuickAnswerText(props) {
       : inputRef.current.blur()
   }, [edit])
 
+  const handlerChange = (e) => {
+    $G.ACC.answer[idx] = e.target.innerText
+  }
+
   return (
       <div className="templates_body-itemtext">
-        <p contentEditable={edit} ref={inputRef} suppressContentEditableWarning={true}>{item}</p>
+        <p  contentEditable={edit} 
+            ref={inputRef} 
+            suppressContentEditableWarning={true}
+            onInput={handlerChange}>
+          {item}
+        </p>
       </div>
   )
 }

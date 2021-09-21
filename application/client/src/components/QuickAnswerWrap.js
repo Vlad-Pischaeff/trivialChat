@@ -1,19 +1,54 @@
-import TooltipWrap from "./TooltipWrap";
-import { $URL, Emitter } from "../service/Service";
-import { useEffect, useRef, useState } from "react";
-import QuickAnswerText from "./QuickAnswerText";
+import { useEffect, useRef, useState } from "react"
+import { useFetch } from "../hooks/fetch.hook"
+import { useStorage } from "../hooks/storage.hook"
+import { $URL, $G, Emitter } from "../service/Service"
+import TooltipWrap from "./TooltipWrap"
+import QuickAnswerText from "./QuickAnswerText"
 
 export default function QuickAnswerWrap(props) {
-  const { item } = props
+  const { item, idx } = props
+  const { request } = useFetch()
+  const { saveCredentials } = useStorage()
   const [ edit, setEdit ] = useState(false)
+
+  useEffect(() => {
+    Emitter.on('add new answer', data => addNewAnswer(data))
+    return () => {
+      Emitter.off('add new answer')
+    }
+  }, [])
+
+  const addNewAnswer = (data) => {
+    data === idx ? handleClickEdit() : setEdit(false)
+  }
 
   const handleClickEdit = () => {
     setEdit(true)
   }
 
-  const handleClickSave = () => {
+  const handleClickSave = async () => {
     setEdit(false)
+    await updateUserProfile()
   }
+
+  const handleClickDelete = async () => {
+    $G.ACC.answer.splice(idx, 1)
+    await updateUserProfile()
+  }
+
+  const updateUserProfile = async () => {
+    const body = {"answer": $G.ACC.answer}
+    try {
+      const data = await request(`/api/auth/user/${$G.ACC._id}`, 'PATCH', body)
+      let newdata = { ...data, token: $G.ACC.token }
+      saveCredentials(newdata)
+      Emitter.emit('update user profile')
+    } catch(e) {
+      alert('Error while update site name ...', e)
+    }
+  }
+
+  // console.log('QuickAnswerWrap...', $G.ACC.answer)
 
   return (
     <>
@@ -22,7 +57,7 @@ export default function QuickAnswerWrap(props) {
               src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAABE0lEQVRoge3YPS4FURgG4OfKrajYAGqFJdiC2IY9iIJeobYJlmAPOo2ETiRCKISCExdz3RnBOV/yPcnXTfG+ycycH1JKKaUExjjANXYqZxlsHsd4fpv7unGGWcSp9/BlQljGma/hQxRYw4Xu8M0X2MCN6eGbLrDp9SP9LnyzBbbxZHb45gqMsKtf8OYKjHFkWPi/mEfsDw2/gJMGwpd5GBJ+SfcCVXt6WTF9gao9M63jsoGgvQqMOgqcY7VP00o+ZJ7reKD3e9aCrgJbuPrvIL8t9EdchP6NFqEXsqKlrcTeTwoQfDM3Kex2elLoA00R+khZhD7UF6GvVYrQF1vF56vFu7pxfmaMQ9wKeLmbUkopVfEC9ibH4bojws0AAAAASUVORK5CYII="
         />
       </TooltipWrap>
-      <QuickAnswerText item={item} edit={edit}/>
+      <QuickAnswerText item={item} edit={edit} idx={idx} />
       {
         edit
           ? <TooltipWrap className="h-2rem" position="tip-left" tip="Save answer...">
@@ -39,7 +74,7 @@ export default function QuickAnswerWrap(props) {
       <TooltipWrap className="h-2rem" position="tip-left" tip="Delete answer...">
         <img  className="templates_body-itemicon" alt='delete'
               src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAADbklEQVRoge2aTUgVURTHf5qCSBASfbwWbqqFWJKLIIyohBbV1o0ULVqE2LJVRfRWJrlrYwkuaqNBH9ZOhBZ9UBnyIpVHQdgiCrMiI8tImxZzpjczbz7u+O6dl+EfLm/umTP3/M/9OPfcmQcr+H+xGRgFngJbysxlyWgFPgKWlE/AgZhn9gCDwBVgjVF2ijgJ/MJ24C5wW64XgFM+3RrgOJATnUX5nQJaUuJbhGrgshD5DXQBlUAFkBWZBVwDtsr9GZHNABeAeuAI8AW7M7JAVZpOrAXuCal54FiAzmFsgpar5IATQK1Ptx64LzqprbEm7KlgAW+BnRG624DXovsV2B2hWwWcxx6ZWeyR0oZHeHu0nOVBFNGKGEcsVY9TQihf1YUV57BpxHZoZRos0oDqiPxrU6wIcSPyMBUWaohc7CoYwR6Rn/I7DqyXMu6TESJfqq5jc6RUJwB6pLFLwITLaBAxB36CS9GdEJuWcCgZR6WxG8A64AWF2J4HNoY8p0P3ptRjN0eVqJWT3x0h95OE5qRh3LGZi9RSRBXwHTsJnCS9qTUpNn+gMZEcpXjY3dMhD2RE1y8vRddJIrWhj8ICdPeovzcbCe/9pLpOYOnT6UinNNofcM9N0DkoBU2hpLr9cr+zRO4etEijYyH3G13EFqUeBlXdMdGJSv0TY7UYncc+GbphYkSqxdai2NaKl2K4OYSYzjXSLPJXup0AuI436gRFHALkpegOmnDkNIWQmMY+YgFnDPjBIZcB0ymKUw6qkktysHoeIjeZooTZLBnTpDe1po14IBgWI20BBHSdR9qkPmzSkW4xkpW6P+o0ERydkuhmRdZt0A/axciQS6Z7QxwSebtm7h40iJEpn1xniuK8xWzQwDcUq4A57HNCnch0jkidtD0ntoziiRDYT/y8z7ieU1kjrVJ/bNoJgF4x1hVAJIhwkhTlolz3puAHHXh3X537iFM6DHH3YJfLYNTC9hMMWzfgDQCW2DCOWuzPau4cKhOgF5RrqegtUPwhyBjyYnQWtbOHyhnFaStvmLsHA2L0XABJ1RTFLzsr1wMp+vF3h38GbCJ57/v1MtghV/vLhjjUAG/E8B1gH4WXd6oboiXP7AVuSf0DZfjmvh347CJVavmG3SFlwQbsfy68iyAYV94DV1nGf/tYwQqWA/4A49UuO8DKyiAAAAAASUVORK5CYII="
-              />
+              onClick={handleClickDelete}/>
       </TooltipWrap>
     </>
   )
