@@ -2,16 +2,17 @@ import { useEffect, useState } from "react"
 import { $URL, Emitter } from "../service/Service"
 import TooltipWrap from "./TooltipWrap"
 
-export default function TemplatesHeader() {
+export default function TemplatesHeader(props) {
   const tabs = [ 
                   { 'tip': "Quick short answers...", 'icon': `${$URL}/img/app/speaker-notes.png` },
                   { 'tip': "Your notes...", 'icon': `${$URL}/img/app/note.png` },
                 ]
-  const [ idx, setIdx ] = useState(0)
+  // const [ idx, setIdx ] = useState(0)
+  const { idx, setIdx } = props
 
-  useEffect(() => {
-    Emitter.emit('templates tab selected', idx)
-  }, [idx])
+  // useEffect(() => {
+  //   Emitter.emit('templates tab selected', idx)
+  // }, [idx])
 
   console.log('TemplatesHeader...', idx)
 
