@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react"
 import { $G } from "../service/Service"
 
-export default function QuickAnswerText(props) {
+export default function NotesText(props) {
   const { item, idx, edit } = props
   const inputRef = useRef()
 
@@ -12,7 +12,7 @@ export default function QuickAnswerText(props) {
   }, [edit])
 
   const handlerChange = (e) => {
-    $G.ACC.answer[idx] = e.target.innerText
+    $G.ACC.notes[idx] = e.target.innerText
   }
 
   return (
