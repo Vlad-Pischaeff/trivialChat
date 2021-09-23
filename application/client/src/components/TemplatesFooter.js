@@ -12,8 +12,7 @@ export default function TemplatesFooter(props) {
   const pushMsg = [ () => { $G.ACC.answer.push('answer...')
                             Emitter.emit('update user profile')}, 
                     () => { $G.ACC.notes.push('new note...')
-                            Emitter.emit('update user profile')}
-                  ]
+                            Emitter.emit('update user profile')}]
 
   useEffect(() => {
     msg !== 0 &&  emit[idx]()
