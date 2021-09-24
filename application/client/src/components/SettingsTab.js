@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react"
 import { Emitter } from "../service/Service"
 
-export default function SettingsTab() {
-  const [ idx, setIdx ] = useState(0)
-  const tab = ['Header', 'Greeting', 'Answers']
+export default function SettingsTab(props) {
+  // const [ idx, setIdx ] = useState(0)
+  const { idx, setIdx } = props
+  const tab = ['Header', 'Greeting']
 
-  useEffect(() => {
-    Emitter.emit('tab selected', idx)
-  }, [idx])
+  // useEffect(() => {
+  //   Emitter.emit('tab selected', idx)
+  // }, [idx])
 
   return (
     <>

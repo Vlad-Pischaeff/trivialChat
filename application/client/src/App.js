@@ -1,13 +1,15 @@
+
+import { Route, Switch, Redirect, useLocation } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Emitter, $G } from "./service/Service"
+import { useStorage } from './hooks/storage.hook'
 import LoginPage from './pages/LoginPage'
 import MainPage from './pages/MainPage'
 import FirstSettingsPage from './pages/FirstSettingsPage'
 import SettingsPage from './pages/SettingsPage'
 import Tip from './components/Tip'
-import { Route, Switch, Redirect, useLocation } from 'react-router-dom'
-import { useEffect, useState } from 'react'
-import { Emitter, $G } from "./service/Service"
-import { useStorage } from './hooks/storage.hook'
 import SettingsCropImage from './pages/SettingsCropImage'
+import MessagePage from './pages/MessagePage'
 
 function App() {
   const [ isAuthenticated, setIsAuthenticated ] = useState(false)
@@ -42,6 +44,7 @@ function App() {
               <Route exact path='/modaladdr' component={FirstSettingsPage}/>
               <Route exact path='/settings' component={SettingsPage}/>
               <Route exact path='/cropimage' component={SettingsCropImage}/>
+              <Route exact path='/support' component={MessagePage}/>
               <Redirect to='/home' />
             </Switch>
             {
@@ -50,6 +53,7 @@ function App() {
                   <Route exact path='/modaladdr' component={FirstSettingsPage}/>
                   <Route exact path='/settings' component={SettingsPage}/>
                   <Route exact path='/cropimage' component={SettingsCropImage}/>
+                  <Route exact path='/support' component={MessagePage}/>
                 </Switch>
             }
           </>
