@@ -74,7 +74,7 @@
   overflow: auto
 
 .clients
-  flex: 1 1 20%
+  flex: 0 0 12rem
   background: #444
   min-width: 9rem
   &_item
@@ -185,7 +185,8 @@
 
 
 .chat
-  flex: 1 1 45%
+  // flex: 1 1 45%
+  width: calc(100vw - 40rem)
   height: 100%
   background: #666
   display: flex
@@ -193,7 +194,7 @@
   justify-content: space-between
   position: relative
   &_field
-    flex: 1 1 auto
+    // flex: 1 1 auto
     padding: 1rem
     overflow: auto
     &-message
@@ -227,7 +228,7 @@
         text-align: right
 
   &_input
-    flex: 0 0 auto
+    // flex: 0 0 auto
     background: #454545
     display: flex
     justify-content: space-between
@@ -293,9 +294,10 @@
     transform: rotate(315deg)
 
 .templates
-  flex: 1 1 35%
-  background: #888;
-  display: flex;
+  // flex: 0 0 35%
+  width: 20rem
+  background: #888
+  display: flex
   flex-flow: column nowrap
   & a
     text-decoration: none
@@ -389,10 +391,10 @@ p.msg-data
   padding: 0
 p.msg-text
   padding: .3rem 0
-  text-overflow: ellipsis
-  overflow: hidden
-  text-overflow: ellipsis;
-  max-width: 30rem
+  // text-overflow: ellipsis
+  // overflow: hidden
+  // text-overflow: ellipsis;
+  // max-width: 30rem
 
 /**/
 

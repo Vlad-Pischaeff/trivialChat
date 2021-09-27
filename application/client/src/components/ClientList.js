@@ -50,11 +50,7 @@ export default function ClientList() {
       {
         clients.length === 0
           ? <ClientEmpty />
-          : clients.map((n, i) => {
-              return (
-                <Client prop={{n, i}} key={i} />
-              )
-            })
+          : clients.map((n, i) => <Client prop={{n, i}} key={i} />)
       }
     </div>
   )

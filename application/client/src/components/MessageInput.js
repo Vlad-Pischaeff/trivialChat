@@ -10,20 +10,17 @@ export default function MessageInput() {
 
   useEffect(() => {
     Emitter.on('selected user', (data) => setData(data))
-    return () => {
-      Emitter.off('selected user')
-    }
+    return () => Emitter.off('selected user')
   }, [])
 
   const sendMessage = () => {
-    if ($G.INDEX !== undefined) {
+    if ($G.INDEX !== undefined && message.value !== '') {
       $WS.send(JSON.stringify({ 'to': data.user, 'msg': message.value, 'date': Date.now() }))
       $USR[data.index].msgarr.push({ 'msg0':  message.value, 'date': Date.now() })
       // Emitter.emit('reply to user', { 'touser': data.user, 'date': Date.now() })
       Emitter.emit('reply to user')
     }
     message.onFocus()
-    // console.log('MessageInput...', data, $USR)
   }
 
   const handleKeyPress = (e) => {
