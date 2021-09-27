@@ -9,7 +9,7 @@ export default function ClientList() {
   // console.log('ClientList render ...', clients, $USR)
 
   useEffect(() => {
-    Emitter.on('received message from', (data) => {
+    Emitter.on('received message from', (data) => {           // received message from ServiceWebSocket
       if (!$USR.some(n => n.user === data.from)) {
         $USR.push({ 'user': data.from, 
                     'pict': randomInteger(0,46), 

@@ -198,9 +198,9 @@
     overflow: auto
     &-message
       display: flex
-      &[data-align='to']
-        justify-content: start
       &[data-align='from']
+        justify-content: start
+      &[data-align='to']
         justify-content: end
     &-messageto,
     &-messagefrom
@@ -210,14 +210,14 @@
       margin-bottom: .5rem
       opacity: 1
       animation: showmsg .5s ease-in-out
-    &-messageto
+    &-messagefrom
       border-radius: 1rem 1rem 1rem 0 / 1rem 1rem 1rem 0 
       background: #555
       box-shadow: 0 0 1rem #6bffffc4
       p
         font-family: $ff-text
         color: aqua
-    &-messagefrom
+    &-messageto
       border-radius: 1rem 1rem 0 1rem / 1rem 1rem 0 1rem
       background: darkturquoise
       box-shadow: 0 0 .7rem #333
@@ -232,7 +232,7 @@
     display: flex
     justify-content: space-between
     align-items: center
-    padding-right: .5rem
+    // padding-right: .5rem
     width: 100%
     &-text
       flex: 1 1 auto

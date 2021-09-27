@@ -1,4 +1,3 @@
-import { $G } from '../service/Service'
 import { useEffect, useRef, useState } from 'react'
 import ButtonCloseStd from '../components/ButtonCloseStd'
 import ButtonSave from '../components/ButtonSave'

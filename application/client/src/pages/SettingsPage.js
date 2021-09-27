@@ -1,10 +1,9 @@
-import { $G, Emitter } from '../service/Service'
-import { useEffect, useState } from 'react'
+import { $G } from '../service/Service'
+import { useState } from 'react'
 import InputSettingsWebAddress from '../components/InputSettingsWebAddress'
 import InputSettingsDescription from '../components/InputSettingsDescription'
 import InputSettingsTitle from '../components/InputSettingsTitle'
 import InputSettingsGreeting from '../components/InputSettingsGreeting'
-// import InputSettingsAnswersContainer from '../components/InputSettingsAnswersContainer'
 import InputSettingsAvatar from '../components/InputSettingsAvatar'
 import ButtonCloseStd from '../components/ButtonCloseStd'
 import SettingsTab from '../components/SettingsTab'
@@ -14,13 +13,6 @@ export default function SettingsPage() {
   const [ idx, setIdx ] = useState(0)
   const tab = [ <><InputSettingsTitle /><InputSettingsDescription /><InputSettingsWebAddress /></>, 
                 <InputSettingsGreeting /> ]
-
-  // useEffect(() => {
-  //   Emitter.on('tab selected', (i) => setIdx(i))
-  //   return () => {
-  //     Emitter.off('tab selected')
-  //   }
-  // }, [])
 
   // console.log('SettingsPage...', $G.ACC)
 

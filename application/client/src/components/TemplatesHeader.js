@@ -1,4 +1,3 @@
-import { $URL } from "../service/Service"
 import TooltipWrap from "./TooltipWrap"
 
 export default function TemplatesHeader(props) {

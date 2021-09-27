@@ -9,17 +9,19 @@ export default function MessageList() {
 
   useEffect(() => {
     Emitter.on('selected user', (data) => {
-      console.log('MessageList selected user...', data.index, data.user, $USR)
+      // console.log('MessageList selected user...', data.index, data.user, $USR)
       setMsgs($USR[data.index].msgarr)
     })
-    Emitter.on('selected user', () => setNewMsg(Date.now()))
-    Emitter.on('reply to user', () => setNewMsg(Date.now()))
-    Emitter.on('received message from', () => setNewMsg(Date.now()))
+    // Emitter.on('selected user', () => setNewMsg(Date.now()))
+    Emitter.on('reply to user', reRenderComponent)
+    Emitter.on('received message from', reRenderComponent) // received message from ServiceWebSocket
   }, [])
+
+  const reRenderComponent = () => setNewMsg(Date.now())
 
   useEffect(() => {
     msgRef.current && msgRef.current.scrollIntoView({ behavior: 'smooth' })
-  }, [newmsg])
+  }, [newmsg, msgs])
 
   return (
     <div className="chat_field">

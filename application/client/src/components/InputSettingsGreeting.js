@@ -32,7 +32,7 @@ export default function InputSettingsGreeting() {
                 required />
         </TooltipWrap>
       </div>
-      <Message item={{'msg0': msg ? msg : "greeting message to client...", 'date': '2021-07-31'}} />
+      <Message item={{'msg1': msg ? msg : "greeting message to client...", 'date': '2021-07-31'}} />
     </>
   )
 }

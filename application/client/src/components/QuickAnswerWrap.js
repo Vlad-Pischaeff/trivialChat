@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
 import { useFetch } from "../hooks/fetch.hook"
 import { useStorage } from "../hooks/storage.hook"
-import { $G, Emitter } from "../service/Service"
+import { $G, $USR, Emitter } from "../service/Service"
+import { $WS } from '../service/ServiceWebSocket'
 import TooltipWrap from "./TooltipWrap"
 import QuickAnswerText from "./QuickAnswerText"
 
@@ -10,11 +11,18 @@ export default function QuickAnswerWrap(props) {
   const { request } = useFetch()
   const { saveCredentials } = useStorage()
   const [ edit, setEdit ] = useState(false)
+  const [ data, setData ] = useState({})
+
+  useEffect(() => {
+    Emitter.on('selected user', (data) => setData(data))
+  }, [])
 
   useEffect(() => {
     Emitter.on('add new answer', data => addNewAnswer(data))
+    Emitter.on('selected user', data => setData(data))
     return () => {
       Emitter.off('add new answer')
+      Emitter.off('selected user')
     }
   }, [])
 
@@ -48,6 +56,15 @@ export default function QuickAnswerWrap(props) {
     }
   }
 
+  const sendMessage = () => {
+    if ($G.INDEX !== undefined) {
+      $WS.send(JSON.stringify({ 'to': data.user, 'msg': item, 'date': Date.now() }))
+      $USR[data.index].msgarr.push({ 'msg0':  item, 'date': Date.now() })
+      Emitter.emit('reply to user')
+    }
+    // console.log('QuickAnswerWrap...', data, $USR, $G)
+  }
+
   // console.log('QuickAnswerWrap...', $G.ACC.answer)
 
   return (
@@ -55,6 +72,7 @@ export default function QuickAnswerWrap(props) {
       <TooltipWrap className="h-2rem" position="tip" tip="Send quick answer...">
         <img  className="b-icon" alt='send'
               src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAC4jAAAuIwF4pT92AAADYElEQVR4nNWaW2sTQRiGdybr8af4H3rt+Sxe9caKomJvrFhpJRqxeG5tbbXaohgPpaVFpSqKoojnP+CNIP4FTyDS5PP9Jp8hzWk2yexu9oVkmo+SeZ7Mzm5mNj4ReWFEaa28XG7QI/pGWg+H0gnih/GmAj/sKdWNl6Ty+b+QuBpGX84FyuA5v718/rOnteuuTJwKVMAT/cLrdeT7b1z2UxpnAgI/AviDphABPMeJQFzwnJYFasCvBfzblukCpCUBgR8F/AFTIPopn3wk8JymBQR+DPD7TSEGeE5TAu0Cz2lYoAb8GsC/d04XIA0JCPwVwO8zBaIfMmFjgecEFhD4ccDvNYU2gOcEEmhXeI5VQGUyWuD3mEIbwXPqChj4dLocnifsh0joAqSmQBLgOVUFBP464HebAtF3gf8YKV2AVAgI/ATgu0yhAL8a8J8ipwuQRQJJg+cUBZIIzzECAj8J+F2mmhB4ji/wtwDfaSpEf/CcxRq2A4vxjnjx7PHlbNNZrCi1HM/daOOjaiA+PvF3aLsAnAzisvik9U0cKjwXrhmJwk7XAObA47jhgsRMYkhMQILBWUJDog9z4Avq2Zj5rCmeRgE7CQk+jAoSnneDpVC/HR+ePYsuZDISKfzJixZu+fDKoX4vHjx7Kr5KAHZcJC6LRFZGYip6PHuqfpkD7JgcTiMlEnnUp6PFs6fm12nAjspIDEGC/++OjMRMdHj21F3Q8L6+GQml/kvcVblcnlKp2Yj4rLEuKSFxCRIap9WLRgITGhIEibkoAG0JtKiHxKBInIfEErRTkNgJiQdhA9oSeFsFEhdE4qxIzLSDREMbW5A4JxKnRWIaEjsgMR8WoC0Nby1C4ow5O2l9ChJL0c5CYjskHoUBaEtTm7uQGBCJTInENkg8cQ1oS9Pb65A4aU6xWp+AxDK0c5DYComnLgFtaekGByQyCpc2CKTNQkjr+5DYAolnrgBtafkWEyl1HBIpCPSXSGyGxHMXgLY4uckHiWOQ4Ct2Hx4rIPEQEpsg8cLF+9eLs9uskOiXkegtkdgIiZeu+qgWpze6IXFURuIIHishMQ+JDZB45bKf0jj/qQEkemUkeooSCwvryfdfu+6LE8qPPSBxWEbiEF6yxCq0yRHgQKLHnGKJvob1SxXOPwqctQ8lK3zQAAAAAElFTkSuQmCC"
+              onClick={sendMessage}
         />
       </TooltipWrap>
       <QuickAnswerText item={item} edit={edit} idx={idx} />

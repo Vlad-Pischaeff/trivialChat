@@ -45,7 +45,7 @@ const App = {
   },
   mounted() {
     this.userID = random_id()
-    this.ws = new WebSocket(`ws://192.168.0.200:5000/ws?userName=${this.userID}`)
+    this.ws = new WebSocket(`ws://192.168.140.68:5000/ws?userName=${this.userID}`)
     this.ws.onmessage = (event) => {
       // Vue data binding means you don't need any extra work to
       // update your UI. Just set the `time` and Vue will automatically

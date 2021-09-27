@@ -12,7 +12,7 @@ export default function Client(props) {
       if (data.from === n.user && $G.INDEX !== i) {
         setNewMsgTrigger(true)
       }
-    })
+    })  // received message from ServiceWebSocket
   }, [])
 
   const handlerClick = () => {
