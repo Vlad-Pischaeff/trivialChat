@@ -5,8 +5,10 @@ export default function Client(props) {
   const { prop } = props
   const { n, i } = prop
   const [ newMsgTrigger, setNewMsgTrigger ] = useState(true)
-  let arr_last = n.msgarr.length - 1
-
+  // let arr_last = n.msgarr.length - 1
+  let user_msgs = n.msgarr.filter(n => n.msg1)
+  let arr_last = user_msgs.length - 1
+  
   useEffect(() => {
     Emitter.on('received message from', (data) => {
       if (data.from === n.user && $G.INDEX !== i) {
@@ -30,7 +32,7 @@ export default function Client(props) {
       </div>
       <div className="clients_item-status">
         <div className="clients_item-status-title">Banjo {i}</div>
-        <div className="clients_item-status-desc">{n.msgarr[arr_last].msg1}</div>
+        <div className="clients_item-status-desc">{user_msgs[arr_last].msg1}</div>
       </div>
       <div className="btn_close-min"></div>
     </div>

@@ -57,7 +57,7 @@ export default function QuickAnswerWrap(props) {
   }
 
   const sendMessage = () => {
-    if ($G.INDEX !== undefined) {
+    if ($G.INDEX !== undefined && $USR[data.index] !== undefined) {
       $WS.send(JSON.stringify({ 'to': data.user, 'msg': item, 'date': Date.now() }))
       $USR[data.index].msgarr.push({ 'msg0':  item, 'date': Date.now() })
       Emitter.emit('reply to user')
