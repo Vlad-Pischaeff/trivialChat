@@ -2,8 +2,7 @@ import { useEffect, useRef } from "react"
 import { useAuth } from "../hooks/auth.hook"
 import { $G, Emitter } from '../service/Service'
 
-export default function InputEmail(props) {
-  const { type } = props
+export default function InputEmail({ type }) {
   const email = useAuth()
   const inputRef = useRef()
 

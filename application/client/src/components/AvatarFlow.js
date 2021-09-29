@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react"
+import { useHistory, useLocation } from "react-router"
 import { $URL, $G } from "../service/Service"
 import __AvatarEffect from "../js/__AvatarEffect"
 import __ResizeImage from "../js/__ResizeImage"
 import TooltipWrap from "./TooltipWrap"
-import { useHistory, useLocation } from "react-router"
 
 export default function AvatarFlow() {
   const location = useLocation()
@@ -18,9 +18,7 @@ export default function AvatarFlow() {
     let timetID = setInterval(() => { 
       __AvatarEffect(refAvatar, refBg)
     }, 2000)
-    return () => {
-      timetID = null
-    }
+    return () => timetID = null
   }, [])
 
   useEffect(() => {

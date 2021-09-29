@@ -1,10 +1,10 @@
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { useLocation } from 'react-router'
 import { $G } from '../service/Service'
 import ButtonSave from '../components/ButtonSave'
 import ButtonCloseStd from '../components/ButtonCloseStd'
 import ReactCrop from 'react-image-crop'
 import 'react-image-crop/dist/ReactCrop.css'
-import { useCallback, useEffect, useRef, useState } from 'react'
-import { useLocation } from 'react-router'
 
 export default function SettingsCropImage() {
   const location = useLocation()

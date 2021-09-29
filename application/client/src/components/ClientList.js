@@ -1,7 +1,7 @@
+import { useEffect, useState } from "react"
+import { Emitter, randomInteger, $USR, $URL, $G } from "../service/Service"
 import Client from "./Client"
 import ClientEmpty from "./ClientEmpty"
-import { Emitter, randomInteger, $USR, $URL, $G } from "../service/Service"
-import { useEffect, useState } from "react"
 
 export default function ClientList() {
   const [ clients, setClients ] = useState([])

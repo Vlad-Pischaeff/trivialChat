@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import __CardFlip from '../js/__CardFlip'
 import { Emitter } from '../service/Service'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
@@ -7,6 +6,7 @@ import AsidePictureSlider from '../components/AsidePictureSlider'
 import Logo from '../components/Logo'
 import LoginPageProfile from '../components/LoginPageProfile'
 import Card from '../components/Card'
+import __CardFlip from '../js/__CardFlip'
 
 export default function LoginPage() {
 

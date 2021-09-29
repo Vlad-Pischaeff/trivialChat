@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
-import  __TitleEffect  from "../js/__TitleShow"
 import { Emitter } from "../service/Service"
+import  __TitleEffect  from "../js/__TitleShow"
 
 export default function LoginPageProfile() {
   const [ title, setTitle ] = useState(false)

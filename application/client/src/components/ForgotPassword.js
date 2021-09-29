@@ -1,5 +1,4 @@
-export default function ForgotPassword(props) {
-  const { type } = props
+export default function ForgotPassword({ type }) {
 
   const handlerClick = () => {
     console.log('Forgot password ...')

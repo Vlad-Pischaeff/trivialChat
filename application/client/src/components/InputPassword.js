@@ -2,8 +2,7 @@ import { useEffect, useRef } from "react"
 import { useAuth } from "../hooks/auth.hook"
 import { $G, Emitter } from '../service/Service'
 
-export default function InputPassword(props) {
-  const { type } = props
+export default function InputPassword({ type }) {
   const password = useAuth()
   const inputRef = useRef()
 

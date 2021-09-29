@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import { useLocation, useHistory } from "react-router-dom"
+import { $G, Emitter } from '../service/Service'
 import AsidePictureSlider from "../components/AsidePictureSlider"
 import ClientList from "../components/ClientList"
 import MessageList from "../components/MessageList"
@@ -9,7 +10,6 @@ import Header from "../components/Header"
 import Logo from "../components/Logo"
 import Templates from "../components/Templates"
 import __Resize from "../js/__Resize"
-import { $G, Emitter } from '../service/Service'
 
 export default function MainPage() {
   const history = useHistory()

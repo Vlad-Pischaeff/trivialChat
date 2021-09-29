@@ -1,8 +1,7 @@
 import { useRef, useEffect } from "react"
 import { Emitter } from "../service/Service"
 
-export default function WarningsField(props) {
-  const { type } = props
+export default function WarningsField({ type }) {
   const warnRef = useRef()
 
   useEffect(() => {

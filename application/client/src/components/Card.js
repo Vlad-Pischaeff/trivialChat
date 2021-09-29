@@ -4,8 +4,7 @@ import LoginButton from "./LoginButton"
 import ForgotPassword from "./ForgotPassword"
 import WarningsField from "./WarningsField"
 
-export default function Card(props) {
-  const { type } = props
+export default function Card({ type }) {
 
   console.log(`Card ${type} render ...`)
 

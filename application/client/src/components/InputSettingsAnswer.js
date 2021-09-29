@@ -2,8 +2,7 @@ import { useRef, useEffect } from "react"
 import { $G, Emitter } from "../service/Service"
 import TooltipWrap from "./TooltipWrap"
 
-export default function InputSettingsAnswer(props) {
-  const { idx } = props
+export default function InputSettingsAnswer({ idx }) {
   const inputRef = useRef()
 
   useEffect(() => {

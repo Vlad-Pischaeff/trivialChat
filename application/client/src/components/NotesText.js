@@ -1,8 +1,7 @@
 import { useEffect, useRef } from "react"
 import { $G } from "../service/Service"
 
-export default function NotesText(props) {
-  const { item, idx, edit } = props
+export default function NotesText({ item, idx, edit }) {
   const inputRef = useRef()
 
   useEffect(() => {

@@ -5,8 +5,7 @@ import { $G, Emitter } from "../service/Service"
 import TooltipWrap from "./TooltipWrap"
 import NotesText from "./NotesText"
 
-export default function NotesWrap(props) {
-  const { item, idx } = props
+export default function NotesWrap({ item, idx }) {
   const { request } = useFetch()
   const { saveCredentials } = useStorage()
   const [ edit, setEdit ] = useState(false)

@@ -4,8 +4,7 @@ import { useStorage } from "../hooks/storage.hook"
 import { $G } from "../service/Service"
 import TooltipWrap from "./TooltipWrap"
 
-export default function ButtonSave(props) {
-  const { save } = props
+export default function ButtonSave({ save }) {
   const history = useHistory()
   const { request } = useFetch()
   const { saveCredentials } = useStorage()

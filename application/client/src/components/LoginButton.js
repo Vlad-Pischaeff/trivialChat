@@ -3,8 +3,7 @@ import { useFetch } from "../hooks/fetch.hook"
 import { useStorage } from "../hooks/storage.hook"
 import { Emitter, $G } from "../service/Service"
 
-export default function LoginButton(props) {
-  const { type } = props
+export default function LoginButton({ type }) {
   const { request } = useFetch()
   const history = useHistory()
   const { saveCredentials } = useStorage()

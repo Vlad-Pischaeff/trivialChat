@@ -1,5 +1,4 @@
-export default function SettingsTab(props) {
-  const { idx, setIdx } = props
+export default function SettingsTab({idx, setIdx}) {
   const tab = ['Header', 'Greeting']
 
   return (

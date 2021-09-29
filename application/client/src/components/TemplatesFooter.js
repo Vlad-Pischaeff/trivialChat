@@ -3,9 +3,8 @@ import { Link, useLocation } from "react-router-dom"
 import { $G, Emitter } from "../service/Service"
 import TooltipWrap from "./TooltipWrap"
 
-export default function TemplatesFooter(props) {
+export default function TemplatesFooter({ idx }) {
   const location  = useLocation()
-  const { idx } = props
   const [ msg, setMsg ] = useState(0)
   const emit = [() => Emitter.emit('add new answer', $G.ACC.answer.length - 1),
                 () => Emitter.emit('add new note', $G.ACC.notes.length - 1)]

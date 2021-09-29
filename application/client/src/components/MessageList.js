@@ -1,6 +1,6 @@
-import Message from "./Message"
-import { Emitter, $USR } from "../service/Service"
 import { useEffect, useRef, useState } from "react"
+import { Emitter, $USR } from "../service/Service"
+import Message from "./Message"
 
 export default function MessageList() {
   const [ msgs, setMsgs ] = useState([])

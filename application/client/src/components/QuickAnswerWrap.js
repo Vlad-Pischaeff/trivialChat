@@ -6,8 +6,7 @@ import { $WS } from '../service/ServiceWebSocket'
 import TooltipWrap from "./TooltipWrap"
 import QuickAnswerText from "./QuickAnswerText"
 
-export default function QuickAnswerWrap(props) {
-  const { item, idx } = props
+export default function QuickAnswerWrap({ item, idx }) {
   const { request } = useFetch()
   const { saveCredentials } = useStorage()
   const [ edit, setEdit ] = useState(false)

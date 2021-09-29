@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react"
 import { Link, useLocation } from "react-router-dom"
-import __AsideSlider from "../js/__AsideSlider"
 import { $C, $G } from "../service/Service"
+import __AsideSlider from "../js/__AsideSlider"
 import AvatarFlow from "./AvatarFlow"
 import TooltipWrap from "./TooltipWrap"
 
@@ -14,12 +14,8 @@ export default function AsidePictureSlider() {
     if ($G.PAGE === 'LOGIN') {
       timerID = setInterval(() => __AsideSlider(imgRef), 5000)
     }
-    return () => {
-      timerID = null
-    }
+    return () => timerID = null
   }, [])
-
-  // console.log('aside slider ...', $G.PAGE, $C[$G.PAGE])
 
   return (
     <aside className={$C[$G.PAGE].aside} ref={imgRef} >
