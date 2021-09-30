@@ -12,9 +12,7 @@ export default function Templates() {
 
   useEffect(() => {
     Emitter.on('update user profile', () => setUpd(Date.now()))
-    return () => {
-      Emitter.off('update user profile')
-    }
+    return () => Emitter.off('update user profile')
   }, [])
 
   return (

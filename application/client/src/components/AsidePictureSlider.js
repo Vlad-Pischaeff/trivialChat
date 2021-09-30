@@ -14,7 +14,7 @@ export default function AsidePictureSlider() {
     if ($G.PAGE === 'LOGIN') {
       timerID = setInterval(() => __AsideSlider(imgRef), 5000)
     }
-    return () => timerID = null
+    return () => clearInterval(timerID)
   }, [])
 
   return (

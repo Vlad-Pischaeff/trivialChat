@@ -12,9 +12,7 @@ export default function NotesWrap({ item, idx }) {
 
   useEffect(() => {
     Emitter.on('add new note', data => addNewNote(data))
-    return () => {
-      Emitter.off('add new note')
-    }
+    return () => Emitter.off('add new note')
   }, [])
 
   const addNewNote = (data) => {

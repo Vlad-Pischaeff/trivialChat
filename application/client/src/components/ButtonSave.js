@@ -11,7 +11,7 @@ export default function ButtonSave({ save }) {
 
   const handlerClick = async (e) => {
     e.preventDefault()
-    console.log('ButtonSetProfile click...', $G.ACC, save)
+    // console.log('ButtonSetProfile click...', $G.ACC, save)
     await updateUserProfile()
     history.goBack()
   }

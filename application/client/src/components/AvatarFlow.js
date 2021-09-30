@@ -18,7 +18,7 @@ export default function AvatarFlow() {
     let timetID = setInterval(() => { 
       __AvatarEffect(refAvatar, refBg)
     }, 2000)
-    return () => timetID = null
+    return () => clearInterval(timetID)
   }, [])
 
   useEffect(() => {
