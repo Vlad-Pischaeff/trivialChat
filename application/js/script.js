@@ -2,17 +2,21 @@ const App = {
   data() {
     return {
       placeholderStr: 'type your question ...',
-      inputVal: '', 
-      messages: [ { from: 'me', msg: 'Lorem ipsum dolor sit amet, consectetur mollit anim id est laborum mollit anim id est laborum mollit anim id est laborum mollit anim id est laborum mollit anim id est laborum mollit anim id est laborum mollit anim id est laborum mollit anim id est laborum mollit anim id est laborum mollit anim id est laborum', date: 1630159825486},
-                  { to: 'me', msg: 'sed do eiusmod tempor incididunt ut', date: 1630159825486},
-                  { to: 'me', msg: 'Ut enim ad minim veniam, quis nostrud', date: 1630159825486},
-                  { to: 'me', msg: 'Nisi ut aliquip ex ea commodo consequat', date: 1630159825486},
-                  { from: 'me', msg: 'Reprehenderit in voluptate velit esse', date: 1630159825486},
-                  { from: 'me', msg: 'Excepteur sint occaecat cupidatat non', date: 1630159825486},
-                  { from: 'me', msg: 'mollit anim id est laborum', date: 1630159825486},],
+      organisation: '', 
+      description: '',
+      avatar: '',
+      greeting: '',
+      messages: [ { from: 'me', msg: 'Lorem ipsum dolor sit amet, consectetur mollit anim id est laborum mollit anim id est laborum mollit anim id est laborum mollit anim id est laborum mollit anim id est laborum mollit anim id est laborum mollit anim id est laborum mollit anim id est laborum mollit anim id est laborum mollit anim id est laborum', date: '2001-07-11'},
+                  { to: 'me', msg: 'sed do eiusmod tempor incididunt ut', date: '2001-07-11'},
+                  { to: 'me', msg: 'Ut enim ad minim veniam, quis nostrud', date: '2001-07-11'},
+                  { to: 'me', msg: 'Nisi ut aliquip ex ea commodo consequat', date: '2001-07-11'},
+                  { from: 'me', msg: 'Reprehenderit in voluptate velit esse', date: '2001-07-11'},
+                  { from: 'me', msg: 'Excepteur sint occaecat cupidatat non', date: '2001-07-11'},
+                  { from: 'me', msg: 'mollit anim id est laborum', date: '2001-07-11'}],
       update: false,
       ws: null,
-      userID: null
+      userID: null,
+      inputVal: ''
     }
   },
   methods: {
@@ -45,7 +49,7 @@ const App = {
   },
   mounted() {
     this.userID = random_id()
-    this.ws = new WebSocket(`ws://192.168.140.68:5000/ws?userName=${this.userID}`)
+    this.ws = new WebSocket(`ws://localhost:5000/ws?userName=${this.userID}`)
     this.ws.onmessage = (event) => {
       // Vue data binding means you don't need any extra work to
       // update your UI. Just set the `time` and Vue will automatically
@@ -59,6 +63,7 @@ const App = {
     }
   }
 }
+
 Vue.createApp(App).mount('#App')
 
 function random_id() {

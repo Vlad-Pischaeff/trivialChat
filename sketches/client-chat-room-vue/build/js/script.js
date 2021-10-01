@@ -2,7 +2,10 @@ const App = {
   data() {
     return {
       placeholderStr: 'type your question ...',
-      inputVal: '', 
+      organisation: '', 
+      description: '',
+      avatar: '',
+      greeting: '',
       messages: [ { from: 'me', msg: 'Lorem ipsum dolor sit amet, consectetur mollit anim id est laborum mollit anim id est laborum mollit anim id est laborum mollit anim id est laborum mollit anim id est laborum mollit anim id est laborum mollit anim id est laborum mollit anim id est laborum mollit anim id est laborum mollit anim id est laborum', date: '2001-07-11'},
                   { to: 'me', msg: 'sed do eiusmod tempor incididunt ut', date: '2001-07-11'},
                   { to: 'me', msg: 'Ut enim ad minim veniam, quis nostrud', date: '2001-07-11'},
@@ -12,7 +15,8 @@ const App = {
                   { from: 'me', msg: 'mollit anim id est laborum', date: '2001-07-11'}],
       update: false,
       ws: null,
-      userID: null
+      userID: null,
+      inputVal: ''
     }
   },
   methods: {
@@ -59,6 +63,7 @@ const App = {
     }
   }
 }
+
 Vue.createApp(App).mount('#App')
 
 function random_id() {

@@ -8,7 +8,7 @@
   &_footer
     display: flex
   &_header
-    height: 5rem
+    height: 6rem
     background: $gray
     display: flex
     justify-content: space-between
@@ -34,12 +34,26 @@
       background-size: cover
     &-card
       flex: 1 1 auto
-      margin: 1rem
+      margin: .5rem 2rem .5rem .5rem
+      width: 50%
+      &-1
+        color: $black
+        white-space: nowrap
+        overflow: hidden
+        text-overflow: ellipsis
+        padding: .2rem
+      &-2
+        font-family: $ff-text
+        white-space: break-spaces
+        overflow: hidden
+        text-overflow: ellipsis
+        height: 3.4rem
+        padding: .2rem
 
   &_footer
     height: 3rem
   &_body
-    height: calc(100vh - 8rem)
+    height: calc(100vh - 9rem)
     background: aliceblue
     overflow: auto
     min-width: 12rem
@@ -105,10 +119,10 @@
     &-icon2
       height: 3rem
       padding: .5rem
-      filter: invert(100%)
+      filter: grayscale(100%)
       &:hover
-        filter: invert(0%)
-        background: lightblue
+        filter: grayscale(0)
+        background: $black
         cursor: pointer
 
 .msg-data

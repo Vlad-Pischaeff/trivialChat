@@ -100,6 +100,18 @@ router.get('/user/:id', auth, async (req, res) => {
   }
 })
 
+// get user's site information
+router.get('/usersite', async (req, res) => {
+  try {
+    const user = await User.findOne({ site: '192.168.140.68' })
+    // const site
+    console.log('req...', req.headers)
+    res.status(201).json({avatar: user.avatar, title: user.title, desc: user.desc, greeting: user.greeting})
+  } catch(e) {
+    res.status(500).json({ message:`Something wrong ..., details ${e}` })
+  }
+})
+
 // get users information
 router.post('/users', auth, async (req, res) => {
   try {
