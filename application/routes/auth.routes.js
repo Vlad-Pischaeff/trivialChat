@@ -126,7 +126,16 @@ router.post('/users', auth, async (req, res) => {
 // update user information
 router.patch('/user/:id', auth, async (req, res) => {
   try {
-    const {id} = req.params
+    const { id } = req.params
+    const { site } = req.body
+    // return error if 'site' is already in use in another account 
+    if (site) {
+      const newSite = await User.findOne({ site: site, _id: { $ne: id}})
+      if (newSite) {
+        return res.status(400).json({ message:`Site ${site} is already in use...` })
+      }
+    }
+
     const user = await User.findByIdAndUpdate(id, req.body)
     const newUser = await User.findOne({ _id: id })
     res.status(201).json(newUser)

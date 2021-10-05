@@ -27,7 +27,8 @@ export default function ButtonSave({ save }) {
       let newdata = { ...data, token: $G.ACC.token }
       saveCredentials(newdata)
     } catch(e) {
-      alert('Error while update site name ...', e)
+      // console.log('error...', e)
+      alert(`Error while update site name ... ${e.val}`)
     }
   }
 
