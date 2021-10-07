@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useFetch } from "../hooks/fetch.hook"
 import { useStorage } from "../hooks/storage.hook"
-import { $G, $USR, Emitter } from "../service/Service"
+import { $G, $USR, Emitter, selectedUserIdx } from "../service/Service"
 import { $WS } from '../service/ServiceWebSocket'
 import TooltipWrap from "./TooltipWrap"
 import QuickAnswerText from "./QuickAnswerText"
@@ -10,19 +10,10 @@ export default function QuickAnswerWrap({ item, idx }) {
   const { request } = useFetch()
   const { saveCredentials } = useStorage()
   const [ edit, setEdit ] = useState(false)
-  const [ data, setData ] = useState({})
-
-  useEffect(() => {
-    Emitter.on('selected user', (data) => setData(data))
-  }, [])
 
   useEffect(() => {
     Emitter.on('add new answer', data => addNewAnswer(data))
-    Emitter.on('selected user', data => setData(data))
-    return () => {
-      Emitter.off('add new answer')
-      Emitter.off('selected user')
-    }
+    return () => Emitter.off('add new answer')
   }, [])
 
   const addNewAnswer = (data) => {
@@ -56,15 +47,14 @@ export default function QuickAnswerWrap({ item, idx }) {
   }
 
   const sendMessage = () => {
-    if ($G.INDEX !== undefined && $USR[data.index] !== undefined) {
-      $WS.send(JSON.stringify({ 'to': data.user, 'msg': item, 'date': Date.now() }))
-      $USR[data.index].msgarr.push({ 'msg0':  item, 'date': Date.now() })
+    if (selectedUserIdx !== undefined && $USR[selectedUserIdx] !== undefined) {
+      $WS.send(JSON.stringify({ 'to': $USR[selectedUserIdx].user, 'msg': item, 'date': Date.now() }))
+      $USR[selectedUserIdx].msgarr.push({ 'msg0': item, 'date': Date.now() })
       Emitter.emit('reply to user')
     }
-    // console.log('QuickAnswerWrap...', data, $USR, $G)
   }
 
-  // console.log('QuickAnswerWrap...', $G.ACC.answer)
+  // console.log('QuickAnswerWrap...', $G.ACC.answer, selectedUserIdx)
 
   return (
     <>

@@ -1,23 +1,15 @@
-import { useEffect, useState } from 'react'
 import { useAuth } from '../hooks/auth.hook'
-import { Emitter, $G, $USR } from '../service/Service'
+import { Emitter, $USR, selectedUserIdx } from '../service/Service'
 import { $WS } from '../service/ServiceWebSocket'
 import TooltipWrap from './TooltipWrap'
 
 export default function MessageInput() {
   const message = useAuth()
-  const [ data, setData ] = useState({})
-
-  useEffect(() => {
-    Emitter.on('selected user', (data) => setData(data))
-    return () => Emitter.off('selected user')
-  }, [])
 
   const sendMessage = () => {
-    if ($G.INDEX !== undefined && message.value !== '') {
-      $WS.send(JSON.stringify({ 'to': data.user, 'msg': message.value, 'date': Date.now() }))
-      $USR[data.index].msgarr.push({ 'msg0':  message.value, 'date': Date.now() })
-      // Emitter.emit('reply to user', { 'touser': data.user, 'date': Date.now() })
+    if (selectedUserIdx !== undefined && message.value !== '') {
+      $WS.send(JSON.stringify({ 'to': $USR[selectedUserIdx].user, 'msg': message.value, 'date': Date.now() }))
+      $USR[selectedUserIdx].msgarr.push({ 'msg0': message.value, 'date': Date.now() })
       Emitter.emit('reply to user')
     }
     message.onFocus()

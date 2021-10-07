@@ -1,4 +1,5 @@
 import EventEmitter from 'eventemitter3'
+import { useEffect, useState } from 'react'
 
 const eventEmitter = new EventEmitter()
 
@@ -69,3 +70,23 @@ export const randomInteger = (min, max) => {
   let rand = min + Math.random() * (max + 1 - min)
   return Math.floor(rand)
 }
+
+export const useReRender = () => {
+  const [ reRender, setReRender ] = useState()
+
+  useEffect(() => {
+    Emitter.on('update user profile', () => setReRender(Date.now()))
+    Emitter.on('select user', () => setReRender(Date.now()))
+    return () => {
+      Emitter.off('update user profile')
+      Emitter.off('select user')
+      console.log('useReRender unmount...')
+    }
+  }, [])
+
+  return { reRender }
+}
+
+export let selectedUserIdx
+
+Emitter.on('select user', i => selectedUserIdx = i)

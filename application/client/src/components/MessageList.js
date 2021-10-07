@@ -1,21 +1,28 @@
 import { useEffect, useRef, useState } from "react"
-import { Emitter, $USR } from "../service/Service"
+import { Emitter, $USR, selectedUserIdx } from "../service/Service"
+import { useReRender } from "../service/Service"
 import Message from "./Message"
 
 export default function MessageList() {
+  const { reRender } = useReRender()
   const [ msgs, setMsgs ] = useState([])
   const [ newmsg, setNewMsg] = useState()
   const msgRef = useRef('')
 
   useEffect(() => {
-    Emitter.on('selected user', (data) => {
-      // console.log('MessageList selected user...', data.index, data.user, $USR)
-      setMsgs($USR[data.index].msgarr)
-    })
-    // Emitter.on('selected user', () => setNewMsg(Date.now()))
     Emitter.on('reply to user', reRenderComponent)
     Emitter.on('received message from', reRenderComponent) // received message from ServiceWebSocket
+    return () => {
+      Emitter.off('reply to user')
+      Emitter.off('received message from')
+    }
   }, [])
+
+  useEffect(() => {
+    if (selectedUserIdx !== undefined) {
+      setMsgs($USR[selectedUserIdx].msgarr)
+    }
+  }, [selectedUserIdx])
 
   const reRenderComponent = () => setNewMsg(Date.now())
 

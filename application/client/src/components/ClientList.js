@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
-import { Emitter, randomInteger, $USR, $URL, $G } from "../service/Service"
+import { Emitter, randomInteger, $USR, $URL, selectedUserIdx } from "../service/Service"
 import Client from "./Client"
 import ClientEmpty from "./ClientEmpty"
 
 export default function ClientList() {
   const [ clients, setClients ] = useState([])
 
-  // console.log('ClientList render ...', clients, $USR)
+  console.log('ClientList render ...', clients, $USR, selectedUserIdx)
 
   useEffect(() => {
     Emitter.on('received message from', (data) => {           // received message from ServiceWebSocket
@@ -18,23 +18,19 @@ export default function ClientList() {
       } else {
         $USR.forEach((n, i) => {
           if (n.user === data.from) {
-            if (i !== $G.INDEX)  n.cnt = n.cnt + 1
+            if (i !== selectedUserIdx)  n.cnt = n.cnt + 1
             n.msgarr.push({'msg1': data.msg, 'date': data.date})
           }
         })
       }
       setClients([...$USR])
       notifyMe(data.msg)
-      console.log('ClientList recieved message from...', data, $USR, 'index...', $G.INDEX)
+      console.log('ClientList recieved message from...', data, 'index...', selectedUserIdx)
     })
-    Emitter.on('selected user', (data) => {
-      $USR.forEach(n => {
-        if (n.user === data.user) n.cnt = 0
-      })
-      setClients([...$USR])
-      $G.INDEX = data.index
-      console.log('ClientList selected user ...', $G.INDEX, data.index)
-    })
+    return () => {
+      Emitter.off('received message from')
+      console.log('ClientList useEffect unmount...')
+    }
   }, [])
 
   const notifyMe = (body) => {
@@ -50,7 +46,7 @@ export default function ClientList() {
       {
         clients.length === 0
           ? <ClientEmpty />
-          : clients.map((n, i) => <Client prop={{n, i}} key={i} />)
+          : clients.map((n, i) => <Client n={n} i={i} key={i} />)
       }
     </div>
   )

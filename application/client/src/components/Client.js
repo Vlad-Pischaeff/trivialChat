@@ -1,31 +1,33 @@
 import { useEffect, useState } from 'react'
-import { Emitter, $URL, $USR, $G } from '../service/Service'
+import { Emitter, $URL, selectedUserIdx, useReRender } from '../service/Service'
 
-export default function Client({ prop }) {
-  const { n, i } = prop
+export default function Client({ n, i }) {
+  const { reRender } = useReRender()
   const [ newMsgTrigger, setNewMsgTrigger ] = useState(true)
   let user_msgs = n.msgarr.filter(n => n.msg1)
   let arr_last = user_msgs.length - 1
   
   useEffect(() => {
     Emitter.on('received message from', (data) => {
-      if (data.from === n.user && $G.INDEX !== i) {
+      if (data.from === n.user && selectedUserIdx !== i) {
         setNewMsgTrigger(true)
       }
-    })  // received message from ServiceWebSocket
+    })                                  // received message from ServiceWebSocket
+    return () => Emitter.off('received message from')
   }, [])
 
   const handlerClick = () => {
     newMsgTrigger && setNewMsgTrigger(false)
-    Emitter.emit('selected user', { 'index': i, 'user': $USR[i].user } )
+    Emitter.emit('select user', i)
+    n.cnt = 0                           // reset unreaded messages counter
   }
 
-  console.log('Client render...', n, $G.INDEX, i, prop)
+  console.log('Client render...', n, i, selectedUserIdx)
 
   return (
-    <div className={"clients_item " + ($G.INDEX === i ? "client-selected" : "")} onClick={handlerClick}>
+    <div className={"clients_item " + (selectedUserIdx === i ? "client-selected" : "")} onClick={handlerClick}>
       <div className="clients_item-img">
-        <div className={"clients_item-img-pulse " + (newMsgTrigger && $G.INDEX !== i ? 'pulse' : '')}></div>
+        <div className={"clients_item-img-pulse " + (newMsgTrigger && selectedUserIdx !== i ? 'pulse' : '')}></div>
         <img className="clients_item-img-img" src={`${$URL}/img/users/user${n.pict}.png`} alt=''/>
       </div>
       <div className="clients_item-status">
