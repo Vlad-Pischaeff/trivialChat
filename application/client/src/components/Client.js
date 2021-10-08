@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
-import { Emitter, $URL, selectedUserIdx, useReRender } from '../service/Service'
+import { Emitter, $URL, selectedUserIdx } from '../service/Service'
 
 export default function Client({ n, i }) {
-  const { reRender } = useReRender()
   const [ newMsgTrigger, setNewMsgTrigger ] = useState(true)
   let user_msgs = n.msgarr.filter(n => n.msg1)
   let arr_last = user_msgs.length - 1

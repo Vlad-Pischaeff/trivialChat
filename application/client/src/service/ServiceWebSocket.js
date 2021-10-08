@@ -9,12 +9,9 @@ export let $WS
 
 Emitter.on('init WS', () => {
   if (!$WS) $WS = new WebSocket($WS_URL + '?userName=' + $G.ACC.email)
-  
-  // console.log('init WS...', $WS, $G.ACC.email)
 
   $WS.onmessage = (msg) => {
     let data = JSON.parse(msg.data)
-    // console.log('reseived message ...', data)
     Emitter.emit('received message from', data)
   }
 

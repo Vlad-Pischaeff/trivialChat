@@ -6,7 +6,7 @@ import NotesComponent from "./NotesComponent"
 import TemplatesFooter from "./TemplatesFooter"
 
 export default function Templates() {
-  const { reRender } = useReRender()
+  const { reRenderOnUpdUserProfile } = useReRender()
   const [ idx, setIdx ] = useState(0)
   const body = [<QuickAnswerComponent />, <NotesComponent />]
 

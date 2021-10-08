@@ -1,35 +1,22 @@
 import { useEffect, useRef, useState } from "react"
-import { Emitter, $USR, selectedUserIdx } from "../service/Service"
-import { useReRender } from "../service/Service"
+import { $USR, useReRender, selectedUserIdx } from "../service/Service"
 import Message from "./Message"
 
 export default function MessageList() {
-  const { reRender } = useReRender()
+  const { reRenderOnSelectUser, reRenderOnReply, reRenderOnReceivedMessage } = useReRender()
   const [ msgs, setMsgs ] = useState([])
-  const [ newmsg, setNewMsg] = useState()
   const msgRef = useRef('')
-
-  useEffect(() => {
-    Emitter.on('reply to user', reRenderComponent)
-    Emitter.on('received message from', reRenderComponent) // received message from ServiceWebSocket
-    return () => {
-      Emitter.off('reply to user')
-      Emitter.off('received message from')
-    }
-  }, [])
 
   useEffect(() => {
     if (selectedUserIdx !== undefined) {
       setMsgs($USR[selectedUserIdx].msgarr)
     }
-  }, [selectedUserIdx])
-
-  const reRenderComponent = () => setNewMsg(Date.now())
+  }, [reRenderOnSelectUser])
 
   useEffect(() => {
     msgRef.current && msgRef.current.scrollIntoView({ behavior: 'smooth' })
-  }, [newmsg, msgs])
-
+  }, [reRenderOnReply, reRenderOnReceivedMessage, msgs]) 
+  
   return (
     <div className="chat_field">
       { 

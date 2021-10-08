@@ -11,7 +11,6 @@ export default function ButtonSave({ save }) {
 
   const handlerClick = async (e) => {
     e.preventDefault()
-    // console.log('ButtonSetProfile click...', $G.ACC, save)
     await updateUserProfile()
     history.goBack()
   }
@@ -27,8 +26,7 @@ export default function ButtonSave({ save }) {
       let newdata = { ...data, token: $G.ACC.token }
       saveCredentials(newdata)
     } catch(e) {
-      // console.log('error...', e)
-      alert(`Error while update site name ... ${e.val}`)
+      alert(`Error while update user profile... ${e.val}`)
     }
   }
 
