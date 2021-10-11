@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useFetch } from "../hooks/fetch.hook"
 import { useStorage } from "../hooks/storage.hook"
-import { $G, $USR, Emitter, selectedUserIdx } from "../service/Service"
+import { $G, $USR, Emitter, $selectedUserIdx } from "../service/Service"
 import { $WS } from '../service/ServiceWebSocket'
 import TooltipWrap from "./TooltipWrap"
 import QuickAnswerText from "./QuickAnswerText"
@@ -47,9 +47,9 @@ export default function QuickAnswerWrap({ item, idx }) {
   }
 
   const sendMessage = () => {
-    if (selectedUserIdx !== undefined && $USR[selectedUserIdx] !== undefined) {
-      $WS.send(JSON.stringify({ 'to': $USR[selectedUserIdx].user, 'msg': item, 'date': Date.now() }))
-      $USR[selectedUserIdx].msgarr.push({ 'msg0': item, 'date': Date.now() })
+    if ($selectedUserIdx !== undefined && $USR[$selectedUserIdx] !== undefined) {
+      $WS.send(JSON.stringify({ 'to': $USR[$selectedUserIdx].user, 'msg': item, 'date': Date.now() }))
+      $USR[$selectedUserIdx].msgarr.push({ 'msg0': item, 'date': Date.now() })
       Emitter.emit('reply to user')
     }
   }

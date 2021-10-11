@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Emitter, $URL, selectedUserIdx } from '../service/Service'
+import { Emitter, $URL, $selectedUserIdx } from '../service/Service'
 
 export default function Client({ n, i }) {
   const [ newMsgTrigger, setNewMsgTrigger ] = useState(true)
@@ -8,7 +8,7 @@ export default function Client({ n, i }) {
   
   useEffect(() => {
     Emitter.on('received message from', (data) => {
-      if (data.from === n.user && selectedUserIdx !== i) {
+      if (data.from === n.user && $selectedUserIdx !== i) {
         setNewMsgTrigger(true)
       }
     })                                  // received message from ServiceWebSocket
@@ -21,12 +21,12 @@ export default function Client({ n, i }) {
     n.cnt = 0                           // reset unreaded messages counter
   }
 
-  console.log('Client render...', n, i, selectedUserIdx)
+  console.log('Client render...', n, i, $selectedUserIdx)
 
   return (
-    <div className={"clients_item " + (selectedUserIdx === i ? "client-selected" : "")} onClick={handlerClick}>
+    <div className={"clients_item " + ($selectedUserIdx === i ? "client-selected" : "")} onClick={handlerClick}>
       <div className="clients_item-img">
-        <div className={"clients_item-img-pulse " + (newMsgTrigger && selectedUserIdx !== i ? 'pulse' : '')}></div>
+        <div className={"clients_item-img-pulse " + (newMsgTrigger && $selectedUserIdx !== i ? 'pulse' : '')}></div>
         <img className="clients_item-img-img" src={`${$URL}/img/users/user${n.pict}.png`} alt=''/>
       </div>
       <div className="clients_item-status">

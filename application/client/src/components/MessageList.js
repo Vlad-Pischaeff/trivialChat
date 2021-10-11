@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-import { $USR, useReRender, selectedUserIdx } from "../service/Service"
+import {$USR, useReRender, $selectedUserIdx } from "../service/Service"
 import Message from "./Message"
 
 export default function MessageList() {
@@ -8,8 +8,8 @@ export default function MessageList() {
   const msgRef = useRef('')
 
   useEffect(() => {
-    if (selectedUserIdx !== undefined) {
-      setMsgs($USR[selectedUserIdx].msgarr)
+    if ($selectedUserIdx !== undefined) {
+      setMsgs($USR[$selectedUserIdx].msgarr)
     }
   }, [reRenderOnSelectUser])
 
