@@ -1,33 +1,22 @@
 import { useHistory } from "react-router"
-import { useFetch } from "../hooks/fetch.hook"
-import { useStorage } from "../hooks/storage.hook"
-import { $G } from "../service/Service"
+import { $G, Emitter } from "../service/Service"
 import TooltipWrap from "./TooltipWrap"
 
 export default function ButtonSave({ save }) {
   const history = useHistory()
-  const { request } = useFetch()
-  const { saveCredentials } = useStorage()
 
-  const handlerClick = async (e) => {
+  const handlerClick = e => {
     e.preventDefault()
-    await updateUserProfile()
+    updateUserProfile()
     history.goBack()
   }
 
-  const updateUserProfile = async () => {
+  const updateUserProfile = () => {
     const body = save.reduce((acc, n) => {
       if ($G.ACC[n]) acc[n] = $G.ACC[n]
       return acc
     }, {})
-
-    try {
-      const data = await request(`/api/auth/user/${$G.ACC._id}`, 'PATCH', body)
-      let newdata = { ...data, token: $G.ACC.token }
-      saveCredentials(newdata)
-    } catch(e) {
-      alert(`Error while update user profile... ${e.val}`)
-    }
+    Emitter.emit('update user profile', body)
   }
 
   return (
