@@ -107,7 +107,7 @@ const httpRequest = async (url, method = 'GET', body = null) => {
     const response = await fetch(url, {method, body, headers})
     const data = await response.json()
     if (!response.ok) {
-      throw new Error(data.message) 
+      alert(data.message) 
     }
     return data
   } catch (e) {
