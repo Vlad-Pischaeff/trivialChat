@@ -1,6 +1,5 @@
 import { useAuth } from '../hooks/auth.hook'
-import { Emitter, $USR, $selectedUserIdx } from '../service/Service'
-import { $WS } from '../service/ServiceWebSocket'
+import { Emitter, $selectedUserIdx } from '../service/Service'
 import TooltipWrap from './TooltipWrap'
 
 export default function MessageInput() {
@@ -8,9 +7,7 @@ export default function MessageInput() {
 
   const sendMessage = () => {
     if ($selectedUserIdx !== undefined && message.value !== '') {
-      $WS.send(JSON.stringify({ 'to': $USR[$selectedUserIdx].user, 'msg': message.value, 'date': Date.now() }))
-      $USR[$selectedUserIdx].msgarr.push({ 'msg0': message.value, 'date': Date.now() })
-      Emitter.emit('reply to user')
+      Emitter.emit('reply to user', message.value)
     }
     message.onFocus()
   }

@@ -1,14 +1,9 @@
 import { useEffect, useState } from "react"
-import { useFetch } from "../hooks/fetch.hook"
-import { useStorage } from "../hooks/storage.hook"
 import { $G, $USR, Emitter, $selectedUserIdx } from "../service/Service"
-import { $WS } from '../service/ServiceWebSocket'
 import TooltipWrap from "./TooltipWrap"
 import QuickAnswerText from "./QuickAnswerText"
 
 export default function QuickAnswerWrap({ item, idx }) {
-  const { request } = useFetch()
-  const { saveCredentials } = useStorage()
   const [ edit, setEdit ] = useState(false)
 
   useEffect(() => {
@@ -24,33 +19,19 @@ export default function QuickAnswerWrap({ item, idx }) {
     setEdit(true)
   }
 
-  const handleClickSave = async () => {
+  const handleClickSave = () => {
     setEdit(false)
-    await updateUserProfile()
+    Emitter.emit('update user profile', {"answer": $G.ACC.answer})
   }
 
-  const handleClickDelete = async () => {
+  const handleClickDelete = () => {
     $G.ACC.answer.splice(idx, 1)
-    await updateUserProfile()
-  }
-
-  const updateUserProfile = async () => {
-    const body = {"answer": $G.ACC.answer}
-    try {
-      const data = await request(`/api/auth/user/${$G.ACC._id}`, 'PATCH', body)
-      let newdata = { ...data, token: $G.ACC.token }
-      saveCredentials(newdata)
-      Emitter.emit('update user profile')
-    } catch(e) {
-      alert('Error while update site name ...', e)
-    }
+    Emitter.emit('update user profile', {"answer": $G.ACC.answer})
   }
 
   const sendMessage = () => {
     if ($selectedUserIdx !== undefined && $USR[$selectedUserIdx] !== undefined) {
-      $WS.send(JSON.stringify({ 'to': $USR[$selectedUserIdx].user, 'msg': item, 'date': Date.now() }))
-      $USR[$selectedUserIdx].msgarr.push({ 'msg0': item, 'date': Date.now() })
-      Emitter.emit('reply to user')
+      Emitter.emit('reply to user', item)
     }
   }
 

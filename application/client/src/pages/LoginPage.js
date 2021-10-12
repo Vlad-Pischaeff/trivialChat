@@ -12,9 +12,7 @@ export default function LoginPage() {
 
   useEffect(() => {
     Emitter.on('change_title', (title) => __CardFlip(title))
-    return () => {
-      Emitter.off('change_title')
-    }
+    return () => Emitter.off('change_title')
   }, [])
 
   console.log('LoginPage render ...')

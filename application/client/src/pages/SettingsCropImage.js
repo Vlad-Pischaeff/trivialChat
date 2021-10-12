@@ -11,7 +11,6 @@ export default function SettingsCropImage() {
   const { img } = location.state
   const [ crop, setCrop ] = useState({ x: 20, y: 20, width: 80, height: 80, aspect: 1 })
   const [ completedCrop, setCompletedCrop ] = useState(null)
-  // const [ finalImage, setFinalImage ] = useState(null)
   const imgRef = useRef()
   const previewCanvasRef = useRef(null)
   const hiddenCanvasRef = useRef(null)
@@ -48,8 +47,6 @@ export default function SettingsCropImage() {
       )
       hctx.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, 64, 64)
       $G.ACC.avatar = hcanvas.toDataURL('image/jpeg')
-      // const base64Image = hcanvas.toDataURL('image/jpeg')
-      // setFinalImage(base64Image)
     }
   }, [completedCrop])
 

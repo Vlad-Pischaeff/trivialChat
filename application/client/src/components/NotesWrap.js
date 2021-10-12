@@ -1,13 +1,9 @@
 import { useEffect, useState } from "react"
-import { useFetch } from "../hooks/fetch.hook"
-import { useStorage } from "../hooks/storage.hook"
 import { $G, Emitter } from "../service/Service"
 import TooltipWrap from "./TooltipWrap"
 import NotesText from "./NotesText"
 
 export default function NotesWrap({ item, idx }) {
-  const { request } = useFetch()
-  const { saveCredentials } = useStorage()
   const [ edit, setEdit ] = useState(false)
 
   useEffect(() => {
@@ -23,29 +19,15 @@ export default function NotesWrap({ item, idx }) {
     setEdit(true)
   }
 
-  const handleClickSave = async () => {
+  const handleClickSave = () => {
     setEdit(false)
-    await updateUserProfile()
+    Emitter.emit('update user profile', {"notes": $G.ACC.notes})
   }
 
-  const handleClickDelete = async () => {
+  const handleClickDelete = () => {
     $G.ACC.notes.splice(idx, 1)
-    await updateUserProfile()
+    Emitter.emit('update user profile', {"notes": $G.ACC.notes})
   }
-
-  const updateUserProfile = async () => {
-    const body = {"notes": $G.ACC.notes}
-    try {
-      const data = await request(`/api/auth/user/${$G.ACC._id}`, 'PATCH', body)
-      let newdata = { ...data, token: $G.ACC.token }
-      saveCredentials(newdata)
-      Emitter.emit('update user profile')
-    } catch(e) {
-      alert('Error while update site name ...', e)
-    }
-  }
-
-  // console.log('QuickAnswerWrap...', $G.ACC.answer)
 
   return (
     <>
