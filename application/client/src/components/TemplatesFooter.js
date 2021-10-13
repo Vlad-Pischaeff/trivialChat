@@ -9,9 +9,9 @@ export default function TemplatesFooter({ idx }) {
   const emit = [() => Emitter.emit('add new answer', $G.ACC.answer.length - 1),
                 () => Emitter.emit('add new note', $G.ACC.notes.length - 1)]
   const pushMsg = [ () => { $G.ACC.answer.push('answer...')
-                            Emitter.emit('update user profile')}, 
+                            Emitter.emit('profile updated')}, 
                     () => { $G.ACC.notes.push('new note...')
-                            Emitter.emit('update user profile')}]
+                            Emitter.emit('profile updated')}]
   const tip = [ 'Add new quick answer...', 'Add new note...' ]
 
   useEffect(() => {

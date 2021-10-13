@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from "react"
 import { useHistory, useLocation } from "react-router"
-import { $URL, $G } from "../service/Service"
+import { $URL, $G, useReRender } from "../service/Service"
 import __AvatarEffect from "../js/__AvatarEffect"
 import __ResizeImage from "../js/__ResizeImage"
 import TooltipWrap from "./TooltipWrap"
 
 export default function AvatarFlow() {
+  const { reRenderOnUpdUserProfile } = useReRender()
   const location = useLocation()
   const history = useHistory()
   const [ img, setImg ] = useState(null)

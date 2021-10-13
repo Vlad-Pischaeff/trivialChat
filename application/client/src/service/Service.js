@@ -31,7 +31,6 @@ export const Emitter = {
   emit2: (event, payload1, payload2) => eventEmitter.emit(event, payload1, payload2),
 }
 
-// const httpPrefix = window.location.protocol
 let { hostname, protocol : httpPrefix } = window.location  
 let wsPrefix = httpPrefix === 'http:' ? 'ws:' : 'wss:'
 export const $URL = `${httpPrefix}//${hostname}:5001`
@@ -80,12 +79,12 @@ export const useReRender = () => {
   useEffect(() => {
     Emitter.on('reply to user', () => setReRenderOnReply(Date.now()))
     Emitter.on('received message from', () => setReRenderOnReceivedMessage(Date.now()))
-    Emitter.on('update user profile', () => setReRenderOnUpdUserProfile(Date.now()))
+    Emitter.on('profile updated', () => setReRenderOnUpdUserProfile(Date.now()))
     Emitter.on('select user', () => setReRenderOnSelectUser(Date.now()))
     return () => {
       Emitter.off('reply to user')
       Emitter.off('received message from')
-      Emitter.off('update user profile')
+      Emitter.off('profile updated')
       Emitter.off('select user')
     }
   }, [])
@@ -121,6 +120,7 @@ const updateUserProfile = async (body) => {
     let newdata = { ...data, token: $G.ACC.token }
     sessionStorage.setItem('credentials', JSON.stringify(newdata))
     $G.ACC = newdata
+    Emitter.emit('profile updated')
   } catch(e) {
     alert('Error while update User profile ...' + e)
   }
