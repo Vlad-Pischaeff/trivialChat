@@ -16,8 +16,6 @@ export default function MessageInput() {
     if (e.key === 'Enter') sendMessage()
   }
 
-  // console.log('MessageInput render ...', message.value, $G.WS)
-
   return (
     <div className="chat_input">
       <input  className="chat_input-text" 

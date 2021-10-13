@@ -14,7 +14,7 @@ const privateKey  = fs.readFileSync('./keys/privkey.pem', 'utf8')
 const certificate = fs.readFileSync('./keys/cert.pem', 'utf8')
 const credentials = {key: privateKey, cert: certificate}
 
-const PORT = config.get('port') || 5000
+const PORT = config.get('port') || 5001
 const MONGO_URL = config.get('mongoUrl')
 const User = require('./models/User')
 

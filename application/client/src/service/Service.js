@@ -31,11 +31,11 @@ export const Emitter = {
   emit2: (event, payload1, payload2) => eventEmitter.emit(event, payload1, payload2),
 }
 
-const httpPrefix = window.location.protocol
-let { hostname } = window.location  
+// const httpPrefix = window.location.protocol
+let { hostname, protocol : httpPrefix } = window.location  
 let wsPrefix = httpPrefix === 'http:' ? 'ws:' : 'wss:'
-export const $URL = `${httpPrefix}//${hostname}:5000`
-export const $WS_URL = `${wsPrefix}//${hostname}:5000/ws`
+export const $URL = `${httpPrefix}//${hostname}:5001`
+export const $WS_URL = `${wsPrefix}//${hostname}:5001/ws`
 
 export const $G = {
   ACC: {},
@@ -65,8 +65,8 @@ export const $C = {
   HIDE085: 'hide085'
 }
 
+// ------------------------------------------------------------------------ случайное число от min до (max+1)
 export const randomInteger = (min, max) => {
-  // случайное число от min до (max+1)
   let rand = min + Math.random() * (max + 1 - min)
   return Math.floor(rand)
 }

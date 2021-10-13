@@ -3,7 +3,6 @@ import Client from "./Client"
 import ClientEmpty from "./ClientEmpty"
 
 export default function ClientList() {
-  // const { clients } = useClientList()
   const { reRenderOnReceivedMessage } = useReRender()
 
   return (
