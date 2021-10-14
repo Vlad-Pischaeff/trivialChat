@@ -1,268 +1,5 @@
-/**
- *************************************** General variables
- */
-// @font-face 
-//   font-family: Play
-//   src: url("../fonts/Play-Regular.woff2") format("woff2")
-//   src: url("../fonts/Play-Regular.woff") format("woff")
-//   font-style: normal
-//   font-weight: normal
-
-// @font-face 
-//   font-family: Esqadero
-//   src: url("../fonts/Esqadero FF CY 4F-Regular.woff2") format("woff2")
-//   src: url("../fonts/Esqadero FF CY 4F-Regular.woff") format("woff")
-//   font-style: normal
-//   font-weight: normal
-
-// @font-face 
-//   font-family: Jura
-//   src: url("../fonts/Jura.woff2") format("woff2")
-//   src: url("../fonts/Jura.woff") format("woff")
-//   font-style: normal
-//   font-weight: normal
-
-// $bdrds: 3px
 
 $white: #fff
-// $black: #000
-// $gray: #888
-// $salmon: deeppink
-// $smoky-black: rgba(#222222, .85)
-// $darksmoky-black: rgba(#111111, .9)
-
-// $ff: 'Esqadero', sans-serif
-// $ff-text: 'Jura', sans-serif
-// $ff-body: 1rem
-// $ff-light: 300
-// $ff-regular: 400
-// $ff-medium: 500
-
-// $h-header: 3rem
-// $h-footer: 3rem
-// $img-width: 13rem
-
-// /**
-//  *************************************** General configs
-//  */
-*
-  box-sizing: border-box
-  margin: 0
-  padding: 0
-  color: $white
-  background: #333
-
-// body
-//   font-family: $ff
-//   font-size: $ff-body
-//   line-height: 1em
-  
-// button
-//   background-color: transparent
-//   padding: 0
-//   border: 0
-//   outline: 0
-//   cursor: pointer
-
-// header
-//   flex: 0 0 $h-header
-//   line-height: $h-header
-//   background: $smoky-black
-//   text-transform: uppercase
-//   text-align: right
-//   padding: 0 1rem
-
-// footer
-//   height: $h-footer
-//   width: 100vw
-//   line-height: $h-footer
-//   background: $darksmoky-black
-//   text-transform: uppercase
-//   text-align: center
-//   float: right
-//   p
-//     color: $gray
-//     font-size: calc(#{$h-footer} / 5)
-//     letter-spacing: .4rem
-
-// .wrap
-//   width: 100%
-//   height: calc(100vh - #{$h-header})
-//   background: $black
-//   display: flex
-//   flex-flow: row nowrap
-
-// /**
-//  *************************************** Left image style
-//  */
-// .laside
-//   flex: 0 0 8rem
-//   position: relative
-//   display: flex
-//   flex-flow: column nowrap
-//   justify-content: space-between
-//   align-items: center
-//   &_img
-//     position: absolute
-//     top: 0
-//     left: 0
-//     background-image: url(../img/img1.jpg)
-//     background-size: cover
-//     background-position: 0% 50%
-//     height: 100%
-//     width: 100%
-//     transition: opacity 4s linear, background-position 20s linear
-
-// .profile
-//   width: 5rem
-//   height: 5rem
-//   background: pink
-//   border-radius: 50%
-//   margin: 1rem 0 0 0
-//   &_img
-//     width: 100%
-//     height: 100%
-//     border-radius: 50%
-
-// .settings_img
-//   width: 3rem
-//   height: 3rem
-//   margin: 0 0 1rem 0
-//   filter: invert(100%)
-//   &:hover
-//     cursor: pointer
-
-// /**
-//  *************************************** logo description
-//  */
-// .logo
-//   position: absolute
-//   top: 1.1rem
-//   left: 9rem
-//   z-index: 1
-//   font-face: $ff
-//   font-size: 2rem
-//   font-weight: bold
-//   mix-blend-mode: normal
-
-//   &_text
-//     color: $salmon
-//     text-shadow: 0px 0px 25px rgb(255, 255, 255)
-
-// /**
-//  *************************************** Page background
-//  */
-// .main
-//   flex: 1 1 auto
-//   display: flex
-//   flex-flow: column nowrap
-//   height: 100%
-//   &_container
-//     display: flex
-//     justify-content: flex-start
-//     align-items: center
-//     width: 100%
-//     height: 100%
-//     background: #ccc
-//     background-size: cover
-//     overflow: hidden
-
-// /**
-//  *************************************** main window
-//  */
-// .clients, .templates
-//   height: 100%
-//   overflow: auto
-
-// .clients
-//   flex: 1 1 20%
-//   background: #444
-//   min-width: 9rem
-//   &_item
-//     padding: 0.5rem
-//     height: 4rem
-//     width: 100%
-//     overflow: hidden
-//     display: flex
-//     &:hover
-//       cursor: pointer
-//       background: #4c4c4c
-//     &:hover &-img-pulse
-//       background: deeppink
-//       box-shadow: 0px 0px 8px 4px deeppink
-//     &-avatar
-//       height: 100%
-//       border-radius: 50%
-//       padding: .2rem 1rem
-//     &-status
-//       flex: 1 1 auto
-//       padding: 0.3rem
-//     &-img
-//       position: relative
-//       min-width: 3rem
-//       height: 3rem
-//       margin: 0 .5rem 0 0
-//       &-img, &-pulse
-//         position: absolute
-//         width: 100%
-//         height: 100%
-//         border-radius: 50%
-
-// .chat
-//   flex: 1 1 45%
-//   height: 100%
-//   background: lightblue
-//   display: flex
-//   flex-flow: column nowrap
-//   justify-content: space-between
-//   position: relative
-//   &_field
-//     flex: 1 1 auto
-//     padding: 1rem
-//     overflow: auto
-//     &-message:nth-child(odd)
-//       margin-top: 1.5rem
-//       width: 80%
-//       background: deepskyblue
-//       padding: .5rem
-//       border-radius: 1rem
-//       &::after
-//         content: ''
-//         border-left: solid 3rem deepskyblue
-//         border-bottom: solid 1.5rem transparent
-//         float: left
-//       p
-//         font-family: $ff-text
-//         color: $black
-
-//   &_input
-//     flex: 0 0 auto
-//     background: $black
-//     display: flex
-//     justify-content: space-between
-//     align-items: center
-//     padding-right: .5rem
-//     &-text
-//       flex: 1 1 auto
-//       height: 3rem
-//       border: none
-//       color: $black
-//       font-family: $ff
-//       font-size: 1.2rem
-//       line-height: 1.5rem
-//       font-weight: $ff-light
-//       padding: 0 .5rem 0 .5rem
-//       &::placeholder
-//         color: gray
-//       &:focus
-//         outline: none
-//         background: beige
-//     &-icon
-//       height: 2rem
-//       margin-left: .5rem
-//       &:hover
-//         cursor: pointer
-
 
 /**
  *************************************** for using in client site
@@ -320,6 +57,9 @@ $white: #fff
     width: 100%
     height: 100%
     border-radius: 50%
+    box-sizing: border-box
+    margin: 0
+    padding: 0
   &-button
     background-image: url('../img/ask-question.png')
     background-size: 70%
@@ -331,39 +71,16 @@ $white: #fff
     animation: ring 1s ease-out infinite
   &:hover
     cursor: pointer
-    
+
+.none
+  display: none
 
 /**
  *************************************** optional classes
  */        
-// .active
-//   background: deeppink
-//   box-shadow: 0px 0px 8px 4px deeppink
 
 .pulse
   animation: ring 1s ease-out infinite
-
-// p.msg-data
-//   font-size: .8rem
-//   line-height: 1.5rem
-//   color: gray
-// p.msg-text
-//   padding: .2rem 0 1rem 0
-
-/**
- *************************************** Responsive
- */
-// @media screen and (max-width: 990px)
-//   .description
-//     height: 60%
-
-// @media screen and (max-width: 890px)
-//   .description
-//     height: 70%
-
-// @media screen and (max-height: 320px)
-//   .description_form-text
-//     display: none
 
 /**/
 

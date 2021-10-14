@@ -5,6 +5,7 @@ let button_close = document.getElementById('tchat_close')
 button.addEventListener('click', () => {
   tchat.classList.add('bounceIn')
   tchat.classList.remove('flipOutY')
+  tchat.classList.remove('none')
   button_close.style.display = 'inherit'
   button.style.display = 'none'
   button_close.blur()
@@ -15,6 +16,7 @@ button.addEventListener('click', () => {
 button_close.addEventListener('click', () => {
   tchat.classList.remove('bounceIn')
   tchat.classList.add('flipOutY')
+  tchat.classList.add('none')
   button_close.style.display = 'none'
   button.style.display = 'inherit'
   button.blur()
