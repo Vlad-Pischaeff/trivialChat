@@ -89,7 +89,7 @@ const start = async () => {
       let params = parser(`${req.headers.origin}${req.url}`, true)
       console.log('websocket app started...', params.query.userName, req.url, req.headers['sec-websocket-key'], req.headers.origin)
       let { hostname, query } = params
-      // console.log('params...', hostname, query)
+      console.log('params...', hostname, query)
     /* end parse url *************************************** */
 
       ws.isAlive = true
@@ -98,10 +98,10 @@ const start = async () => {
       ws.on('message', message => {
         try {
           let data = JSON.parse(message)
-          console.log('received2: %s', message, wss.clients.size, hostname, countedSites[hostname])
-          if (data.from && countedSites[hostname]) {
-            let destination = countedSites[hostname]
-            console.log('destination...', destination)
+          console.log('received2: %s', message, wss.clients.size, hostname, countedSites[query.userHost])
+          if (data.from && countedSites[query.userHost]) {
+            let destination = countedSites[query.userHost]
+            console.log('destination...', query.userHost)
             clients[destination].send(JSON.stringify(data))
           }
           if (data.to) {

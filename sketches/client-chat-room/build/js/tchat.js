@@ -16,10 +16,18 @@ button.addEventListener('click', () => {
 button_close.addEventListener('click', () => {
   tchat.classList.remove('bounceIn')
   tchat.classList.add('flipOutY')
-  tchat.classList.add('none')
-  button_close.style.display = 'none'
-  button.style.display = 'inherit'
-  button.blur()
+  // button_close.style.display = 'none'
+  // button.style.display = 'inherit'
+  // button.blur()
   if (document.activeElement instanceof HTMLElement)
     document.activeElement.blur()
 })
+
+tchat.onanimationend = () => {
+  if (tchat.classList.contains('flipOutY')) {
+    tchat.classList.add('none')
+    button_close.style.display = 'none'
+    button.style.display = 'inherit'
+    button.blur()
+  }
+}
