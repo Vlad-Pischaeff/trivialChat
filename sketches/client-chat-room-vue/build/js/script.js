@@ -34,15 +34,9 @@ const App = {
     },
     pushMessage(message) {
       this.messages.push(message)
-      sessionStorage.setItem('tchat', JSON.stringify({
-        userID : this.userID, 
-        userHOST : this.userHOST,
-        userMSGS : this.messages,
-        userAvatar : this.avatar,
-        userGreeting : this.greeting,
-        userTitle : this.title,
-        userDesc: this.desc,
-      }))
+      let data = JSON.parse(sessionStorage.getItem('tchat'))
+      data.userMSGS = this.messages
+      sessionStorage.setItem('tchat', JSON.stringify(data))
       this.update = true
     }
   },
