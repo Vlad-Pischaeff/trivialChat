@@ -101,12 +101,16 @@ router.get('/user/:id', auth, async (req, res) => {
 })
 
 // get user's site information
-router.get('/usersite', async (req, res) => {
+router.get('/usersite/:id', async (req, res) => {
   try {
-    const user = await User.findOne({ site: '192.168.140.68' })
+    const user = await User.findOne({ site: req.params.id })
     // const site
-    console.log('req...', req.headers)
-    res.status(201).json({avatar: user.avatar, title: user.title, desc: user.desc, greeting: user.greeting})
+    // console.log('auth routes req...', req.headers)
+    if (user) {
+      res.status(201).json({ avatar: user.avatar, title: user.title, desc: user.desc, greeting: user.greeting })
+    } else {
+      res.status(401).json({ message: 'NO SUCH USER' })
+    }
   } catch(e) {
     res.status(500).json({ message:`Something wrong ..., details ${e}` })
   }
