@@ -29,7 +29,7 @@ const App = {
         this.ws.send(JSON.stringify(message))
         this.inputVal  = ''
         this.pushMessage(message)
-        console.log('Messages ...', this.messages, this.userID)
+        // console.log('Messages ...', this.messages, this.userID)
       }
     },
     pushMessage(message) {

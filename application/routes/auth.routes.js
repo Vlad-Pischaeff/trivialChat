@@ -105,7 +105,7 @@ router.get('/usersite/:id', async (req, res) => {
   try {
     const user = await User.findOne({ site: req.params.id })
     // const site
-    // console.log('auth routes req...', req.headers)
+    console.log('auth routes req...', req.headers.referer, req.headers.host)
     if (user) {
       res.status(201).json({ avatar: user.avatar, title: user.title, desc: user.desc, greeting: user.greeting })
     } else {
