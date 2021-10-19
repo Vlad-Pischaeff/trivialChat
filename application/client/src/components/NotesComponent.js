@@ -2,7 +2,7 @@ import { $G } from "../service/Service"
 import NotesWrap from "./NotesWrap"
 
 export default function NotesComponent() {
-  if ($G.ACC.notes) {
+  if ($G.ACC.notes && $G.ACC.notes.length !== 0) {
     return (
       $G.ACC.notes.map((n, i) => { 
         return (
@@ -14,7 +14,7 @@ export default function NotesComponent() {
     )
   } else {
     return (
-      <div style={{margin: '.5rem'}}><p>No notes...</p></div>
+      <div className="m-0_5rem"><p>No notes...</p></div>
     )
   }
 }

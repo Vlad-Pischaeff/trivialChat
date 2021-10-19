@@ -2,7 +2,7 @@ import { $G } from "../service/Service"
 import QuickAnswerWrap from "./QuickAnswerWrap"
 
 export default function QuickAnswerComponent() {
-  if ($G.ACC.answer) {
+  if ($G.ACC.answer && $G.ACC.answer.length !== 0) {
     return (
       $G.ACC.answer.map((n, i) => { 
         return (
@@ -14,7 +14,7 @@ export default function QuickAnswerComponent() {
     )
   } else {
     return (
-      <div style={{margin: '.5rem'}}><p>No answers...</p></div>
+      <div className="m-0_5rem"><p>No answers...</p></div>
     )
   }
 }
