@@ -9,13 +9,11 @@ export default function TemplatesHeader({ idx, setIdx }) {
   return (
     <section className="templates_header">
       {
-        tabs.map((n, i) => {
-          return (
-            <TooltipWrap className={idx === i ? "tab tab-selected" : "tab"} position="tip-right" tip={n.tip}  key={i}>
-              <img className={idx === i ? "b-icon" : "w-icon"} src={n.icon} alt='answers' onClick={() => setIdx(i)}/>
-            </TooltipWrap>
-          )
-        })
+        tabs.map((n, i) => (
+          <TooltipWrap className={idx === i ? "tab tab-selected" : "tab"} position="tip-right" tip={n.tip} key={i}>
+            <img className={idx === i ? "b-icon" : "w-icon"} src={n.icon} alt='answers' onClick={() => setIdx(i)}/>
+          </TooltipWrap>
+        ))
       }
     </section>
   )

@@ -117,6 +117,7 @@ router.get('/usersite/:id', async (req, res) => {
 })
 
 // get users information
+/*
 router.post('/users', auth, async (req, res) => {
   try {
     const candidates = req.body.users
@@ -126,6 +127,7 @@ router.post('/users', auth, async (req, res) => {
     res.status(500).json({ message:`Something wrong ..., details ${e}` })
   }
 })
+*/
 
 // update user information
 router.patch('/user/:id', auth, async (req, res) => {
@@ -150,6 +152,7 @@ router.patch('/user/:id', auth, async (req, res) => {
 })
 
 // /api/auth/upload
+/*
 router.post('/upload', async (req, res) => {
     try {
       res.status(201).json({})
@@ -158,8 +161,10 @@ router.post('/upload', async (req, res) => {
     }
   }
 )
+*/
 
 // /api/auth/search
+/*
 router.post('/search', auth, async (req, res) => {
   try {
     const user = await User.findOne({ _id: req.user.userId })
@@ -173,8 +178,10 @@ router.post('/search', auth, async (req, res) => {
     res.status(500).json({ message:`Something wrong ..., details ${e}` })
   }
 })
+*/
 
 // list of friends ready to invite /api/auth/friends
+/*
 router.get('/friends', auth, async (req, res) => {
   try {
     const user = await User.findOne({ _id: req.user.userId })
@@ -184,9 +191,11 @@ router.get('/friends', auth, async (req, res) => {
     res.status(500).json({ message:`Something wrong ..., details ${e}` })
   }
 })
+*/
 
 // list of invited friends /api/auth/invited or
 // list of users profile in array of id's including room owner profile
+/*
 router.post('/invited', auth, async (req, res) => {
   try {
     const invited = req.body.invited
@@ -197,8 +206,10 @@ router.post('/invited', auth, async (req, res) => {
     res.status(500).json({ message:`Something wrong ..., details ${e}` })
   }
 })
+*/
 
 // add new friends /api/auth/friends
+/*
 router.patch('/friends', auth, async (req, res) => {
   try {
     const candidates = Object.values(req.body.friends)
@@ -210,8 +221,10 @@ router.patch('/friends', auth, async (req, res) => {
     res.status(500).json({ message:`Something wrong ..., details ${e}` })
   }
 })
+*/
 
 // remove from friends /api/auth/unfollow/:id
+/*
 router.patch('/unfollow/:id', auth, async (req, res) => {
   try {
     const id = req.params.id
@@ -223,6 +236,6 @@ router.patch('/unfollow/:id', auth, async (req, res) => {
     res.status(500).json({ message:`Something wrong ..., details ${e}` })
   }
 })
-
+*/
 
 module.exports = router

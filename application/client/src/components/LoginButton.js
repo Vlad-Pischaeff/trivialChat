@@ -37,8 +37,8 @@ export default function LoginButton({ type }) {
 
   return (
     <input  className="forms_buttons-action" 
-      type="submit" 
-      value={type === 'login' ? 'Login' : 'Sign up'} 
-      onClick={handlerClick} />
+            type="submit" 
+            value={type === 'login' ? 'Login' : 'Sign up'} 
+            onClick={handlerClick} />
   )
 }

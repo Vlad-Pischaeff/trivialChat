@@ -22,16 +22,14 @@ export default function MessageList() {
       { 
         msgs.length === 0 
           ? <div>No messages...</div>
-          : msgs.map((item, idx) => {
-              return (
-                <div  key={idx} 
-                      className="chat_field-message"
-                      data-align={item.msg1 ? 'from': 'to'} 
-                      ref={msgRef} >
-                  <Message item={item} />
-                </div>
-            )
-          })
+          : msgs.map((item, idx) => (
+              <div  key={idx} 
+                    className="chat_field-message"
+                    data-align={item.msg1 ? 'from': 'to'} 
+                    ref={msgRef} >
+                <Message item={item} />
+              </div>
+            ))
       }
     </div>
   )

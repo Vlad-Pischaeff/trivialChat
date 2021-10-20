@@ -15,11 +15,11 @@ export default function QuickAnswerText({ item, idx, edit }) {
   }
 
   return (
-      <div className="templates_body-itemtext">
-        <p  contentEditable={edit} suppressContentEditableWarning={true} ref={inputRef} 
-            onInput={handlerChange}>
-          {item}
-        </p>
-      </div>
+    <div className="templates_body-itemtext">
+      <p  contentEditable={edit} suppressContentEditableWarning={true} ref={inputRef} 
+          onInput={handlerChange}>
+        {item}
+      </p>
+    </div>
   )
 }

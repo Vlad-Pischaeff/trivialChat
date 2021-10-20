@@ -1,6 +1,5 @@
 import { $USR, useReRender } from "../service/Service"
 import Client from "./Client"
-import ClientEmpty from "./ClientEmpty"
 
 export default function ClientList() {
   const { reRenderOnReceivedMessage } = useReRender()
@@ -9,7 +8,7 @@ export default function ClientList() {
     <div className="clients">
       {
         $USR.length === 0
-          ? <ClientEmpty />
+          ? <div className="client-empty">No clients...</div>
           : $USR.map((n, i) => <Client n={n} i={i} key={i} />)
       }
     </div>
