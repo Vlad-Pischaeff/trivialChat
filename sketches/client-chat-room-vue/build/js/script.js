@@ -55,6 +55,7 @@ const App = {
   },
   async mounted() {
     let data = JSON.parse(sessionStorage.getItem('tchat'))
+    // console.log('fetch data...', data)
     if (!data) {
       this.userID = random_id()
       let url = (window.location != window.parent.location)
@@ -78,10 +79,10 @@ const App = {
         userID : this.userID, 
         userHOST : this.userHOST,
         userMSGS : this.messages,
-        userAvatar : response.avatar,
-        userGreeting : response.greeting,
-        userTitle : response.title,
-        userDesc : response.desc,
+        userAvatar : this.avatar,
+        userGreeting : this.greeting,
+        userTitle : this.title,
+        userDesc : this.desc,
       }))
     } else {
       this.userID = data.userID
