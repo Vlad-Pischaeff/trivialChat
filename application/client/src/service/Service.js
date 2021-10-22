@@ -122,7 +122,7 @@ const updateUserProfile = async (body) => {
     $G.ACC = newdata
     Emitter.emit('profile updated')
   } catch(e) {
-    alert('Error while update User profile ...' + e)
+    alert('Error while update User profile ...' + e.val)
   }
 }
 
