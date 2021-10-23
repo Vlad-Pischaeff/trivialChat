@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Emitter } from '../service/Service'
+import { Emitter } from '../service/ServiceEmitter'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import AsidePictureSlider from '../components/AsidePictureSlider'

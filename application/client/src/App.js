@@ -1,7 +1,8 @@
 
 import { Route, Switch, Redirect, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { Emitter, $G } from "./service/Service"
+import { $G } from "./service/Service"
+import { Emitter } from './service/ServiceEmitter'
 import { useStorage } from './hooks/storage.hook'
 import LoginPage from './pages/LoginPage'
 import MainPage from './pages/MainPage'

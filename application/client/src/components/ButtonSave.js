@@ -1,5 +1,6 @@
 import { useHistory } from "react-router"
-import { $G, Emitter } from "../service/Service"
+import { $G } from "../service/Service"
+import { Emitter } from "../service/ServiceEmitter"
 import TooltipWrap from "./TooltipWrap"
 
 export default function ButtonSave({ save }) {

@@ -1,5 +1,6 @@
 import { useAuth } from '../hooks/auth.hook'
-import { Emitter, $selectedUserIdx } from '../service/Service'
+import { $selectedUserIdx } from '../service/Service'
+import { Emitter } from '../service/ServiceEmitter'
 import TooltipWrap from './TooltipWrap'
 
 export default function MessageInput() {

@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react"
 import { useAuth } from "../hooks/auth.hook"
-import { $G, Emitter } from '../service/Service'
+import { $G } from '../service/Service'
+import { Emitter } from "../service/ServiceEmitter"
 
 export default function InputEmail({ type }) {
   const email = useAuth()

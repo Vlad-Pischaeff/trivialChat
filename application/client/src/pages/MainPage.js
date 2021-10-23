@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { useLocation, useHistory } from "react-router-dom"
-import { $G, Emitter } from '../service/Service'
+import { $G } from '../service/Service'
+import { Emitter } from "../service/ServiceEmitter"
 import AsidePictureSlider from "../components/AsidePictureSlider"
 import ClientList from "../components/ClientList"
 import MessageList from "../components/MessageList"

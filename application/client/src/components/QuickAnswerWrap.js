@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
-import { $G, $USR, Emitter, $selectedUserIdx } from "../service/Service"
+import { $G, $USR, $selectedUserIdx } from "../service/Service"
+import { Emitter } from "../service/ServiceEmitter"
 import TooltipWrap from "./TooltipWrap"
 import QuickAnswerText from "./QuickAnswerText"
 

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link, useLocation } from "react-router-dom"
-import { $G, Emitter } from "../service/Service"
+import { $G } from "../service/Service"
+import { Emitter } from "../service/ServiceEmitter"
 import TooltipWrap from "./TooltipWrap"
 
 export default function TemplatesFooter({ idx }) {

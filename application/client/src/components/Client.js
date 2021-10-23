@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { Emitter, $URL, $selectedUserIdx } from '../service/Service'
+import { $URL, $selectedUserIdx } from '../service/Service'
+import { Emitter } from '../service/ServiceEmitter'
 
 export default function Client({ n, i }) {
   const [ newMsgTrigger, setNewMsgTrigger ] = useState(true)

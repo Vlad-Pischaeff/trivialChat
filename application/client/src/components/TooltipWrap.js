@@ -1,4 +1,4 @@
-import { Emitter } from "../service/Service"
+import { Emitter } from "../service/ServiceEmitter"
 
 export default function TooltipWrap({position = "tip", tip, children, className}) {
 

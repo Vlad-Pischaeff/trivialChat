@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Emitter } from "../service/Service"
+import { Emitter } from "../service/ServiceEmitter"
 import  __TitleEffect  from "../js/__TitleShow"
 
 export default function LoginPageProfile() {

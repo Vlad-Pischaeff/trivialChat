@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-import { Emitter } from "../service/Service"
+import { Emitter } from "../service/ServiceEmitter"
 const evt = {}
 
 export default function Tip() {

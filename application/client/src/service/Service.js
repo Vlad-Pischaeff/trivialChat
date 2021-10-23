@@ -1,5 +1,5 @@
-import EventEmitter from 'eventemitter3'
-import { useEffect, useState } from 'react'
+// import { useEffect, useState } from 'react'
+import { Emitter } from './ServiceEmitter'
 
 export const $USR = []
 /*
@@ -20,16 +20,6 @@ export const $USR = []
 */
 export let $selectedUserIdx
 export let $WS
-
-const eventEmitter = new EventEmitter()
-
-export const Emitter = {
-  on: (event, fn) => eventEmitter.on(event, fn),
-  once: (event, fn) => eventEmitter.once(event, fn),
-  off: (event, fn) => eventEmitter.off(event, fn),
-  emit: (event, payload) => eventEmitter.emit(event, payload),
-  emit2: (event, payload1, payload2) => eventEmitter.emit(event, payload1, payload2),
-}
 
 let { hostname, protocol : httpPrefix } = window.location  
 let wsPrefix = httpPrefix === 'http:' ? 'ws:' : 'wss:'
@@ -70,27 +60,27 @@ export const randomInteger = (min, max) => {
   return Math.floor(rand)
 }
 
-export const useReRender = () => {
-  const [ reRenderOnReply, setReRenderOnReply ] = useState()
-  const [ reRenderOnReceivedMessage, setReRenderOnReceivedMessage ] = useState()
-  const [ reRenderOnUpdUserProfile, setReRenderOnUpdUserProfile ] = useState()
-  const [ reRenderOnSelectUser, setReRenderOnSelectUser ] = useState()
+// export const useReRender = () => {
+//   const [ reRenderOnReply, setReRenderOnReply ] = useState()
+//   const [ reRenderOnReceivedMessage, setReRenderOnReceivedMessage ] = useState()
+//   const [ reRenderOnUpdUserProfile, setReRenderOnUpdUserProfile ] = useState()
+//   const [ reRenderOnSelectUser, setReRenderOnSelectUser ] = useState()
 
-  useEffect(() => {
-    Emitter.on('reply to user', () => setReRenderOnReply(Date.now()))
-    Emitter.on('received message from', () => setReRenderOnReceivedMessage(Date.now()))
-    Emitter.on('profile updated', () => setReRenderOnUpdUserProfile(Date.now()))
-    Emitter.on('select user', () => setReRenderOnSelectUser(Date.now()))
-    return () => {
-      Emitter.off('reply to user')
-      Emitter.off('received message from')
-      Emitter.off('profile updated')
-      Emitter.off('select user')
-    }
-  }, [])
+//   useEffect(() => {
+//     Emitter.on('reply to user', () => setReRenderOnReply(Date.now()))
+//     Emitter.on('received message from', () => setReRenderOnReceivedMessage(Date.now()))
+//     Emitter.on('profile updated', () => setReRenderOnUpdUserProfile(Date.now()))
+//     Emitter.on('select user', () => setReRenderOnSelectUser(Date.now()))
+//     return () => {
+//       Emitter.off('reply to user')
+//       Emitter.off('received message from')
+//       Emitter.off('profile updated')
+//       Emitter.off('select user')
+//     }
+//   }, [])
 
-  return { reRenderOnUpdUserProfile, reRenderOnReply, reRenderOnReceivedMessage, reRenderOnSelectUser }
-}
+//   return { reRenderOnUpdUserProfile, reRenderOnReply, reRenderOnReceivedMessage, reRenderOnSelectUser }
+// }
 
 // ------------------------------------------------------------------------ On Update User Profile
 Emitter.on('update user profile', (data) => {

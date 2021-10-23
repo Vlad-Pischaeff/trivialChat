@@ -1,7 +1,8 @@
 import { useHistory } from "react-router-dom"
 import { useFetch } from "../hooks/fetch.hook"
 import { useStorage } from "../hooks/storage.hook"
-import { Emitter, $G } from "../service/Service"
+import { $G } from "../service/Service"
+import { Emitter } from "../service/ServiceEmitter"
 
 export default function LoginButton({ type }) {
   const { request } = useFetch()
