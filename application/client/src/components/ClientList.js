@@ -1,4 +1,5 @@
-import { $USR, useReRender } from "../service/Service"
+import { $USR } from "../service/Service"
+import { useReRender } from "../service/ServiceRender"
 import Client from "./Client"
 
 export default function ClientList() {

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react"
-import { $USR, useReRender, $selectedUserIdx } from "../service/Service"
+import { $USR, $selectedUserIdx } from "../service/Service"
+import { useReRender } from "../service/ServiceRender"
 import Message from "./Message"
 
 export default function MessageList() {

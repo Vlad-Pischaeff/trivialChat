@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useReRender } from "../service/Service"
+import { useReRender } from "../service/ServiceRender"
 import TemplatesHeader from "./TemplatesHeader"
 import QuickAnswerComponent from "./QuickAnswerComponent"
 import NotesComponent from "./NotesComponent"
