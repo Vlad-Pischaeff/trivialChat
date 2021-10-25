@@ -1,11 +1,11 @@
-import { $G } from "../service/Service"
+import { $currPage } from "../service/Service"
 
 export default function Header() {
 
   return (
     <header> 
       { 
-        $G.PAGE === 'LOGIN'
+        $currPage === 'LOGIN'
           ? <p>register page</p>
           : <p>main page</p>
       }

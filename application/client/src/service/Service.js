@@ -18,6 +18,7 @@ export const $USR = []
     {}, {} ...
   ]
 */
+export let $currPage = 'LOGIN'
 export let $selectedUserIdx
 export let $WS
 
@@ -32,8 +33,6 @@ export const $G = {
   PASSWORD: '',
   SEMAIL: '',
   SPASSWORD: '',
-  PAGE: 'LOGIN',
-  SLIDER: true
 }
 
 export const $C = {

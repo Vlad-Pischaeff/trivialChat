@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react"
 import { Link, useLocation } from "react-router-dom"
-import { $C, $G } from "../service/Service"
+import { $C, $currPage } from "../service/Service"
 import __AsideSlider from "../js/__AsideSlider"
 import AvatarFlow from "./AvatarFlow"
 import TooltipWrap from "./TooltipWrap"
@@ -11,17 +11,17 @@ export default function AsidePictureSlider() {
 
   useEffect(() => {
     let timerID
-    if ($G.PAGE === 'LOGIN') {
+    if ($currPage === 'LOGIN') {
       timerID = setInterval(() => __AsideSlider(imgRef), 5000)
     }
     return () => clearInterval(timerID)
   }, [])
 
   return (
-    <aside className={$C[$G.PAGE].aside} ref={imgRef} >
+    <aside className={$C[$currPage].aside} ref={imgRef} >
       {
-        $G.PAGE === 'LOGIN'
-          ? <div className={$C[$G.PAGE].aside_img} ></div>
+        $currPage === 'LOGIN'
+          ? <div className={$C[$currPage].aside_img} ></div>
           : <>
               <AvatarFlow />
               <nav style={{display: "flex", flexFlow: "column nowrap", alignItems: "center"}}>
