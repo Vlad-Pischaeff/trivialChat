@@ -1,7 +1,6 @@
 
 import { Route, Switch, Redirect, useLocation } from 'react-router-dom'
-import { useEffect, useState } from 'react'
-import { $G } from "./service/Service"
+import { $currPage } from "./service/Service"
 import { Emitter } from './service/ServiceEmitter'
 import { useStorage } from './hooks/storage.hook'
 import LoginPage from './pages/LoginPage'
@@ -13,30 +12,20 @@ import SettingsCropImage from './pages/SettingsCropImage'
 import MessagePage from './pages/MessagePage'
 
 function App() {
-  const [ isAuthenticated, setIsAuthenticated ] = useState(false)
-  const { getCredentials } = useStorage()
   const location = useLocation()
   const background = location.state && location.state.background
+  const { getCredentials } = useStorage()
+  
+  // console.log('App ...', $currPage, background, location)
 
-  const setAuth = () => {
-    setIsAuthenticated(true)                    /* set FLAG isAuthenticated to TRUE */
-    $G.PAGE = 'MAIN'                            /* set MAIN page */
+  if (getCredentials() && $currPage !== 'MAIN') {
+    Emitter.emit('authenticated')
   }
-
-  if (!isAuthenticated && getCredentials()) {   /* if has credentials in sessionStorage */
-    setAuth()             
-  } 
-
-  useEffect(() => {
-    Emitter.on('authenticated', setAuth)
-  }, [])
-
-  // console.log('App ...', isAuthenticated, $G, background, location)
 
   return (
     <>
     {
-      isAuthenticated
+      $currPage === 'MAIN'
         ? 
           <>
             <Switch location={background || location}>
