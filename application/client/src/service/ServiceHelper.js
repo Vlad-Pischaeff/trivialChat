@@ -1,16 +1,15 @@
 import { $G } from "./Service"
-import { Emitter } from "./ServiceEmitter"
 
 export const randomInteger = (min, max) => {
   let rand = min + Math.random() * (max + 1 - min)
   return Math.floor(rand)
 }
 
-export const httpRequest = async (url, method = 'GET', body = null) => {
+export const httpRequest = async (url, method = 'GET', body = null, account) => {
   try {
     body = body ? JSON.stringify(body) : null
     const headers = { 'Content-Type': 'application/json', 
-                    ...( $G.ACC && $G.ACC.token && { Authorization: $G.ACC.token } )
+                    ...( account && account.token && { Authorization: account.token } )
                     }
     const response = await fetch(url, {method, body, headers})
     const data = await response.json()
@@ -20,18 +19,6 @@ export const httpRequest = async (url, method = 'GET', body = null) => {
     return data
   } catch (e) {
     throw e
-  }
-}
-
-export const updateUserProfile = async (body) => {
-  try {
-    const data = await httpRequest(`/api/auth/user/${$G.ACC._id}`, 'PATCH', body)
-    let newdata = { ...data, token: $G.ACC.token }
-    sessionStorage.setItem('credentials', JSON.stringify(newdata))
-    $G.ACC = newdata
-    Emitter.emit('profile updated')
-  } catch(e) {
-    alert('Error while update User profile ...' + e.val)
   }
 }
 
