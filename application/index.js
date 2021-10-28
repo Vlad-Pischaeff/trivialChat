@@ -26,20 +26,13 @@ const Server = isProduction
                 : http.createServer(app)
 
 const clients = {}
+let wsClients = new WeakMap()
 let countedSites = {}
 let countedEmails = {}
 const emitter = require('./routes/service')
 
 app.use(express.json({ extended: true }))
 app.use(cors())
-
-// app.get('*', (req, res, next) => {
-  // console.log('REQ...', req.method, req.params, req.originalUrl, req.path, req.isSocket)
-//   let uri = req.originalUrl.split('/')
-//   console.log('PATH...', req.originalUrl, uri)
-//   res.sendFile(path.join(__dirname, 'img5.jpg'))
-//   next()
-// })
 
 app.use('/img', express.static(path.join(__dirname, 'img' )))
 app.use('/fonts', express.static(path.join(__dirname, 'fonts' )))
@@ -50,11 +43,7 @@ app.get('/tchat', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'tchat', 'main.html'))
   }
 )
-
 app.use('/api/auth', require('./routes/auth.routes'))
-// app.use('/api/room', require('./routes/room.routes'))
-// app.use('/api/message', require('./routes/message.routes'))
-// app.use('/api/notification', require('./routes/notification.routes'))
 
 if (isProduction) {
   app.use('/', express.static(path.join(__dirname, 'client', 'build', )))
@@ -94,34 +83,39 @@ const start = async () => {
 
       ws.isAlive = true
       clients[query.userName] = ws
+      wsClients.set(ws, query.userName)
 
       ws.on('message', message => {
         try {
           let data = JSON.parse(message)
-          console.log('received2: %s', message, wss.clients.size, hostname, countedSites[query.userHost])
+          // data.from = message from client to site manager
+          // data.to - message to client from site manager
+          // console.log(' received: \t \t', message, '\n clients size...\t', wss.clients.size, '\n to...\t \t', countedSites[query.userHost])
           if (data.from && countedSites[query.userHost]) {
-            let destination = countedSites[query.userHost]
-            console.log('destination...', query.userHost)
-            clients[destination].send(JSON.stringify(data))
+            let destination = countedSites[query.userHost]    // equal to query.userName
+            // wss.clients.forEach(ws => console.log('wss clients...', wsClients.get(clients[destination])))
+            // console.log(' destination...\t', destination, '\n query.userHost... \t', query.userHost)
+            // console.log(' send...\t \t', wsClients.get(clients[destination]))
+            clients[destination] && clients[destination].send(JSON.stringify(data))
           }
           if (data.to) {
             clients[data.to].send(JSON.stringify(data))
           }
         } catch(e) {
-          console.log('Error while received WebSocket message ... ', message)
+          console.log('Error while received WebSocket message ... ', e, message)
         }
       })
     
       ws.on('pong', () => {
         ws.isAlive = true
-        console.log('isAlive...', query.userName, ws.isAlive,`${new Date()}`)
+        // console.log('isAlive...', query.userName, ws.isAlive,`${new Date()}`)
       })
     })
     
     // ...preserve constant clients connections...
     setInterval(() => {
       wss.clients.forEach(ws => {
-        if (!ws.isAlive) return ws.terminate()
+        // if (!ws.isAlive) return ws.terminate()
         ws.isAlive = false
         ws.ping()
       })
@@ -146,7 +140,7 @@ const getUsers = async () => {
       allNames[name.email] = name.site
       return allNames
     }, {})
-    console.log('emitter on GET USERS ...', countedSites, countedEmails)
+    console.log('emitter on GET USERS ...\n', 'countedSites...\t \n', countedSites, '\n countedEmails...\t', countedEmails)
     // return { countedSites, countedEmails }
   } catch(e) {
     console.log('getUsers error ...', e)
