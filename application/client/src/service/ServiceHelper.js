@@ -12,7 +12,7 @@ export const httpRequest = async (url, method = 'GET', body = null, account) => 
     const response = await fetch(url, {method, body, headers})
     const data = await response.json()
     if (!response.ok) {
-      alert(data.message) 
+      return alert(data.message) 
     }
     return data
   } catch (e) {

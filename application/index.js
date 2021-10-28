@@ -108,7 +108,10 @@ const start = async () => {
     
       ws.on('pong', () => {
         ws.isAlive = true
-        // console.log('isAlive...', query.userName, ws.isAlive,`${new Date()}`)
+      })
+
+      ws.on('close', () => {
+        console.log('ws Close...', wsClients.get(ws))
       })
     })
     

@@ -61,10 +61,12 @@ Emitter.on('update user profile', async (body) => {
   if (body) {
     try {
       const data = await httpRequest(`/api/auth/user/${$G.ACC._id}`, 'PATCH', body, $G.ACC)
-      let newdata = { ...data, token: $G.ACC.token }
-      sessionStorage.setItem('credentials', JSON.stringify(newdata))
-      $G.ACC = newdata
-      Emitter.emit('profile updated')
+      if (data) {
+        let newdata = { ...data, token: $G.ACC.token }
+        sessionStorage.setItem('credentials', JSON.stringify(newdata))
+        $G.ACC = newdata
+        Emitter.emit('profile updated')
+      }
     } catch(e) {
       alert('Error while update User profile ...' + e.val)
     }
