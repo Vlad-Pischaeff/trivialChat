@@ -27,6 +27,8 @@ const Server = isProduction
 
 const clients = {}
 let wsClients = new WeakMap()
+let wsManagers = new WeakMap()
+let managedClients = {}
 let countedSites = {}
 let countedEmails = {}
 const emitter = require('./routes/service')
@@ -83,7 +85,7 @@ const start = async () => {
 
       ws.isAlive = true
       clients[query.userName] = ws
-      wsClients.set(ws, query.userName)
+      emitter.emit('add websocket WeakMap', { ws, query })
 
       ws.on('message', message => {
         try {
@@ -111,7 +113,7 @@ const start = async () => {
       })
 
       ws.on('close', () => {
-        console.log('ws Close...', wsClients.get(ws))
+        console.log('ws Close...', wsManagers.get(ws), wsClients.get(ws))
       })
     })
     
@@ -135,17 +137,31 @@ start()
 const getUsers = async () => {
   try {
     const users = await User.find({})
-    countedSites = users.reduce((allNames, name) => {
+    countedSites = users.reduce((allNames, name) => {     // CountedSites = { site: email }
       allNames[name.site] = name.email
       return allNames
     }, {})
-    countedEmails = users.reduce((allNames, name) => {
+    countedEmails = users.reduce((allNames, name) => {    // CountedEmails = { email: site }
       allNames[name.email] = name.site
       return allNames
     }, {})
     console.log('emitter on GET USERS ...\n', 'countedSites...\t \n', countedSites, '\n countedEmails...\t', countedEmails)
-    // return { countedSites, countedEmails }
   } catch(e) {
     console.log('getUsers error ...', e)
   }
 }
+
+emitter.on('add websocket WeakMap', data => {
+  let { ws, query } = data
+  if (query.userHost) {
+    wsClients.set(ws, query.userName)
+    let managerEmail = countedSites[query.userHost]
+    // console.log('manager...', managerEmail, query.userHost)
+    managedClients[managerEmail] = !managedClients[managerEmail]
+      ? [query.userName]
+      : [...managedClients[managerEmail], query.userName]
+    // console.log('managedClients...', managedClients)
+  } else {
+    wsManagers.set(ws, query.userName)
+  }
+})
