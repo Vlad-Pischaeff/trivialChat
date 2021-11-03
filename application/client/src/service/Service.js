@@ -111,4 +111,7 @@ Emitter.on('init WS', () => {
     Emitter.emit('received message from', data)
   }
 
+  $WS.onopen = () => {
+    $WS.send(JSON.stringify({ 'newManagerConnection': $G.ACC.email, 'msg': 'initial connection...', 'date': Date.now() }))
+  }
 })
