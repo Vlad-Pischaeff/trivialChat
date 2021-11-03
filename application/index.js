@@ -63,9 +63,7 @@ const start = async () => {
       useFindAndModify: false
     })
 
-    const server = await Server.listen(PORT, () => {
-        console.log('http/https server started ...')
-    })
+    const server = await Server.listen(PORT, () => { console.log('http/https server started ...') })
 
     emitter.on('get users', getUsers)
     emitter.emit('get users')
@@ -74,18 +72,16 @@ const start = async () => {
     
     wss.on('connection', (ws, req) => {
 
-    /* parse url ws://host:port/ws?param=value ************ */
-    /* let parse url 'ws:/localhost:5000/ws?userName=vlad' */
-
+    /* start parse url ******************************************************** */
+    /* url = 'ws:/localhost:5001/ws?userName=vlad&userHost=localhost'           */
       let params = parser(`${req.headers.origin}${req.url}`, true)
-      console.log('websocket app started...', params.query.userName, req.url, req.headers['sec-websocket-key'], req.headers.origin)
+      // console.log('websocket app started...', params.query.userName, req.url, req.headers['sec-websocket-key'], req.headers.origin)
       let { hostname, query } = params
-      console.log('params...', hostname, query)
-    /* end parse url *************************************** */
+      // console.log('params...', hostname, query)
+    /* end parse url ********************************************************** */
 
       ws.isAlive = true
       wsUsers[query.userName] = ws
-      emitter.emit('add websocket WeakMap', { ws, query })
 
       ws.on('message', message => {
         try {
@@ -105,17 +101,19 @@ const start = async () => {
           }
           if (data.newClientConnection) {
             // let managerEmail = countedSites[query.userHost]
-            // if (!managedClients[managerEmail].includes(query.userName)) {
-              // if (wsUsers[managerEmail]) {
-              //   wsUsers[query.userName].send(JSON.stringify({'to': query.userName, 'msg': 'manager is ONLINE...', 'date': Date.now()}))
-              // } else {
-              //   wsUsers[query.userName].send(JSON.stringify({'to': query.userName, 'msg': 'manager is OFFLINE...', 'date': Date.now()}))
-              // }
+            // if (wsUsers[managerEmail]) {
+            //   if ( managedClients[managerEmail] && 
+            //       !managedClients[managerEmail].includes(query.userName)) {
+            //   wsUsers[query.userName].send(JSON.stringify({'to': query.userName, 'msg': 'manager is ONLINE...', 'date': Date.now()}))
+            // } else {
+            //   wsUsers[query.userName].send(JSON.stringify({'to': query.userName, 'msg': 'manager is OFFLINE...', 'date': Date.now()}))
             // }
+            emitter.emit('add websocket clients', { ws, query })
             console.log('newClientConnection...', managedClients)
           }
           if (data.newManagerConnection) {
             // console.log('newManagerConnection...', managedClients, query.userName)
+            emitter.emit('add websocket managers', { ws, query })
             if (managedClients[query.userName]) {
               managedClients[query.userName].forEach(client => 
                 wsUsers[client].send(JSON.stringify({'to': client, 'msg': 'manager is ONLINE...', 'date': Date.now()}))
@@ -133,7 +131,7 @@ const start = async () => {
 
       ws.on('close', () => {
         console.log('ws Close...', wsManagers.get(ws), wsClients.get(ws))
-        let managerEmail = wsManagers.get(ws)
+        let managerEmail = wsManagers.get(ws)         // send warning to all clients, "manager is OFFLINE..."
         if (managedClients[managerEmail]) {
           managedClients[managerEmail].forEach(client => 
             wsUsers[client].send(JSON.stringify({'to': client, 'msg': 'manager is OFFLINE...', 'date': Date.now()}))
@@ -175,10 +173,17 @@ const getUsers = async () => {
   }
 }
 
-emitter.on('add websocket WeakMap', data => {
+emitter.on('add websocket managers', data => {
   let { ws, query } = data
-  if (query.userHost) {
-    wsClients.set(ws, query.userName)
+  if (!query.userHost) {                     // only client has query.userHost
+    wsManagers.set(ws, query.userName)
+    console.log('WS managers...', query.userName)
+  }
+})
+
+emitter.on('add websocket clients', data => {
+  let { ws, query } = data
+  if (query.userHost) {                       // only client has query.userHost
     let managerEmail = countedSites[query.userHost]
 
     if (managedClients[managerEmail]) {
@@ -189,8 +194,5 @@ emitter.on('add websocket WeakMap', data => {
       managedClients[managerEmail] = [query.userName]
     }
     console.log('WS clients...', managedClients)
-  } else {
-    wsManagers.set(ws, query.userName)
-    console.log('WS managers...', managedClients)
   }
 })
