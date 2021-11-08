@@ -107,10 +107,10 @@ const start = async () => {
               wsUsers[query.userName].send(JSON.stringify({'to': query.userName, 'msg': 'manager is OFFLINE...', 'date': Date.now()}))
             }
             emitter.emit('add websocket clients', { ws, query })
-            console.log('newClientConnection...', managedClients, wsUsers)
+            // console.log('newClientConnection...', managedClients, wsUsers)
           }
           if (data.oldClientConnection) {
-            console.log('oldClientConnection...', managedClients)
+            // console.log('oldClientConnection...', managedClients)
           }
           if (data.newManagerConnection) {
             // console.log('newManagerConnection...', managedClients, query.userName)
@@ -131,7 +131,7 @@ const start = async () => {
       })
 
       ws.on('close', () => {
-        console.log('ws Close...', wsManagers.get(ws), wsClients.get(ws))
+        // console.log('ws Close...', wsManagers.get(ws), wsClients.get(ws))
         let managerEmail = wsManagers.get(ws)         // send warning to all clients, "manager is OFFLINE..."
         if (managedClients[managerEmail]) {
           managedClients[managerEmail].forEach(client => 
@@ -179,7 +179,7 @@ emitter.on('add websocket managers', data => {
   let { ws, query } = data
   if (!query.userHost) {                     // only client has query.userHost
     wsManagers.set(ws, query.userName)
-    console.log('WS managers...', query.userName)
+    // console.log('WS managers...', query.userName)
   }
 })
 
@@ -195,6 +195,6 @@ emitter.on('add websocket clients', data => {
     } else {
       managedClients[managerEmail] = [query.userName]
     }
-    console.log('WS clients...', managedClients)
+    // console.log('WS clients...', managedClients)
   }
 })
