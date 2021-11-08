@@ -107,7 +107,7 @@ const start = async () => {
               wsUsers[query.userName].send(JSON.stringify({'to': query.userName, 'msg': 'manager is OFFLINE...', 'date': Date.now()}))
             }
             emitter.emit('add websocket clients', { ws, query })
-            console.log('newClientConnection...', managedClients)
+            console.log('newClientConnection...', managedClients, wsUsers)
           }
           if (data.oldClientConnection) {
             console.log('oldClientConnection...', managedClients)
@@ -138,6 +138,7 @@ const start = async () => {
             wsUsers[client].send(JSON.stringify({'to': client, 'msg': 'manager is OFFLINE...', 'date': Date.now()}))
           )
         }
+        wsUsers[managerEmail] = null
       })
     })
     
