@@ -98,7 +98,9 @@ const App = {
       this.pushMessage(JSON.parse(event.data))
     }
     this.ws.onopen = () => {
-      this.ws.send(JSON.stringify({'newClientConnection': this.userID, 'msg': 'initial connection...', 'date': Date.now()}))
+      data
+        ? this.ws.send(JSON.stringify({'oldClientConnection': this.userID, 'msg': 'persistent connection...', 'date': Date.now()}))
+        : this.ws.send(JSON.stringify({'newClientConnection': this.userID, 'msg': 'initial connection...', 'date': Date.now()}))
     }
   }
 }

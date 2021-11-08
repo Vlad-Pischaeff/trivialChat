@@ -100,16 +100,17 @@ const start = async () => {
             wsUsers[data.to].send(JSON.stringify(data))
           }
           if (data.newClientConnection) {
-            // let managerEmail = countedSites[query.userHost]
-            // if (wsUsers[managerEmail]) {
-            //   if ( managedClients[managerEmail] && 
-            //       !managedClients[managerEmail].includes(query.userName)) {
-            //   wsUsers[query.userName].send(JSON.stringify({'to': query.userName, 'msg': 'manager is ONLINE...', 'date': Date.now()}))
-            // } else {
-            //   wsUsers[query.userName].send(JSON.stringify({'to': query.userName, 'msg': 'manager is OFFLINE...', 'date': Date.now()}))
-            // }
+            let managerEmail = countedSites[query.userHost]
+            if (wsUsers[managerEmail]) {
+              wsUsers[query.userName].send(JSON.stringify({'to': query.userName, 'msg': 'manager is ONLINE...', 'date': Date.now()}))
+            } else {
+              wsUsers[query.userName].send(JSON.stringify({'to': query.userName, 'msg': 'manager is OFFLINE...', 'date': Date.now()}))
+            }
             emitter.emit('add websocket clients', { ws, query })
             console.log('newClientConnection...', managedClients)
+          }
+          if (data.oldClientConnection) {
+            console.log('oldClientConnection...', managedClients)
           }
           if (data.newManagerConnection) {
             // console.log('newManagerConnection...', managedClients, query.userName)
