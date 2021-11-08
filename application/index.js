@@ -29,8 +29,8 @@ const wsUsers = {}              //  { user1: ws1, user2: ws2 ... }
 let wsClients = new WeakMap()   //  { ws1: client1, ws2: client2 ... }
 let wsManagers = new WeakMap()  //  { ws1: manager1, ws2: manager2 ... }
 let managedClients = {}         //  { manager1: [client1, client2, ...], manager2: [client3, client4, ...], ... }
-let countedSites = {}           //  { cite1: manager1, cite2: manager2 ... }
-let countedEmails = {}          //  { manager1: cite1, manager2: cite2 ... }
+let countedSites = {}           //  { site1: manager1, site2: manager2 ... }
+let countedEmails = {}          //  { manager1: site1, manager2: site2 ... }
 const emitter = require('./routes/service')
 
 app.use(express.json({ extended: true }))
