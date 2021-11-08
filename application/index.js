@@ -110,10 +110,11 @@ const start = async () => {
             // console.log('newClientConnection...', managedClients, wsUsers)
           }
           if (data.oldClientConnection) {
+            emitter.emit('add websocket clients', { ws, query })
             // console.log('oldClientConnection...', managedClients)
           }
           if (data.newManagerConnection) {
-            // console.log('newManagerConnection...', managedClients, query.userName)
+            console.log('newManagerConnection...', managedClients, query.userName)
             emitter.emit('add websocket managers', { ws, query })
             if (managedClients[query.userName]) {
               managedClients[query.userName].forEach(client => 
@@ -195,6 +196,6 @@ emitter.on('add websocket clients', data => {
     } else {
       managedClients[managerEmail] = [query.userName]
     }
-    // console.log('WS clients...', managedClients)
+    console.log('WS clients...', managedClients)
   }
 })
