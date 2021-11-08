@@ -25,12 +25,12 @@ const Server = isProduction
                 ? https.createServer(credentials, app)
                 : http.createServer(app)
 
-const wsUsers = {}
-let wsClients = new WeakMap()
-let wsManagers = new WeakMap()
-let managedClients = {}
-let countedSites = {}
-let countedEmails = {}
+const wsUsers = {}              //  { user1: ws1, user2: ws2 ... }
+let wsClients = new WeakMap()   //  { ws1: client1, ws2: client2 ... }
+let wsManagers = new WeakMap()  //  { ws1: manager1, ws2: manager2 ... }
+let managedClients = {}         //  { manager1: [client1, client2, ...], manager2: [client3, client4, ...], ... }
+let countedSites = {}           //  { cite1: manager1, cite2: manager2 ... }
+let countedEmails = {}          //  { manager1: cite1, manager2: cite2 ... }
 const emitter = require('./routes/service')
 
 app.use(express.json({ extended: true }))
