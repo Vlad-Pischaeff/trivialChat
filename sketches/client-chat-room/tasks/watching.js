@@ -18,6 +18,7 @@ module.exports = function watching() {
 
 	watch('src/**/*.pug', parallel('pug2html'));
 	watch('sass/**/*.sass', parallel('style'));
+	watch('sass/**/*.sass', parallel('clean_css'));
 	watch('build/js/*.js').on('change', bs.reload);
 	watch('build/**/*.html').on('change', bs.reload);
 	watch('build/**/*.css').on('change', bs.reload);

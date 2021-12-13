@@ -32,6 +32,5 @@
     "pug-lint": "^2.6.0",
     "require-dir": "^1.2.0",
     "sass": "^1.38.0"
-  },
-  "dependencies": {}
+  }
 }
