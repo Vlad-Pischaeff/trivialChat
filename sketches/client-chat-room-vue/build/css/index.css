@@ -1,0 +1,31 @@
+/**
+ * *************************************** General variables
+ * */
+@font-face {
+  font-family: Esqadero;
+  src: url("../fonts/Esqadero FF CY 4F-Regular.woff2") format("woff2");
+  src: url("../fonts/Esqadero FF CY 4F-Regular.woff") format("woff");
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: Jura;
+  src: url("../fonts/Jura.woff2") format("woff2");
+  src: url("../fonts/Jura.woff") format("woff");
+  font-style: normal;
+  font-weight: normal;
+}
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+}
+
+body {
+  font-family: "Esqadero", sans-serif;
+  font-size: 1rem;
+  line-height: 1em;
+  overflow: hidden;
+}
